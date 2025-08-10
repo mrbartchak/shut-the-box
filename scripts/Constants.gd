@@ -1,0 +1,9 @@
+extends Node
+
+enum GameState {
+	WAITING_FOR_ROLL,
+	SELECTING_TILES,
+	CHECKING_SELECTION,
+	TURN_OVER,
+	GAME_OVER
+}
