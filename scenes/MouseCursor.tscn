@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c07lrpnwy111m"]
+
+[ext_resource type="Texture2D" uid="uid://dhtqu83vqdcxa" path="res://assets/sprites/mouse_cursor.png" id="1_6f1vn"]
+[ext_resource type="Script" path="res://scripts/MouseCursor.gd" id="1_pf7ce"]
+
+[node name="MouseCursor" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0.65)
+z_index = 4096
+texture = ExtResource("1_6f1vn")
+offset = Vector2(0.5, 0.5)
+script = ExtResource("1_pf7ce")

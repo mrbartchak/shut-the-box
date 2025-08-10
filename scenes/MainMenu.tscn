@@ -1,0 +1,147 @@
+[gd_scene load_steps=11 format=3 uid="uid://c3ubiedmjdicy"]
+
+[ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_fmut1"]
+[ext_resource type="PackedScene" uid="uid://c07lrpnwy111m" path="res://scenes/MouseCursor.tscn" id="2_legvl"]
+[ext_resource type="FontFile" uid="uid://dk003n4w3fkgy" path="res://assets/fonts/Alkhemikal.ttf" id="2_uat7o"]
+[ext_resource type="Script" path="res://scripts/DiceBackground.gd" id="3_rl2dq"]
+[ext_resource type="Texture2D" uid="uid://g7iefd01le73" path="res://assets/sprites/dice_sheet.png" id="4_be60k"]
+[ext_resource type="AudioStream" uid="uid://b3mq3pm111ucl" path="res://assets/sounds/448081__breviceps__tic-toc-click.wav" id="6_6707r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1y3un"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c528h"]
+bg_color = Color(0.64603, 0.646029, 0.646029, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 1
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exhel"]
+bg_color = Color(0.377919, 0.377919, 0.377919, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 1
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_htdnf"]
+bg_color = Color(0.247059, 0.156863, 0.196078, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.960784, 0.941176, 0.862745, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 5
+shadow_size = 1
+shadow_offset = Vector2(0, 1)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fmut1")
+
+[node name="ButtonClick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_6707r")
+volume_db = 5.0
+
+[node name="MouseCursor" parent="." instance=ExtResource("2_legvl")]
+
+[node name="DiceBackground" type="Control" parent="."]
+modulate = Color(0.562958, 0.562958, 0.562958, 1)
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_rl2dq")
+dice_sheet = ExtResource("4_be60k")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = 9.0
+offset_right = 62.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0.960784, 0.941176, 0.862745, 1)
+theme_override_colors/font_pressed_color = Color(0.960784, 0.941176, 0.862745, 1)
+theme_override_colors/font_focus_color = Color(0.960784, 0.941176, 0.862745, 1)
+theme_override_colors/font_color = Color(0.960784, 0.941176, 0.862745, 1)
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1y3un")
+theme_override_styles/hover = SubResource("StyleBoxFlat_c528h")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_exhel")
+theme_override_styles/normal = SubResource("StyleBoxFlat_htdnf")
+text = "start"
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0.960784, 0.941176, 0.862745, 1)
+theme_override_colors/font_pressed_color = Color(0.960784, 0.941176, 0.862745, 1)
+theme_override_colors/font_focus_color = Color(0.960784, 0.941176, 0.862745, 1)
+theme_override_colors/font_color = Color(0.959487, 0.940328, 0.863291, 1)
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1y3un")
+theme_override_styles/hover = SubResource("StyleBoxFlat_c528h")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_exhel")
+theme_override_styles/normal = SubResource("StyleBoxFlat_htdnf")
+text = "options"
+
+[node name="ExitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0.960784, 0.941176, 0.862745, 1)
+theme_override_colors/font_pressed_color = Color(0.960784, 0.941176, 0.862745, 1)
+theme_override_colors/font_focus_color = Color(0.960784, 0.941176, 0.862745, 1)
+theme_override_colors/font_color = Color(0.960784, 0.941176, 0.862745, 1)
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1y3un")
+theme_override_styles/hover = SubResource("StyleBoxFlat_c528h")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_exhel")
+theme_override_styles/normal = SubResource("StyleBoxFlat_htdnf")
+text = "exit"
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -94.0
+offset_top = 29.0
+offset_right = 94.0
+offset_bottom = 61.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.960784, 0.941176, 0.862745, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.247059, 0.156863, 0.196078, 1)
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_uat7o")
+theme_override_font_sizes/font_size = 32
+text = "SHUT THE BOX"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

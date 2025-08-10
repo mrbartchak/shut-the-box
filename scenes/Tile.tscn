@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4s8dvxj3qfwd"]
+
+[ext_resource type="Script" path="res://scripts/Tile.gd" id="1_cjfvm"]
+
+[node name="Tile" type="Button"]
+offset_right = 18.0
+offset_bottom = 33.0
+text = "0
+"
+script = ExtResource("1_cjfvm")
