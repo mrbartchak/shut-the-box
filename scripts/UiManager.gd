@@ -54,7 +54,8 @@ func _on_dice_rolled(total: int) -> void:
 # HELPERS
 func disable_roll_btn(disabled: bool) -> void:
 	roll_btn.disabled = disabled
-
+func disable_select_btn(disabled: bool) -> void:
+	select_btn.disabled = disabled
 
 # ANIMATIONS
 func _pop_fade(target: CanvasItem, text: String = "", up_scale: float = 1.2) -> void:

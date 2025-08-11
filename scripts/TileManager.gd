@@ -7,6 +7,7 @@ extends Node
 
 var _tiles: Array[Tile] = []
 var _open_tiles: Array[Tile] = []
+var _selected_tiles: Array[Tile] = []
 
 
 func _ready() -> void:
@@ -51,7 +52,22 @@ func enable_candidate_tiles(candidates: Array) -> void:
 			tile.set_interactive(true)
 
 
+func get_selected_tiles() -> Array[Tile]:
+	return _selected_tiles
 
+func get_open_tiles() -> Array[Tile]:
+	return _open_tiles
+
+func clear_selected_tiles() -> void:
+	_selected_tiles = []
+
+
+func close_tiles(tiles: Array[Tile]) -> void:
+	for tile: Tile in tiles:
+		tile.set_visual(Tile.Visual.CLOSED)
+		tile.set_interactive(false)
+		if _open_tiles.has(tile):
+			_open_tiles.erase(tile)
 
 
 
@@ -96,11 +112,23 @@ func _close_tile(tile: Tile) -> void:
 	if not is_instance_valid(tile): return
 	if _open_tiles.has(tile): _open_tiles.erase(tile)
 	tile.set_visual(Tile.Visual.CLOSED)
-	
+
+
+func _toggle_select_tile(tile: Tile) -> void:
+	if !tile.selected:
+		tile.selected = true
+		tile.set_visual(Tile.Visual.SELECTED)
+		if !_selected_tiles.has(tile):
+			_selected_tiles.append(tile)
+	else:
+		tile.selected = false
+		tile.set_visual(Tile.Visual.HIGHLIGHT)
+		if _selected_tiles.has(tile):
+			_selected_tiles.erase(tile)
 
 
 func _on_tile_clicked(tile: Tile) -> void:
-	_close_tile(tile)
+	_toggle_select_tile(tile)
 
 
 func _print_combos(combos: Array) -> void:
@@ -112,3 +140,8 @@ func _print_combos(combos: Array) -> void:
 		combo_string += "]"
 		ret += combo_string
 	print(ret)
+
+
+func _refresh_visuals() -> void:
+	for tile: Tile in _tiles:
+		tile._apply_visuals()

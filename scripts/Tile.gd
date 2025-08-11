@@ -14,6 +14,7 @@ enum Visual { OPEN, DIMMED, HIGHLIGHT, SELECTED, CLOSED }
 
 var visual_mode: Visual = Visual.DIMMED
 var interactive: bool = false
+var selected: bool = false
 
 @onready var lbl: Label = $Label
 
@@ -36,6 +37,7 @@ func set_value(v: int) -> void:
 func set_interactive(v: bool) -> void:
 	interactive = v
 	_apply_interactivity()
+	
 
 # -------- Interaction --------
 func _pressed() -> void:
@@ -53,7 +55,10 @@ func _apply_visuals() -> void:
 		Visual.DIMMED: modulate = color_dimmed
 		Visual.HIGHLIGHT: modulate = color_highlight
 		Visual.SELECTED: modulate = color_selected
-		Visual.CLOSED: modulate = color_closed
+		Visual.CLOSED:
+			modulate = color_closed
+			texture_disabled = texture_pressed
+			lbl.text = ""
 
 func _apply_interactivity() -> void:
 	self.disabled = not interactive
