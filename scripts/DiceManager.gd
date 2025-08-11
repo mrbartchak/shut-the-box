@@ -37,14 +37,6 @@ func roll_all() -> Array[int]:
 			finish_signals.append(die.roll_animation_finished)
 			results.append(die.roll_value())
 	
-	#if dice[0]:
-		#dice[0].play_roll_animation()
-		#results.append(dice[0].roll_value())
-	#
-	#if dice[1]:
-		#dice[1].play_roll_animation()
-		#results.append(dice[1].roll_value())
-	
 	for sig in finish_signals:
 		await sig
 	

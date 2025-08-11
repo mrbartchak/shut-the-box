@@ -11,6 +11,7 @@ extends CanvasLayer
 func _ready() -> void:
 	Events.dice_rolled.connect(_on_dice_rolled)
 	Events.state_updated.connect(_on_state_updated)
+	Events.score_updated.connect(_on_score_updated)
 	
 	menu_btn.pressed.connect(func():
 		
@@ -25,15 +26,19 @@ func _ready() -> void:
 	)
 
 
+func _on_state_updated(state: Constants.GameState) -> void:
+	state_lbl.text = str(Constants.GameState.keys()[state])
+
+
+func _on_score_updated(new_score: int) -> void:
+	highscore_lbl.text = "%04d" % new_score
+
+
 func _on_dice_rolled(total: int) -> void:
 	diceTotal_lbl.text = "%d" % total
 	#_start_pop_tween(diceTotal_lbl)
 	_pop_fade(diceTotal_lbl, str(total))
 	
-
-
-func _on_state_updated(state: Constants.GameState) -> void:
-	state_lbl.text = str(Constants.GameState.keys()[state])
 
 
 func _pop_fade(target: CanvasItem, text: String = "", up_scale: float = 1.2) -> void:
