@@ -1,0 +1,241 @@
+[gd_scene load_steps=21 format=3 uid="uid://i6ngq88wqpwq"]
+
+[ext_resource type="Texture2D" uid="uid://divi6eou5h5di" path="res://assets/sprites/offwhite_pattern.png" id="1_n77n2"]
+[ext_resource type="Texture2D" uid="uid://dkvbx5uaqdnw7" path="res://assets/sprites/box_new.png" id="2_fikcw"]
+[ext_resource type="Script" path="res://scripts/GameManager.gd" id="3_ekumy"]
+[ext_resource type="Script" path="res://scripts/TileManager.gd" id="4_w6it4"]
+[ext_resource type="PackedScene" uid="uid://c4s8dvxj3qfwd" path="res://scenes/Tile.tscn" id="5_6nrh4"]
+[ext_resource type="Script" path="res://scripts/DiceManager.gd" id="6_jf2lj"]
+[ext_resource type="PackedScene" uid="uid://n4adeggawd5e" path="res://scenes/Dice.tscn" id="7_lli7b"]
+[ext_resource type="Script" path="res://scripts/UiManager.gd" id="8_3fxao"]
+[ext_resource type="Texture2D" uid="uid://t7iivtj77c6i" path="res://assets/sprites/score_label_blank.png" id="9_1kn04"]
+[ext_resource type="Texture2D" uid="uid://cyyopeptb5xhb" path="res://assets/sprites/buttons/blank_button_normal.png" id="10_il16u"]
+[ext_resource type="Texture2D" uid="uid://cvq5nurmgmt3p" path="res://assets/sprites/buttons/blank_button_pressed.png" id="11_iw7na"]
+[ext_resource type="Texture2D" uid="uid://c3ph16qm3lv7f" path="res://assets/sprites/buttons/blank_button_hover.png" id="12_2jlgy"]
+[ext_resource type="Texture2D" uid="uid://h1evpyiy3ksb" path="res://assets/sprites/buttons/roll_button_normal.png" id="13_hvbq6"]
+[ext_resource type="Texture2D" uid="uid://uq6lku4ysjrc" path="res://assets/sprites/buttons/blank_button_diabled.png" id="13_ttowe"]
+[ext_resource type="Texture2D" uid="uid://dr2pnbtalwl6f" path="res://assets/sprites/buttons/roll_button_pressed.png" id="14_on453"]
+[ext_resource type="Texture2D" uid="uid://ddwks8kc6n2aq" path="res://assets/sprites/buttons/roll_button_hover.png" id="15_e5co3"]
+[ext_resource type="Texture2D" uid="uid://b1x7j855po4lf" path="res://assets/sprites/buttons/roll_button_disabled.png" id="16_5a3iu"]
+[ext_resource type="FontFile" uid="uid://biuq5bpy1jhm8" path="res://assets/fonts/DigitalDisco.ttf" id="17_ctfxk"]
+[ext_resource type="PackedScene" uid="uid://c07lrpnwy111m" path="res://scenes/MouseCursor.tscn" id="18_gwfbm"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nucs8"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(250, 160, 1)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 10, 0)
+color = Color(0.886275, 0.976471, 0.980392, 1)
+
+[node name="Game" type="Node2D"]
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+z_index = -4096
+texture_repeat = 2
+offset_right = 320.0
+offset_bottom = 180.0
+texture = ExtResource("1_n77n2")
+stretch_mode = 1
+
+[node name="BackgroundParticles" type="GPUParticles2D" parent="Background"]
+position = Vector2(160, 90)
+amount = 750
+process_material = SubResource("ParticleProcessMaterial_nucs8")
+lifetime = 2.0
+preprocess = 2.0
+fixed_fps = 60
+visibility_rect = Rect2(-160, -90, 320, 180)
+
+[node name="Box" type="TextureRect" parent="Background"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 96.0
+offset_top = 56.0
+offset_right = 224.0
+offset_bottom = 125.0
+grow_horizontal = 2
+texture = ExtResource("2_fikcw")
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("3_ekumy")
+
+[node name="TileManager" type="Node" parent="." node_paths=PackedStringArray("container")]
+script = ExtResource("4_w6it4")
+tile_scene = ExtResource("5_6nrh4")
+container = NodePath("TileContainer")
+
+[node name="TileContainer" type="HBoxContainer" parent="TileManager"]
+offset_left = 102.0
+offset_top = 60.0
+offset_right = 218.0
+offset_bottom = 79.0
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="DiceManager" type="Node2D" parent="."]
+position = Vector2(160, 80)
+script = ExtResource("6_jf2lj")
+
+[node name="Die" parent="DiceManager" instance=ExtResource("7_lli7b")]
+position = Vector2(-39, 19)
+
+[node name="Die2" parent="DiceManager" instance=ExtResource("7_lli7b")]
+position = Vector2(-9, 19)
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("8_3fxao")
+
+[node name="StateLabel" type="Label" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.0
+offset_top = 6.0
+offset_right = 37.0
+offset_bottom = 22.0
+grow_horizontal = 2
+text = "no state"
+
+[node name="Score" type="TextureRect" parent="UI"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.258
+anchor_right = 0.5
+anchor_bottom = 0.258
+offset_left = -64.0
+offset_top = -8.44
+offset_right = 64.0
+offset_bottom = 8.56
+texture = ExtResource("9_1kn04")
+stretch_mode = 2
+
+[node name="StaticLabel" type="Label" parent="UI/Score"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 31.0
+offset_bottom = 13.0
+theme_override_font_sizes/font_size = 8
+text = "SCORE:
+"
+
+[node name="Label" type="Label" parent="UI/Score"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.883
+anchor_top = 0.5
+anchor_right = 0.883
+anchor_bottom = 0.5
+offset_left = -10.024
+offset_top = -3.5
+offset_right = 9.976
+offset_bottom = 4.5
+theme_override_font_sizes/font_size = 8
+text = "0000"
+horizontal_alignment = 2
+
+[node name="MenuButton" type="TextureButton" parent="UI"]
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 40.0
+offset_bottom = 22.0
+texture_normal = ExtResource("10_il16u")
+texture_pressed = ExtResource("11_iw7na")
+texture_hover = ExtResource("12_2jlgy")
+
+[node name="Label" type="Label" parent="UI/MenuButton"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 26.0
+offset_bottom = 11.0
+theme_override_colors/font_color = Color(0.298039, 0.109804, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "menu
+"
+
+[node name="SelectTileButton" type="TextureButton" parent="UI"]
+offset_left = 177.0
+offset_top = 100.0
+offset_right = 207.0
+offset_bottom = 114.0
+disabled = true
+texture_normal = ExtResource("10_il16u")
+texture_pressed = ExtResource("11_iw7na")
+texture_hover = ExtResource("12_2jlgy")
+texture_disabled = ExtResource("13_ttowe")
+
+[node name="Label" type="Label" parent="UI/SelectTileButton"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 28.0
+offset_bottom = 11.0
+theme_override_colors/font_color = Color(0.298039, 0.109804, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "select
+"
+
+[node name="QuitButton" type="TextureButton" parent="UI"]
+offset_left = 281.0
+offset_top = 9.0
+offset_right = 311.0
+offset_bottom = 23.0
+texture_normal = ExtResource("10_il16u")
+texture_pressed = ExtResource("11_iw7na")
+texture_hover = ExtResource("12_2jlgy")
+
+[node name="Label" type="Label" parent="UI/QuitButton"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 3.0
+offset_right = 29.0
+offset_bottom = 11.0
+theme_override_colors/font_color = Color(0.298039, 0.109804, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "exit"
+
+[node name="RollButton" type="TextureButton" parent="UI"]
+offset_left = 177.0
+offset_top = 83.0
+offset_right = 207.0
+offset_bottom = 97.0
+disabled = true
+texture_normal = ExtResource("13_hvbq6")
+texture_pressed = ExtResource("14_on453")
+texture_hover = ExtResource("15_e5co3")
+texture_disabled = ExtResource("16_5a3iu")
+
+[node name="DiceResults" type="TextureRect" parent="UI"]
+offset_left = 111.0
+offset_top = 140.0
+offset_right = 208.0
+offset_bottom = 171.0
+
+[node name="Total" type="Label" parent="UI/DiceResults"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.515
+anchor_top = 0.194
+anchor_right = 0.515
+anchor_bottom = 0.194
+offset_left = -19.955
+offset_top = -16.014
+offset_right = 20.045
+offset_bottom = 15.986
+theme_override_colors/font_color = Color(1, 0.784314, 0.141176, 1)
+theme_override_fonts/font = ExtResource("17_ctfxk")
+theme_override_font_sizes/font_size = 32
+text = "7"
+horizontal_alignment = 1
+
+[node name="MouseLayer" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="MouseCursor" parent="MouseLayer" instance=ExtResource("18_gwfbm")]

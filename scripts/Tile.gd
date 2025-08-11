@@ -3,48 +3,61 @@ extends TextureButton
 
 signal clicked(tile: Tile)
 
-var value: int = 0
-var is_open: bool = true
-var is_selected: bool = false
+enum Visual { OPEN, DIMMED, HIGHLIGHT, SELECTED, CLOSED }
+
+@export var value: int = 0
+@export var color_open: Color = Color(0.9, 0.9, 0.9)
+@export var color_dimmed: Color = Color(0.75, 0.75, 0.75)
+@export var color_highlight: Color = Color(1, 1, 1)
+@export var color_selected: Color = Color(0.5, 1, 0.5)
+@export var color_closed: Color = Color(0.5, 0.5, 0.5)
+
+var visual_mode: Visual = Visual.DIMMED
+var interactive: bool = false
 
 @onready var lbl: Label = $Label
 
 
 func _ready() -> void:
 	_connect_signals()
-	lbl.text = str(value)
-	_update_appearance()
+	_refresh_label()
+	_apply_visuals()
+	_apply_interactivity()
 
+# -------- Public API --------
+func set_visual(mode: Visual) -> void:
+	visual_mode = mode
+	_apply_visuals()
 
-func open() -> void:
-	is_open = true
-	_update_appearance()
+func set_value(v: int) -> void:
+	value = v
+	_apply_visuals()
 
+func set_interactive(v: bool) -> void:
+	interactive = v
+	_apply_interactivity()
 
-func close() -> void:
-	is_open = false
-	is_selected = false
-	_update_appearance()
-
-
-func select_tile() -> void:
-	is_selected = true
-	_update_appearance()
-
-
-func unselect_tile() -> void:
-	is_selected = false
-	_update_appearance()
-
-
+# -------- Interaction --------
 func _pressed() -> void:
-	self.clicked.emit(self)
+	if interactive:
+		clicked.emit(self)
 
+# -------- Internals --------
+func _refresh_label() -> void:
+	if is_instance_valid(lbl):
+		lbl.text = str(value)
 
-func _update_appearance() -> void:
-	self.modulate = Color.WHITE if is_open else Color(0.5, 0.5, 0.5)
-	self.disabled = not is_open
+func _apply_visuals() -> void:
+	match visual_mode:
+		Visual.OPEN: modulate = color_open
+		Visual.DIMMED: modulate = color_dimmed
+		Visual.HIGHLIGHT: modulate = color_highlight
+		Visual.SELECTED: modulate = color_selected
+		Visual.CLOSED: modulate = color_closed
 
+func _apply_interactivity() -> void:
+	self.disabled = not interactive
+	self.focus_mode = Control.FOCUS_NONE if disabled else Control.FOCUS_ALL
 
 func _connect_signals() -> void:
 	var base_pos: Vector2 = lbl.position
@@ -62,6 +75,4 @@ func _connect_signals() -> void:
 	focus_exited.connect(func():
 		lbl.position = base_pos
 	)
-	
-	
 	

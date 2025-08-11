@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://c3cgfu2kx6jus"]
+
+[ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="1_cv78o"]
+[ext_resource type="Script" path="res://scripts/OptionsMenu.gd" id="1_lh8yh"]
+[ext_resource type="Texture2D" uid="uid://divi6eou5h5di" path="res://assets/sprites/offwhite_pattern.png" id="2_2xyow"]
+[ext_resource type="FontFile" uid="uid://dk003n4w3fkgy" path="res://assets/fonts/Alkhemikal.ttf" id="3_ja81w"]
+[ext_resource type="Texture2D" uid="uid://cyyopeptb5xhb" path="res://assets/sprites/buttons/blank_button_normal.png" id="5_leiae"]
+[ext_resource type="Texture2D" uid="uid://cvq5nurmgmt3p" path="res://assets/sprites/buttons/blank_button_pressed.png" id="6_mjnjd"]
+[ext_resource type="Texture2D" uid="uid://c3ph16qm3lv7f" path="res://assets/sprites/buttons/blank_button_hover.png" id="7_bkbmj"]
+[ext_resource type="PackedScene" uid="uid://c07lrpnwy111m" path="res://scenes/MouseCursor.tscn" id="8_quno6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fup1h"]
+shader = ExtResource("1_cv78o")
+shader_parameter/speed = 1.0
+
+[node name="OptionsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lh8yh")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_fup1h")
+offset_right = 320.0
+offset_bottom = 180.0
+texture = ExtResource("2_2xyow")
+stretch_mode = 1
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -94.0
+offset_top = 53.0
+offset_right = 94.0
+offset_bottom = 120.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.568627, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.439049, 0.439049, 0.439049, 1)
+theme_override_colors/font_outline_color = Color(1, 0.784314, 0.145098, 1)
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_ja81w")
+theme_override_font_sizes/font_size = 32
+text = "Coming
+Soon..."
+horizontal_alignment = 1
+
+[node name="BackButton" type="TextureButton" parent="."]
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 40.0
+offset_bottom = 22.0
+texture_normal = ExtResource("5_leiae")
+texture_pressed = ExtResource("6_mjnjd")
+texture_hover = ExtResource("7_bkbmj")
+
+[node name="Label" type="Label" parent="BackButton"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 3.0
+offset_right = 27.0
+offset_bottom = 11.0
+theme_override_colors/font_color = Color(1, 0.784314, 0.141176, 1)
+theme_override_font_sizes/font_size = 8
+text = "back
+"
+
+[node name="MouseCursor" parent="." instance=ExtResource("8_quno6")]

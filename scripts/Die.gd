@@ -22,6 +22,8 @@ func roll_value() -> int:
 
 func play_roll_animation() -> void:
 	var tween = _start_spin_tween(rotation_count, roll_duration)
+	var base_pitch = roll_sound.pitch_scale
+	roll_sound.pitch_scale = base_pitch * randf_range(0.9, 1.1)
 	roll_sound.play()
 	
 	var reveal_ratio: float = 0.5
@@ -33,6 +35,7 @@ func play_roll_animation() -> void:
 	await _start_pop_tween()
 	SoundManager.play_pop()
 	self.roll_animation_finished.emit()
+	roll_sound.pitch_scale = base_pitch
 
 
 func _start_spin_tween(rotations: int, duration: float) -> Tween:
