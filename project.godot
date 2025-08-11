@@ -18,6 +18,7 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 
 Events="*res://scripts/Events.gd"
 Constants="*res://scripts/Constants.gd"
+SoundManager="*res://scripts/SoundManager.gd"
 
 [debug]
 
@@ -27,7 +28,6 @@ gdscript/warnings/unused_signal=0
 
 window/size/viewport_width=320
 window/size/viewport_height=180
-window/size/mode=3
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="viewport"
@@ -49,4 +49,6 @@ theme/default_font_subpixel_positioning=0
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(0.0980392, 0.239216, 0.247059, 1)
+environment/defaults/default_clear_color=Color(0.882583, 0.938716, 0.793433, 1)
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true

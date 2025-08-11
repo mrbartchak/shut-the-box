@@ -6,3 +6,4 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	global_position = lerp(global_position, get_global_mouse_position(), 30.0*delta)
+	global_position = global_position.round()

@@ -7,6 +7,7 @@
 
 [node name="Die" type="Node2D"]
 script = ExtResource("1_0x24l")
+roll_duration = 1.0
 
 [node name="AnimatedDiceSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_ujmci")
@@ -15,7 +16,7 @@ animation = &"roll"
 [node name="RollSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_1ele6")
 volume_db = -5.0
-pitch_scale = 1.25
+pitch_scale = 3.0
 
 [node name="PopSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_5xkhq")

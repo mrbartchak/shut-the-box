@@ -11,30 +11,49 @@ func _ready() -> void:
 			dice.append(child)
 
 
-#func roll_all() -> int:
+#func roll_all() -> Array[int]:
 	#is_rolling = true
-	#var total: int = 0
+	#var results: Array[int] = []
 	#for die: Die in dice:
 		#var result: int = await die.roll()
-		#total += result
-		#print("rolled: ", result)
-	#Events.dice_rolled.emit(total)
+		#results.append(result)
+		#Events.dice1_rolled
+	#Events.dice_rolled.emit(get_total(results))
 	#is_rolling = false
-	#return total
+	#return results
+
 
 func roll_all() -> Array[int]:
 	is_rolling = true
 	var results: Array[int] = []
+	if !dice:
+		push_warning("No dice to roll")
+		return []
+	
+	var finish_signals: Array = []
 	for die: Die in dice:
-		var result: int = await die.roll()
-		results.append(result)
-		print("rolled: ", result)
-	Events.dice_rolled.emit(get_total(results))
+		if die:
+			die.play_roll_animation()
+			finish_signals.append(die.roll_animation_finished)
+			results.append(die.roll_value())
+	
+	#if dice[0]:
+		#dice[0].play_roll_animation()
+		#results.append(dice[0].roll_value())
+	#
+	#if dice[1]:
+		#dice[1].play_roll_animation()
+		#results.append(dice[1].roll_value())
+	
+	for sig in finish_signals:
+		await sig
+	
+	Events.dice_rolled.emit(_get_total(results))
 	is_rolling = false
 	return results
 
 
-func get_total(results: Array[int]) -> int:
+func _get_total(results: Array[int]) -> int:
 	var total: int = 0
 	for result: int in results:
 		total += result

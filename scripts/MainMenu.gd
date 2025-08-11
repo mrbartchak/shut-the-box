@@ -17,5 +17,5 @@ func _on_exit_button_pressed() -> void:
 
 
 func play_button_click() -> void:
-	$ButtonClick.play()
+	SoundManager.play_click()
 	await get_tree().create_timer(0.05).timeout

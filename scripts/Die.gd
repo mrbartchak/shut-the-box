@@ -2,10 +2,11 @@ class_name Die
 extends Node2D
 
 signal rolled()
+signal roll_animation_finished()
 
 @export var sides: int = 6
 @export var rotation_count: int = 8
-@export var roll_duration: float = 3.0
+@export var roll_duration: float = 2.0
 
 var value: int = 0
 
@@ -14,29 +15,29 @@ var value: int = 0
 @onready var pop_sound: AudioStreamPlayer2D = $PopSound
 
 
-func roll() -> int:
+func roll_value() -> int:
 	value = randi() % sides + 1
-	await play_roll_animation()
 	self.rolled.emit()
 	return value
 
 
 func play_roll_animation() -> void:
-	var tween = start_spin_tween(rotation_count, roll_duration)
+	var tween = _start_spin_tween(rotation_count, roll_duration)
 	roll_sound.play()
 	
 	var reveal_ratio: float = 0.5
 	var cycle_duration: float = roll_duration * reveal_ratio
 	
-	await cycle_faces(cycle_duration)
-	reveal_face()
+	await _cycle_faces(cycle_duration)
+	_reveal_face()
 	await tween.finished
-	await start_pop_tween()
+	await _start_pop_tween()
 	pop_sound.play()
 	await pop_sound.finished
+	self.roll_animation_finished.emit()
 
 
-func start_spin_tween(rotations: int, duration: float) -> Tween:
+func _start_spin_tween(rotations: int, duration: float) -> Tween:
 	var full_rotation: float = TAU * rotations
 	var tween: Tween = get_tree().create_tween()
 	
@@ -49,7 +50,7 @@ func start_spin_tween(rotations: int, duration: float) -> Tween:
 	return tween
 
 
-func cycle_faces(duration: float) -> void:
+func _cycle_faces(duration: float) -> void:
 	var time_passed: float = 0.0
 	var min_interval: float = 0.05
 	var max_interval: float = 0.3
@@ -62,13 +63,13 @@ func cycle_faces(duration: float) -> void:
 		time_passed += interval
 
 
-func start_pop_tween() -> void:
+func _start_pop_tween() -> void:
 	var tween: Tween = get_tree().create_tween()
 	
 	tween.tween_property(
 		sprite,
 		"scale",
-		Vector2(1.1, 1.1),
+		Vector2(1.2, 1.2),
 		0.1
 	).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	
@@ -80,5 +81,5 @@ func start_pop_tween() -> void:
 	).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 
 
-func reveal_face() -> void:
+func _reveal_face() -> void:
 	sprite.frame = value - 1

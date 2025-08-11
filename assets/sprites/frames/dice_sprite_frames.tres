@@ -2,29 +2,29 @@
 
 [ext_resource type="Texture2D" uid="uid://g7iefd01le73" path="res://assets/sprites/dice_sheet.png" id="1_h1w4w"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8eyxc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_uj464"]
 atlas = ExtResource("1_h1w4w")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(0, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y0ww8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hsw0o"]
 atlas = ExtResource("1_h1w4w")
-region = Rect2(32, 0, 32, 32)
+region = Rect2(24, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xlg3c"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1y2sp"]
 atlas = ExtResource("1_h1w4w")
-region = Rect2(64, 0, 32, 32)
+region = Rect2(48, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xr4a5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdlpl"]
 atlas = ExtResource("1_h1w4w")
-region = Rect2(96, 0, 32, 32)
+region = Rect2(72, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_13qwi"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_75u3s"]
 atlas = ExtResource("1_h1w4w")
-region = Rect2(128, 0, 32, 32)
+region = Rect2(96, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q2h65"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4prog"]
 atlas = ExtResource("1_h1w4w")
-region = Rect2(160, 0, 32, 32)
+region = Rect2(120, 0, 24, 24)
 
 [resource]
 animations = [{
@@ -35,22 +35,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8eyxc")
+"texture": SubResource("AtlasTexture_uj464")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y0ww8")
+"texture": SubResource("AtlasTexture_hsw0o")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xlg3c")
+"texture": SubResource("AtlasTexture_1y2sp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xr4a5")
+"texture": SubResource("AtlasTexture_bdlpl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_13qwi")
+"texture": SubResource("AtlasTexture_75u3s")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q2h65")
+"texture": SubResource("AtlasTexture_4prog")
 }],
 "loop": true,
 "name": &"roll",

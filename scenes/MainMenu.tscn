@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://c3ubiedmjdicy"]
+[gd_scene load_steps=10 format=3 uid="uid://c3ubiedmjdicy"]
 
 [ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_fmut1"]
 [ext_resource type="PackedScene" uid="uid://c07lrpnwy111m" path="res://scenes/MouseCursor.tscn" id="2_legvl"]
 [ext_resource type="FontFile" uid="uid://dk003n4w3fkgy" path="res://assets/fonts/Alkhemikal.ttf" id="2_uat7o"]
 [ext_resource type="Script" path="res://scripts/DiceBackground.gd" id="3_rl2dq"]
 [ext_resource type="Texture2D" uid="uid://g7iefd01le73" path="res://assets/sprites/dice_sheet.png" id="4_be60k"]
-[ext_resource type="AudioStream" uid="uid://b3mq3pm111ucl" path="res://assets/sounds/448081__breviceps__tic-toc-click.wav" id="6_6707r"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1y3un"]
 
@@ -50,10 +49,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fmut1")
-
-[node name="ButtonClick" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_6707r")
-volume_db = 5.0
 
 [node name="MouseCursor" parent="." instance=ExtResource("2_legvl")]
 

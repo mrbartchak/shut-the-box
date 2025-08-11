@@ -2,8 +2,7 @@ extends Node
 
 @export var tile_scene: PackedScene
 @export var tile_count: int = 9
-@export var start_position: Vector2 = Vector2(50, 50)
-@export var spacing: Vector2 = Vector2(90, 0)
+@export var container: Container
 
 var _tiles: Array[Tile] = []
 
@@ -14,17 +13,13 @@ func _ready() -> void:
 
 func _spawn_tiles() -> void:
 	_clear_tiles()
-	var pos:= start_position
 	
 	for i in range(tile_count):
 		var t: Tile = tile_scene.instantiate() as Tile
 		t.value = i + 1
-		t.position = pos
 		t.clicked.connect(_on_tile_clicked)
-		add_child(t)
+		container.add_child(t)
 		_tiles.append(t)
-	
-	pos += spacing
 
 
 func _clear_tiles() -> void:
@@ -34,5 +29,5 @@ func _clear_tiles() -> void:
 	_tiles.clear()
 
 
-func _on_tile_clicked(val: int) -> void:
+func _on_tile_clicked(tile: Tile) -> void:
 	pass
