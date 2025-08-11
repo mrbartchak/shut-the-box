@@ -1,10 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://c3ubiedmjdicy"]
+[gd_scene load_steps=13 format=3 uid="uid://c3ubiedmjdicy"]
 
 [ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_fmut1"]
 [ext_resource type="PackedScene" uid="uid://c07lrpnwy111m" path="res://scenes/MouseCursor.tscn" id="2_legvl"]
 [ext_resource type="FontFile" uid="uid://dk003n4w3fkgy" path="res://assets/fonts/Alkhemikal.ttf" id="2_uat7o"]
+[ext_resource type="Texture2D" uid="uid://divi6eou5h5di" path="res://assets/sprites/offwhite_pattern.png" id="2_ued37"]
 [ext_resource type="Script" path="res://scripts/DiceBackground.gd" id="3_rl2dq"]
 [ext_resource type="Texture2D" uid="uid://g7iefd01le73" path="res://assets/sprites/dice_sheet.png" id="4_be60k"]
+[ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="4_mqqkv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t4noh"]
+shader = ExtResource("4_mqqkv")
+shader_parameter/speed = 1.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1y3un"]
 
@@ -50,9 +56,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fmut1")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_t4noh")
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 180.0
+texture = ExtResource("2_ued37")
+stretch_mode = 1
+
 [node name="MouseCursor" parent="." instance=ExtResource("2_legvl")]
 
 [node name="DiceBackground" type="Control" parent="."]
+visible = false
 modulate = Color(0.562958, 0.562958, 0.562958, 1)
 anchors_preset = 0
 offset_right = 40.0
@@ -127,9 +142,9 @@ offset_top = 29.0
 offset_right = 94.0
 offset_bottom = 61.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0.960784, 0.941176, 0.862745, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0.247059, 0.156863, 0.196078, 1)
+theme_override_colors/font_color = Color(1, 0.568627, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.439049, 0.439049, 0.439049, 1)
+theme_override_colors/font_outline_color = Color(1, 0.784314, 0.145098, 1)
 theme_override_constants/shadow_offset_y = 4
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("2_uat7o")

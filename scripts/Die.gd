@@ -12,7 +12,6 @@ var value: int = 0
 
 @onready var sprite: AnimatedSprite2D = $AnimatedDiceSprite
 @onready var roll_sound: AudioStreamPlayer2D = $RollSound
-@onready var pop_sound: AudioStreamPlayer2D = $PopSound
 
 
 func roll_value() -> int:
@@ -32,8 +31,7 @@ func play_roll_animation() -> void:
 	_reveal_face()
 	await tween.finished
 	await _start_pop_tween()
-	pop_sound.play()
-	await pop_sound.finished
+	SoundManager.play_pop()
 	self.roll_animation_finished.emit()
 
 

@@ -4,5 +4,5 @@ uniform float speed = 1.0;
 
 void vertex() {
 	UV.x += TIME * speed;
-	UV.y += TIME * speed;
+	//UV.y += TIME * speed;
 }
