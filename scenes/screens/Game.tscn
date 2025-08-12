@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://i6ngq88wqpwq"]
+[gd_scene load_steps=22 format=3 uid="uid://i6ngq88wqpwq"]
 
 [ext_resource type="Texture2D" uid="uid://divi6eou5h5di" path="res://assets/sprites/offwhite_pattern.png" id="1_n77n2"]
 [ext_resource type="Texture2D" uid="uid://dkvbx5uaqdnw7" path="res://assets/sprites/box_new.png" id="2_fikcw"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://b1x7j855po4lf" path="res://assets/sprites/buttons/roll_button_disabled.png" id="16_5a3iu"]
 [ext_resource type="FontFile" uid="uid://biuq5bpy1jhm8" path="res://assets/fonts/DigitalDisco.ttf" id="17_ctfxk"]
 [ext_resource type="PackedScene" uid="uid://c07lrpnwy111m" path="res://scenes/MouseCursor.tscn" id="18_gwfbm"]
+[ext_resource type="Script" path="res://scripts/GameManager2.gd" id="20_x2oru"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nucs8"]
 particle_flag_disable_z = true
@@ -239,3 +240,6 @@ horizontal_alignment = 1
 layer = 128
 
 [node name="MouseCursor" parent="MouseLayer" instance=ExtResource("18_gwfbm")]
+
+[node name="GameManager2" type="Node" parent="."]
+script = ExtResource("20_x2oru")

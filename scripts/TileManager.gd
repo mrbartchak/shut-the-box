@@ -14,9 +14,10 @@ func _ready() -> void:
 	_spawn_tiles()
 
 
-func get_valid_combinations(total: int) -> Array:
+func get_valid_combinations(total: int, tiles: Array[Tile] = _open_tiles.duplicate()) -> Array:
+	print("\n")
+	print(tiles)
 	var results: Array = []
-	var tiles: Array = _open_tiles.duplicate()
 	_dfs(tiles, 0, [], 0, total, results)
 	_print_combos(results)
 	return results
@@ -68,8 +69,7 @@ func close_tiles(tiles: Array[Tile]) -> void:
 		tile.set_interactive(false)
 		if _open_tiles.has(tile):
 			_open_tiles.erase(tile)
-
-
+	
 
 
 
@@ -91,6 +91,7 @@ func _dfs(tiles: Array, i: int, acc: Array, sum: int, total: int, results: Array
 
 func _spawn_tiles() -> void:
 	_clear_tiles()
+	_open_tiles = []
 	
 	for i in range(tile_count):
 		var t: Tile = tile_scene.instantiate() as Tile

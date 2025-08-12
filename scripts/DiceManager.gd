@@ -22,7 +22,6 @@ func _ready() -> void:
 	#is_rolling = false
 	#return results
 
-
 func roll_all() -> Array[int]:
 	is_rolling = true
 	var results: Array[int] = []
