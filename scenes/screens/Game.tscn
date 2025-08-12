@@ -1,8 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://i6ngq88wqpwq"]
+[gd_scene load_steps=21 format=3 uid="uid://i6ngq88wqpwq"]
 
 [ext_resource type="Texture2D" uid="uid://divi6eou5h5di" path="res://assets/sprites/offwhite_pattern.png" id="1_n77n2"]
 [ext_resource type="Texture2D" uid="uid://dkvbx5uaqdnw7" path="res://assets/sprites/box_new.png" id="2_fikcw"]
-[ext_resource type="Script" path="res://scripts/GameManager.gd" id="3_ekumy"]
 [ext_resource type="Script" path="res://scripts/TileManager.gd" id="4_w6it4"]
 [ext_resource type="PackedScene" uid="uid://c4s8dvxj3qfwd" path="res://scenes/Tile.tscn" id="5_6nrh4"]
 [ext_resource type="Script" path="res://scripts/DiceManager.gd" id="6_jf2lj"]
@@ -31,6 +30,9 @@ gravity = Vector3(0, 10, 0)
 color = Color(0.886275, 0.976471, 0.980392, 1)
 
 [node name="Game" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("20_x2oru")
 
 [node name="Background" type="Node2D" parent="."]
 
@@ -61,9 +63,6 @@ offset_right = 224.0
 offset_bottom = 125.0
 grow_horizontal = 2
 texture = ExtResource("2_fikcw")
-
-[node name="GameManager" type="Node" parent="."]
-script = ExtResource("3_ekumy")
 
 [node name="TileManager" type="Node" parent="." node_paths=PackedStringArray("container")]
 script = ExtResource("4_w6it4")
@@ -240,6 +239,3 @@ horizontal_alignment = 1
 layer = 128
 
 [node name="MouseCursor" parent="MouseLayer" instance=ExtResource("18_gwfbm")]
-
-[node name="GameManager2" type="Node" parent="."]
-script = ExtResource("20_x2oru")

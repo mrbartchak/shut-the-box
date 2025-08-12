@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c3ubiedmjdicy"]
+[gd_scene load_steps=14 format=3 uid="uid://c3ubiedmjdicy"]
 
 [ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_1kqtm"]
 [ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="2_yhsmu"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/DiceBackground.gd" id="5_ui1uk"]
 [ext_resource type="Texture2D" uid="uid://g7iefd01le73" path="res://assets/sprites/dice_sheet.png" id="6_v22ww"]
 [ext_resource type="FontFile" uid="uid://dk003n4w3fkgy" path="res://assets/fonts/Alkhemikal.ttf" id="7_emu56"]
+[ext_resource type="Texture2D" uid="uid://bduae1dx45hov" path="res://assets/sprites/nine_down_logo.png" id="8_yed6y"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t4noh"]
 shader = ExtResource("2_yhsmu")
@@ -15,32 +16,34 @@ shader_parameter/speed = 1.0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1y3un"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c528h"]
-bg_color = Color(1, 0.798476, 0.634405, 1)
-border_color = Color(1, 0.784314, 0.141176, 1)
+bg_color = Color(1, 0.980392, 0.831373, 1)
+border_color = Color(0.054902, 0.027451, 0.105882, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 shadow_size = 1
 shadow_offset = Vector2(0, 1)
+anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exhel"]
-bg_color = Color(1, 0.568627, 0, 1)
-border_color = Color(0.905882, 0.72549, 0.176471, 1)
+bg_color = Color(1, 0.980392, 0.831373, 1)
+border_color = Color(0.054902, 0.027451, 0.105882, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 shadow_size = 1
 shadow_offset = Vector2(0, 1)
+anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_htdnf"]
-bg_color = Color(1, 0.568627, 0, 1)
+bg_color = Color(1, 0.980392, 0.831373, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(1, 0.784314, 0.141176, 1)
+border_color = Color(0.054902, 0.027451, 0.105882, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -48,6 +51,7 @@ corner_radius_bottom_left = 4
 corner_detail = 5
 shadow_size = 1
 shadow_offset = Vector2(0, 1)
+anti_aliasing = false
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -86,9 +90,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -62.0
-offset_top = 9.0
+offset_top = 21.0
 offset_right = 62.0
-offset_bottom = 68.0
+offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 4
@@ -96,9 +100,10 @@ theme_override_constants/separation = 4
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_pressed_color = Color(0.992157, 1, 0.909804, 1)
-theme_override_colors/font_focus_color = Color(0.992157, 1, 0.909804, 1)
-theme_override_colors/font_color = Color(0.992157, 1, 0.909804, 1)
+theme_override_colors/font_hover_color = Color(0.054902, 0.027451, 0.105882, 1)
+theme_override_colors/font_pressed_color = Color(0.054902, 0.027451, 0.105882, 1)
+theme_override_colors/font_focus_color = Color(0.054902, 0.027451, 0.105882, 1)
+theme_override_colors/font_color = Color(0.054902, 0.027451, 0.105882, 1)
 theme_override_font_sizes/font_size = 8
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1y3un")
 theme_override_styles/hover = SubResource("StyleBoxFlat_c528h")
@@ -109,10 +114,10 @@ text = "start"
 [node name="OptionsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_hover_color = Color(0.960784, 0.941176, 0.862745, 1)
-theme_override_colors/font_pressed_color = Color(0.960784, 0.941176, 0.862745, 1)
-theme_override_colors/font_focus_color = Color(0.960784, 0.941176, 0.862745, 1)
-theme_override_colors/font_color = Color(0.959487, 0.940328, 0.863291, 1)
+theme_override_colors/font_hover_color = Color(0.054902, 0.027451, 0.105882, 1)
+theme_override_colors/font_pressed_color = Color(0.054902, 0.027451, 0.105882, 1)
+theme_override_colors/font_focus_color = Color(0.054902, 0.027451, 0.105882, 1)
+theme_override_colors/font_color = Color(0.054902, 0.027451, 0.105882, 1)
 theme_override_font_sizes/font_size = 8
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1y3un")
 theme_override_styles/hover = SubResource("StyleBoxFlat_c528h")
@@ -123,10 +128,10 @@ text = "options"
 [node name="ExitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_hover_color = Color(0.960784, 0.941176, 0.862745, 1)
-theme_override_colors/font_pressed_color = Color(0.960784, 0.941176, 0.862745, 1)
-theme_override_colors/font_focus_color = Color(0.960784, 0.941176, 0.862745, 1)
-theme_override_colors/font_color = Color(0.960784, 0.941176, 0.862745, 1)
+theme_override_colors/font_hover_color = Color(0.054902, 0.027451, 0.105882, 1)
+theme_override_colors/font_pressed_color = Color(0.054902, 0.027451, 0.105882, 1)
+theme_override_colors/font_focus_color = Color(0.054902, 0.027451, 0.105882, 1)
+theme_override_colors/font_color = Color(0.054902, 0.027451, 0.105882, 1)
 theme_override_font_sizes/font_size = 8
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1y3un")
 theme_override_styles/hover = SubResource("StyleBoxFlat_c528h")
@@ -135,6 +140,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_htdnf")
 text = "exit"
 
 [node name="Title" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -153,6 +159,21 @@ theme_override_fonts/font = ExtResource("7_emu56")
 theme_override_font_sizes/font_size = 32
 text = "SHUT THE BOX"
 horizontal_alignment = 1
+
+[node name="Logo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.494
+anchor_top = 0.022
+anchor_right = 0.494
+anchor_bottom = 0.022
+offset_left = -76.08
+offset_top = 8.04
+offset_right = 1.92
+offset_bottom = 51.04
+grow_horizontal = 2
+scale = Vector2(2, 2)
+texture = ExtResource("8_yed6y")
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]

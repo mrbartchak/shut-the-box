@@ -14,13 +14,14 @@ func _ready() -> void:
 	Events.dice_rolled.connect(_on_dice_rolled)
 	Events.state_changed.connect(_on_state_updated)
 	Events.score_updated.connect(_on_score_updated)
+	Events.roll_enabled_changed.connect(_on_roll_enabled_changed)
 	
 	menu_btn.pressed.connect(func():
 		get_tree().change_scene_to_file("res://scenes/screens/MainMenu.tscn")
 	)
 	roll_btn.pressed.connect(func():
 		SoundManager.play_click()
-		Events.roll_button_clicked.emit()
+		Events.roll_pressed.emit()
 	)
 	quit_btn.pressed.connect(func():
 		get_tree().quit()
@@ -44,8 +45,10 @@ func _on_score_updated(new_score: int) -> void:
 func _on_dice_rolled(total: int) -> void:
 	diceTotal_lbl.text = "%d" % total
 	_pop_fade(diceTotal_lbl, str(total))
-	
 
+func _on_roll_enabled_changed(enabled: bool) -> void:
+	print("roll enabled chagned")
+	roll_btn.disabled = !enabled
 
 
 

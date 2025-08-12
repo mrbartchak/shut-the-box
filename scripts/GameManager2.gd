@@ -22,6 +22,7 @@ var _state: State = State.GAME_INIT
 
 func _ready() -> void:
 	_connect_signals()
+	await get_tree().process_frame
 	_change_state(State.GAME_INIT)
 
 # =========================================================
@@ -78,6 +79,8 @@ func _enter_turn_start() -> void:
 # -------------------- AWAIT_ROLL -------------------
 func _enter_await_roll() -> void:
 	print("im in await rihgt now!")
+	Events.roll_enabled_changed.emit(true)
+	await Events.roll_pressed
 	var sum := 0
 	var results: Array[int] = await $"../DiceManager".roll_all()
 	for result in results:
@@ -88,7 +91,7 @@ func _enter_await_roll() -> void:
 	_emit_ctx()
 	
 	if _has_valid_move(ctx.open_tiles, ctx.roll_sum):
-		_change_state(State.CHOOSE_TILES)
+		_change_state(State.AWAIT_ROLL)
 	else:
 		_change_state(State.BUST)
 
@@ -99,14 +102,14 @@ func _enter_choose_tiles() -> void:
 
 func _validate_tiles() -> void:
 	# checks if selection is a valid move
-	var sum_selected := _sum_tiles(ctx.selected)
+	var sum_selected := _sum_tiles(ctx.selected_tiles)
 	for tile: Tile in ctx.selected_tiles:
 		if not ctx.open_tiles.has(tile):
 			break
 	if sum_selected == ctx.roll_sum and ctx.selected_tiles.size() > 0:
 		_change_state(State.RESOLVE)
 	else:
-		emit_signal("ui_message", "Invalid tile selection")
+		emit_signal("ui_message", "Invalid tile selection")  
 
 # ------------------------ RESOLVE ----------------------
 func _enter_resolve() -> void:
