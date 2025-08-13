@@ -38,7 +38,7 @@ func set_selected_visual(on: bool) -> void:
 func _pressed() -> void:
 	if disabled or !_open:
 		return
-	# TODO: Events.tile_select_requested.emit(id)
+	Events.tile_pressed.emit(id)
 
 
 # =============== EFFECT HOOKS ================

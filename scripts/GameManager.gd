@@ -103,6 +103,19 @@ func _enter_choose_tiles() -> void:
 	await Events.flip_pressed
 	_emit_ctx()
 
+func _on_tile_pressed(id: int) -> void:
+	if _state != State.CHOOSE_TILES:
+		return
+	print(id)
+	if ctx.selected_tiles.has(id):
+		ctx.selected_tiles.erase(id)
+	else:
+		if ctx.open_tiles.has(id):
+			ctx.selected_tiles.append(id)
+	
+	# TODO: Trigger select effect
+	_emit_ctx()
+
 func _validate_tiles() -> void:
 	# checks if selection is a valid move
 	if !State.CHOOSE_TILES:
@@ -114,7 +127,8 @@ func _validate_tiles() -> void:
 	if sum_selected == ctx.roll_sum and ctx.selected_tiles.size() > 0:
 		_change_state(State.RESOLVE)
 	else:
-		emit_signal("ui_message", "Invalid tile selection")  
+		emit_signal("ui_message", "Invalid tile selection")
+
 
 # ------------------------ RESOLVE ----------------------
 func _enter_resolve() -> void:
@@ -147,6 +161,7 @@ func _enter_score() -> void:
 
 func _emit_ctx() -> void:
 	self.ui_update.emit(ctx)
+	tile_manager.paint_from_ctx(ctx.open_tiles, ctx.selected_tiles)
 
 func _has_valid_move() -> bool:
 	# var valid_combos: Array = $"../TileManager".get_valid_combinations(target, open_tiles)
@@ -155,4 +170,5 @@ func _has_valid_move() -> bool:
 
 func _connect_signals() -> void:
 	# Events.select_button_pressed.connect(_validate_tiles)
+	Events.tile_pressed.connect(_on_tile_pressed)
 	pass

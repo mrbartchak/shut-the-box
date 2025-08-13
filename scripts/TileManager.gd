@@ -47,6 +47,15 @@ func set_tile_values(values: Dictionary) -> void:
 		else:
 			push_warning("Tile with ID %d nto found!" % id)
 
+func paint_from_ctx(open_ids: Array[int], selected_ids: Array[int]) -> void:
+	for id in _id_to_tile.keys():
+		var t: Tile = _id_to_tile[id]
+		if open_ids.has(id):
+			t.open()
+		else:
+			t.close()
+
+		t.set_selected_visual(selected_ids.has(id))
 
 
 
