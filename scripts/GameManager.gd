@@ -101,18 +101,18 @@ func _enter_choose_tiles() -> void:
 	emit_signal("ui_message", "Select tiles")
 	Events.flip_enabled_changed.emit(true)
 	await Events.flip_pressed
+	Events.flip_enabled_changed.emit(false)
+	_validate_tiles()
 	_emit_ctx()
 
 func _on_tile_pressed(id: int) -> void:
 	if _state != State.CHOOSE_TILES:
 		return
-	print(id)
 	if ctx.selected_tiles.has(id):
 		ctx.selected_tiles.erase(id)
 	else:
 		if ctx.open_tiles.has(id):
 			ctx.selected_tiles.append(id)
-	
 	# TODO: Trigger select effect
 	_emit_ctx()
 
@@ -127,7 +127,7 @@ func _validate_tiles() -> void:
 	if sum_selected == ctx.roll_sum and ctx.selected_tiles.size() > 0:
 		_change_state(State.RESOLVE)
 	else:
-		emit_signal("ui_message", "Invalid tile selection")
+		_change_state(State.CHOOSE_TILES)
 
 
 # ------------------------ RESOLVE ----------------------
