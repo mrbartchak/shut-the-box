@@ -39,6 +39,13 @@ func get_sum_tiles(keys: Array[int]) -> int:
 		sum += t.value
 	return sum
 
+func set_tile_values(values: Dictionary) -> void:
+	for id in values.keys():
+		if _id_to_tile.has(id):
+			var t: Tile = _id_to_tile[id]
+			t.set_value(values[id])
+		else:
+			push_warning("Tile with ID %d nto found!" % id)
 
 
 

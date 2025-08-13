@@ -7,6 +7,7 @@ extends TextureButton
 
 var _open: bool = true
 
+@onready var lbl: Label = $Label
 
 # ============== STATE ACCESSORS ==============
 func is_open() -> bool:
@@ -27,6 +28,7 @@ func set_enabled(on: bool) -> void:
 
 func set_value(v: int) -> void:
 	value = v
+	lbl.text = str(value)
 
 func set_selected_visual(on: bool) -> void:
 	modulate = Color(1,1,1) if on else Color(0.7, 0.7, 0.7)
