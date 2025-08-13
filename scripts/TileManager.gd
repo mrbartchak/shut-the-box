@@ -11,12 +11,13 @@ var _selected_tiles: Array[Tile] = []
 
 
 func _ready() -> void:
-	_spawn_tiles()
+	pass
+	#_spawn_tiles()
 
 
 func get_valid_combinations(total: int, tiles: Array[Tile] = _open_tiles.duplicate()) -> Array:
-	print("\n")
-	print(tiles)
+	# print("\n")
+	# print(tiles)
 	var results: Array = []
 	_dfs(tiles, 0, [], 0, total, results)
 	_print_combos(results)

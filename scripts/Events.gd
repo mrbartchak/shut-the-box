@@ -6,5 +6,7 @@ signal score_updated(new_score: int)
 
 signal roll_pressed()
 signal select_button_pressed()
+signal flip_pressed()
 
 signal roll_enabled_changed(enabled: bool)
+signal flip_enabled_changed(enabled: bool)

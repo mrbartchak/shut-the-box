@@ -32,7 +32,7 @@ func play_roll_animation() -> void:
 	await _cycle_faces(cycle_duration)
 	_reveal_face()
 	await tween.finished
-	await _start_pop_tween()
+	_start_pop_tween()
 	SoundManager.play_pop()
 	self.roll_animation_finished.emit()
 	roll_sound.pitch_scale = base_pitch

@@ -15,6 +15,7 @@ func _ready() -> void:
 	Events.state_changed.connect(_on_state_updated)
 	Events.score_updated.connect(_on_score_updated)
 	Events.roll_enabled_changed.connect(_on_roll_enabled_changed)
+	Events.flip_enabled_changed.connect(_on_flip_enabled_changed)
 	
 	menu_btn.pressed.connect(func():
 		get_tree().change_scene_to_file("res://scenes/screens/MainMenu.tscn")
@@ -29,6 +30,7 @@ func _ready() -> void:
 	select_btn.pressed.connect(func():
 		SoundManager.play_click()
 		Events.select_button_pressed.emit()
+		Events.flip_pressed.emit()
 	)
 
 
@@ -50,7 +52,9 @@ func _on_roll_enabled_changed(enabled: bool) -> void:
 	print("roll enabled chagned")
 	roll_btn.disabled = !enabled
 
-
+func _on_flip_enabled_changed(enabled: bool) -> void:
+	print("flip enabled chagned")
+	select_btn.disabled = !enabled
 
 
 
