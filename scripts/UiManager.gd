@@ -39,8 +39,7 @@ func _on_state_updated(state) -> void:
 
 
 func _on_score_updated(new_score: int) -> void:
-	var str: String = "%04d" % new_score
-	score_lbl.text = str
+	score_lbl.text = "%04d" % new_score
 	# _pop_fade($Score, "", 1.05)
 
 
@@ -49,11 +48,9 @@ func _on_dice_rolled(total: int) -> void:
 	_pop_fade(diceTotal_lbl, str(total))
 
 func _on_roll_enabled_changed(enabled: bool) -> void:
-	print("roll enabled chagned")
 	roll_btn.disabled = !enabled
 
 func _on_flip_enabled_changed(enabled: bool) -> void:
-	print("flip enabled chagned")
 	select_btn.disabled = !enabled
 
 

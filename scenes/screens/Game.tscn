@@ -64,10 +64,9 @@ offset_bottom = 125.0
 grow_horizontal = 2
 texture = ExtResource("2_fikcw")
 
-[node name="TileManager" type="Node" parent="." node_paths=PackedStringArray("container")]
+[node name="TileManager" type="Node" parent="."]
 script = ExtResource("4_w6it4")
-tile_scene = ExtResource("5_6nrh4")
-container = NodePath("TileContainer")
+tile_container = NodePath("TileContainer")
 
 [node name="TileContainer" type="HBoxContainer" parent="TileManager"]
 offset_left = 102.0

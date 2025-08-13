@@ -20,6 +20,9 @@ enum State {
 var ctx: Constants.GameContext = Constants.GameContext.new()
 var _state: State = State.GAME_INIT
 
+
+@onready var tile_manager: TileManager = $"../TileManager"
+
 func _ready() -> void:
 	_connect_signals()
 	await get_tree().process_frame
@@ -61,8 +64,7 @@ func _enter_new_game() -> void:
 # -------------------- NEW_ROUND -------------------
 func _enter_new_round() -> void:
 	# Reset *round* state, still in same session/run
-	# $"../TileManager"._spawn_tiles()
-	ctx.open_tiles = $"../TileManager".get_open_tiles()
+	ctx.open_tiles = tile_manager.get_all_tile_ids()
 	ctx.selected_tiles = []
 	ctx.roll_sum = 0
 	_emit_ctx()
@@ -70,7 +72,7 @@ func _enter_new_round() -> void:
 
 # -------------------- TURN_START -------------------
 func _enter_turn_start() -> void:
-	var max_open_val: int = _get_max_tile_value(ctx.open_tiles)
+	var max_open_val: int = tile_manager.get_max_tile_value(ctx.open_tiles)
 	ctx.dice_count = 1 if (max_open_val <= 6) else 2
 	ctx.selected_tiles.clear()
 	_emit_ctx()
@@ -78,7 +80,6 @@ func _enter_turn_start() -> void:
 
 # -------------------- AWAIT_ROLL -------------------
 func _enter_await_roll() -> void:
-	print("im in await rihgt now!")
 	Events.roll_enabled_changed.emit(true)
 	await Events.roll_pressed
 	Events.roll_enabled_changed.emit(false)
@@ -89,7 +90,7 @@ func _enter_await_roll() -> void:
 	ctx.roll_sum = sum
 	_emit_ctx()
 	
-	if _has_valid_move(ctx.open_tiles, ctx.roll_sum):
+	if _has_valid_move():
 		_change_state(State.CHOOSE_TILES)
 	else:
 		_change_state(State.BUST)
@@ -105,9 +106,9 @@ func _validate_tiles() -> void:
 	# checks if selection is a valid move
 	if !State.CHOOSE_TILES:
 		return
-	var sum_selected := _sum_tiles(ctx.selected_tiles)
-	for tile: Tile in ctx.selected_tiles:
-		if not ctx.open_tiles.has(tile):
+	var sum_selected := tile_manager.get_sum_tiles(ctx.selected_tiles)
+	for key in ctx.selected_tiles:
+		if not ctx.open_tiles.has(key):
 			break
 	if sum_selected == ctx.roll_sum and ctx.selected_tiles.size() > 0:
 		_change_state(State.RESOLVE)
@@ -116,9 +117,9 @@ func _validate_tiles() -> void:
 
 # ------------------------ RESOLVE ----------------------
 func _enter_resolve() -> void:
-	for tile: Tile in ctx.selected_tiles:
-		if ctx.open_tiles.has(tile):
-			ctx.open_tiles.erase(tile)
+	for key in ctx.selected_tiles:
+		if ctx.open_tiles.has(key):
+			ctx.open_tiles.erase(key)
 	ctx.selected_tiles.clear()
 	_emit_ctx()
 	
@@ -146,27 +147,10 @@ func _enter_score() -> void:
 func _emit_ctx() -> void:
 	self.ui_update.emit(ctx)
 
-func _get_max_tile_value(tiles: Array[Tile]) -> int:
-	if tiles.is_empty():
-		return 0
-	var max_val: int = tiles[0].value
-	for tile in tiles:
-		if tile.value > max_val:
-			max_val = tile.value
-	return max_val
-
-func _has_valid_move(open_tiles: Array[Tile], target: int) -> bool:
+func _has_valid_move() -> bool:
 	# var valid_combos: Array = $"../TileManager".get_valid_combinations(target, open_tiles)
 	# return !valid_combos.is_empty()
 	return true
-
-func _sum_tiles(tiles: Array[Tile]) -> int:
-	if tiles.is_empty():
-		return 0
-	var sum := 0
-	for tile: Tile in tiles:
-		sum += tile.value
-	return sum
 
 func _connect_signals() -> void:
 	# Events.select_button_pressed.connect(_validate_tiles)
