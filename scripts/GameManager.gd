@@ -64,8 +64,7 @@ func _enter_new_game() -> void:
 # -------------------- NEW_ROUND -------------------
 func _enter_new_round() -> void:
 	# Reset *round* state, still in same session/run
-	var tile_values: Dictionary = { 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9 }
-	tile_manager.set_tile_values(tile_values)
+	tile_manager.set_tile_values(Constants.base_tile_values)
 	ctx.open_tiles = tile_manager.get_all_tile_ids()
 	ctx.selected_tiles = []
 	ctx.roll_sum = 0
