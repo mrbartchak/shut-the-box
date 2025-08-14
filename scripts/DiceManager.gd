@@ -11,17 +11,6 @@ func _ready() -> void:
 			dice.append(child)
 
 
-#func roll_all() -> Array[int]:
-	#is_rolling = true
-	#var results: Array[int] = []
-	#for die: Die in dice:
-		#var result: int = await die.roll()
-		#results.append(result)
-		#Events.dice1_rolled
-	#Events.dice_rolled.emit(get_total(results))
-	#is_rolling = false
-	#return results
-
 func roll_one() -> int:
 	is_rolling = true
 	var total: int = 0
@@ -30,12 +19,13 @@ func roll_one() -> int:
 		return 0
 		
 	var die: Die = dice[0]
-	die.play_roll_animation()
 	total = die.roll_value()
+	await die.play_roll_animation()
 	
 	Events.dice_rolled.emit(total)
 	is_rolling = false
 	return total
+
 
 func roll_all() -> int:
 	is_rolling = true

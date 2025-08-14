@@ -9,6 +9,10 @@ var _open: bool = true
 
 @onready var lbl: Label = $Label
 
+
+func _ready() -> void:
+	_connect_press_animation()
+
 # ============== STATE ACCESSORS ==============
 func is_open() -> bool:
 	return _open
@@ -153,18 +157,19 @@ func _pressed() -> void:
 	#@export var lbl: Label
 #@export var press_offset: Vector2 = Vector2(0, 3)
 #
-#func _connect_press_animation() -> void:
-	#if !lbl:
-		#push_warning("No label assigned for press animation")
-		#return
-	#var base_pos := lbl.position
-	#
-	#button_down.connect(func():
-		#SoundManager.play_click()
-		#lbl.position = base_pos + press_offset
-	#)
-	#
-	#var reset := func(): lbl.position = base_pos
-	#button_up.connect(reset)
-	#mouse_exited.connect(reset)
-	#focus_exited.connect(reset)
+func _connect_press_animation() -> void:
+	var press_offset: Vector2 = Vector2(0, 3)
+	if !lbl:
+		push_warning("No label assigned for press animation")
+		return
+	var base_pos := lbl.position
+	
+	button_down.connect(func():
+		SoundManager.play_click()
+		lbl.position = base_pos + press_offset
+	)
+	
+	var reset := func(): lbl.position = base_pos
+	button_up.connect(reset)
+	mouse_exited.connect(reset)
+	focus_exited.connect(reset)
