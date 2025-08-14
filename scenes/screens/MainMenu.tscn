@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://c3ubiedmjdicy"]
+[gd_scene load_steps=13 format=3 uid="uid://c3ubiedmjdicy"]
 
 [ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_1kqtm"]
 [ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="2_yhsmu"]
 [ext_resource type="Texture2D" uid="uid://divi6eou5h5di" path="res://assets/sprites/offwhite_pattern.png" id="3_ovm5q"]
 [ext_resource type="PackedScene" uid="uid://c07lrpnwy111m" path="res://scenes/MouseCursor.tscn" id="4_4fodt"]
-[ext_resource type="FontFile" uid="uid://dk003n4w3fkgy" path="res://assets/fonts/Alkhemikal.ttf" id="7_emu56"]
 [ext_resource type="SpriteFrames" uid="uid://v7lp53wimysg" path="res://assets/sprites/frames/dice_sprite_frames.tres" id="7_wgj8h"]
 [ext_resource type="Texture2D" uid="uid://bduae1dx45hov" path="res://assets/sprites/nine_down_logo.png" id="8_yed6y"]
 
@@ -85,25 +84,24 @@ offset_bottom = 180.0
 texture = ExtResource("3_ovm5q")
 stretch_mode = 1
 
-[node name="MouseCursor" parent="." instance=ExtResource("4_4fodt")]
-position = Vector2(158, 80)
+[node name="MenuItems" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 13.0
+offset_right = 98.0
+offset_bottom = 119.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -143.0
-offset_top = -22.0
-offset_right = -52.0
-offset_bottom = 25.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Logo" type="TextureRect" parent="MenuItems"]
+layout_mode = 2
+texture = ExtResource("8_yed6y")
+stretch_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuItems"]
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/separation = 4
 
-[node name="ContinueButton" type="Button" parent="VBoxContainer"]
+[node name="ContinueButton" type="Button" parent="MenuItems/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 0.345098)
@@ -121,7 +119,7 @@ disabled = true
 text = "CONTINUE
 "
 
-[node name="StartButton" type="Button" parent="VBoxContainer"]
+[node name="StartButton" type="Button" parent="MenuItems/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0.054902, 0.027451, 0.105882, 1)
@@ -135,7 +133,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_exhel")
 theme_override_styles/normal = SubResource("StyleBoxFlat_htdnf")
 text = "START"
 
-[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="MenuItems/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0.054902, 0.027451, 0.105882, 1)
@@ -149,7 +147,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_exhel")
 theme_override_styles/normal = SubResource("StyleBoxFlat_htdnf")
 text = "OPTIONS"
 
-[node name="ExitButton" type="Button" parent="VBoxContainer"]
+[node name="ExitButton" type="Button" parent="MenuItems/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0.054902, 0.027451, 0.105882, 1)
@@ -164,38 +162,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_htdnf")
 text = "EXIT
 "
 
-[node name="Title" type="Label" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -94.0
-offset_top = 29.0
-offset_right = 94.0
-offset_bottom = 61.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(1, 0.568627, 0, 1)
-theme_override_colors/font_shadow_color = Color(0.439049, 0.439049, 0.439049, 1)
-theme_override_colors/font_outline_color = Color(1, 0.784314, 0.145098, 1)
-theme_override_constants/shadow_offset_y = 4
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("7_emu56")
-theme_override_font_sizes/font_size = 32
-text = "SHUT THE BOX"
-horizontal_alignment = 1
-
-[node name="Logo" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -137.0
-offset_top = 13.0
-offset_right = -60.0
-offset_bottom = 55.0
-grow_horizontal = 2
-texture = ExtResource("8_yed6y")
+[node name="MouseCursor" parent="." instance=ExtResource("4_4fodt")]
+position = Vector2(158, 80)
 
 [node name="Die" type="AnimatedSprite2D" parent="."]
 position = Vector2(268, 48)
@@ -211,7 +179,7 @@ sprite_frames = ExtResource("7_wgj8h")
 animation = &"roll"
 frame = 4
 
-[connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="MenuItems/VBoxContainer/ContinueButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MenuItems/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MenuItems/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MenuItems/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

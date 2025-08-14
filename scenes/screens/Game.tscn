@@ -220,9 +220,9 @@ offset_left = 3.0
 offset_top = 3.0
 offset_right = 28.0
 offset_bottom = 11.0
-theme_override_colors/font_color = Color(0.298039, 0.109804, 0, 1)
+theme_override_colors/font_color = Color(0.3, 0.11, 0, 0.733333)
 theme_override_font_sizes/font_size = 8
-text = "flip
+text = "FLIP
 "
 horizontal_alignment = 1
 
