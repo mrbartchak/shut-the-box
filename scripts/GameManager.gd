@@ -20,7 +20,7 @@ enum State {
 var ctx: Constants.GameContext = Constants.GameContext.new()
 var _state: State = State.GAME_INIT
 
-
+@onready var dice_manager: DiceManager = $"../DiceManager"
 @onready var tile_manager: TileManager = $"../TileManager"
 
 func _ready() -> void:
@@ -84,10 +84,11 @@ func _enter_await_roll() -> void:
 	Events.roll_enabled_changed.emit(true)
 	await Events.roll_pressed
 	Events.roll_enabled_changed.emit(false)
-	var sum := 0
-	var results: Array[int] = await $"../DiceManager".roll_all()
-	for result in results:
-		sum += result
+	var sum: int = 0
+	if ctx.dice_count == 1:
+		sum = await dice_manager.roll_one()
+	else:
+		sum = await dice_manager.roll_all()
 	ctx.roll_sum = sum
 	_emit_ctx()
 	

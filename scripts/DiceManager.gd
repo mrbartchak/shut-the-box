@@ -22,26 +22,41 @@ func _ready() -> void:
 	#is_rolling = false
 	#return results
 
-func roll_all() -> Array[int]:
+func roll_one() -> int:
 	is_rolling = true
-	var results: Array[int] = []
+	var total: int = 0
 	if !dice:
 		push_warning("No dice to roll")
-		return []
+		return 0
+		
+	var die: Die = dice[0]
+	die.play_roll_animation()
+	total = die.roll_value()
+	
+	Events.dice_rolled.emit(total)
+	is_rolling = false
+	return total
+
+func roll_all() -> int:
+	is_rolling = true
+	var sum: int = 0
+	if !dice:
+		push_warning("No dice to roll")
+		return 0
 	
 	var finish_signals: Array = []
 	for die: Die in dice:
 		if die:
 			die.play_roll_animation()
 			finish_signals.append(die.roll_animation_finished)
-			results.append(die.roll_value())
+			sum += die.roll_value()
 	
 	for sig in finish_signals:
 		await sig
 	
-	Events.dice_rolled.emit(_get_total(results))
+	Events.dice_rolled.emit(sum)
 	is_rolling = false
-	return results
+	return sum
 
 
 func _get_total(results: Array[int]) -> int:
