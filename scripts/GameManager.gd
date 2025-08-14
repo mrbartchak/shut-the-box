@@ -132,9 +132,11 @@ func _validate_tiles() -> void:
 
 # ------------------------ RESOLVE ----------------------
 func _enter_resolve() -> void:
+	print("resolving")
 	for key in ctx.selected_tiles:
 		if ctx.open_tiles.has(key):
 			ctx.open_tiles.erase(key)
+			tile_manager.close_tile(key)
 	ctx.selected_tiles.clear()
 	_emit_ctx()
 	
@@ -169,6 +171,4 @@ func _has_valid_move() -> bool:
 	return true
 
 func _connect_signals() -> void:
-	# Events.select_button_pressed.connect(_validate_tiles)
 	Events.tile_pressed.connect(_on_tile_pressed)
-	pass

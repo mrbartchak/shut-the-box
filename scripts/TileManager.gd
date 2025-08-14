@@ -57,7 +57,9 @@ func paint_from_ctx(open_ids: Array[int], selected_ids: Array[int]) -> void:
 
 		t.set_selected_visual(selected_ids.has(id))
 
-
+func close_tile(id: int) -> void:
+	var t: Tile = _id_to_tile[id]
+	t.close()
 
 
 

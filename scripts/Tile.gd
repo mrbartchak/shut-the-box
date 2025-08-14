@@ -17,10 +17,14 @@ func is_open() -> bool:
 # ==============  STATE MUTATORS ==============
 func open() -> void:
 	_open = true
+	modulate = Color(0.7, 0.7, 0.7)
+	lbl.visible = true
 	# TODO: Apply Open Visual
 
 func close() -> void:
 	_open = false
+	modulate = Color(0.2, 0.2, 0.2)
+	lbl.visible = false
 	# TODO: Apply Close Visual
 
 func set_enabled(on: bool) -> void:
