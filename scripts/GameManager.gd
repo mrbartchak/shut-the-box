@@ -34,6 +34,7 @@ func _ready() -> void:
 
 func _change_state(next: State) -> void:
 	_state = next
+	Events.state_changed.emit(State.keys()[_state])
 	match _state:
 		State.GAME_INIT: _enter_game_init()
 		State.NEW_GAME: _enter_new_game()
@@ -99,7 +100,6 @@ func _enter_await_roll() -> void:
 
 # -------------------- CHOOSE_TILES ------------------
 func _enter_choose_tiles() -> void:
-	emit_signal("ui_message", "Select tiles")
 	Events.flip_enabled_changed.emit(true)
 	await Events.flip_pressed
 	Events.flip_enabled_changed.emit(false)
@@ -172,4 +172,7 @@ func _has_valid_move() -> bool:
 	return true
 
 func _connect_signals() -> void:
+	ui_message.connect(func(text):
+		$"../UiMessage".text = text
+	)
 	Events.tile_pressed.connect(_on_tile_pressed)

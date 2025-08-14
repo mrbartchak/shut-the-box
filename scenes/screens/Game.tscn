@@ -34,6 +34,14 @@ color = Color(0.886275, 0.976471, 0.980392, 1)
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("20_x2oru")
 
+[node name="UiMessage" type="Label" parent="."]
+offset_left = 111.0
+offset_top = 21.0
+offset_right = 211.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "no message"
+
 [node name="Background" type="Node2D" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="Background"]
@@ -134,6 +142,7 @@ offset_top = 6.0
 offset_right = 37.0
 offset_bottom = 22.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "no state"
 
 [node name="Score" type="TextureRect" parent="UI"]
@@ -194,7 +203,7 @@ theme_override_font_sizes/font_size = 8
 text = "menu
 "
 
-[node name="SelectTileButton" type="TextureButton" parent="UI"]
+[node name="FlipButton" type="TextureButton" parent="UI"]
 offset_left = 177.0
 offset_top = 100.0
 offset_right = 207.0
@@ -205,7 +214,7 @@ texture_pressed = ExtResource("11_iw7na")
 texture_hover = ExtResource("12_2jlgy")
 texture_disabled = ExtResource("13_ttowe")
 
-[node name="Label" type="Label" parent="UI/SelectTileButton"]
+[node name="Label" type="Label" parent="UI/FlipButton"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 3.0
@@ -213,8 +222,9 @@ offset_right = 28.0
 offset_bottom = 11.0
 theme_override_colors/font_color = Color(0.298039, 0.109804, 0, 1)
 theme_override_font_sizes/font_size = 8
-text = "select
+text = "flip
 "
+horizontal_alignment = 1
 
 [node name="QuitButton" type="TextureButton" parent="UI"]
 offset_left = 281.0

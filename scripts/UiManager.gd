@@ -3,7 +3,7 @@ extends CanvasLayer
 #test
 @onready var menu_btn := $MenuButton
 @onready var roll_btn := $RollButton
-@onready var select_btn := $SelectTileButton
+@onready var flip_btn := $FlipButton
 @onready var quit_btn := $QuitButton
 @onready var score_lbl := $Score/Label
 @onready var diceTotal_lbl := $DiceResults/Total
@@ -27,7 +27,7 @@ func _ready() -> void:
 	quit_btn.pressed.connect(func():
 		get_tree().quit()
 	)
-	select_btn.pressed.connect(func():
+	flip_btn.pressed.connect(func():
 		SoundManager.play_click()
 		Events.select_button_pressed.emit()
 		Events.flip_pressed.emit()
@@ -35,7 +35,7 @@ func _ready() -> void:
 
 
 func _on_state_updated(state) -> void:
-	state_lbl.text = str(Constants.GameState.keys()[state])
+	state_lbl.text = str(state)
 
 
 func _on_score_updated(new_score: int) -> void:
@@ -51,7 +51,7 @@ func _on_roll_enabled_changed(enabled: bool) -> void:
 	roll_btn.disabled = !enabled
 
 func _on_flip_enabled_changed(enabled: bool) -> void:
-	select_btn.disabled = !enabled
+	flip_btn.disabled = !enabled
 
 
 
@@ -59,7 +59,7 @@ func _on_flip_enabled_changed(enabled: bool) -> void:
 func disable_roll_btn(disabled: bool) -> void:
 	roll_btn.disabled = disabled
 func disable_select_btn(disabled: bool) -> void:
-	select_btn.disabled = disabled
+	flip_btn.disabled = disabled
 
 # ANIMATIONS
 func _pop_fade(target: CanvasItem, text: String = "", up_scale: float = 1.2) -> void:

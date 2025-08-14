@@ -54,6 +54,7 @@ func paint_from_ctx(open_ids: Array[int], selected_ids: Array[int]) -> void:
 			t.open()
 		else:
 			t.close()
+			continue
 
 		t.set_selected_visual(selected_ids.has(id))
 
