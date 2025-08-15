@@ -62,7 +62,7 @@ func disable_select_btn(disabled: bool) -> void:
 	flip_btn.disabled = disabled
 
 # ANIMATIONS
-func _pop_fade(target: CanvasItem, text: String = "", up_scale: float = 1.2) -> void:
+func _pop_fade(target: CanvasItem, text: String = "", up_scale: float = 1.8) -> void:
 	if text != "" and target is Label:
 		(target as Label).text = text
 	

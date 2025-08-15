@@ -4,9 +4,9 @@
 [ext_resource type="Script" path="res://scripts/OptionsMenu.gd" id="1_lh8yh"]
 [ext_resource type="Texture2D" uid="uid://divi6eou5h5di" path="res://assets/sprites/offwhite_pattern.png" id="2_2xyow"]
 [ext_resource type="FontFile" uid="uid://dk003n4w3fkgy" path="res://assets/fonts/Alkhemikal.ttf" id="3_ja81w"]
-[ext_resource type="Texture2D" uid="uid://cyyopeptb5xhb" path="res://assets/sprites/buttons/blank_button_normal.png" id="5_leiae"]
-[ext_resource type="Texture2D" uid="uid://cvq5nurmgmt3p" path="res://assets/sprites/buttons/blank_button_pressed.png" id="6_mjnjd"]
-[ext_resource type="Texture2D" uid="uid://c3ph16qm3lv7f" path="res://assets/sprites/buttons/blank_button_hover.png" id="7_bkbmj"]
+[ext_resource type="Texture2D" uid="uid://cyyopeptb5xhb" path="res://assets/sprites/buttons/blank/blank_button_normal.png" id="5_leiae"]
+[ext_resource type="Texture2D" uid="uid://cvq5nurmgmt3p" path="res://assets/sprites/buttons/blank/blank_button_pressed.png" id="6_mjnjd"]
+[ext_resource type="Texture2D" uid="uid://c3ph16qm3lv7f" path="res://assets/sprites/buttons/blank/blank_button_hover.png" id="7_bkbmj"]
 [ext_resource type="PackedScene" uid="uid://c07lrpnwy111m" path="res://scenes/MouseCursor.tscn" id="8_quno6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fup1h"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uq6lku4ysjrc"
-path="res://.godot/imported/blank_button_diabled.png-c42567f010e0f157dcddfcd0227dae59.ctex"
+uid="uid://cahlegiu3d80b"
+path="res://.godot/imported/roll_normal.png-f28b879417838771f6b9e8bc8120396f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/buttons/blank_button_diabled.png"
-dest_files=["res://.godot/imported/blank_button_diabled.png-c42567f010e0f157dcddfcd0227dae59.ctex"]
+source_file="res://assets/sprites/buttons/roll/roll_normal.png"
+dest_files=["res://.godot/imported/roll_normal.png-f28b879417838771f6b9e8bc8120396f.ctex"]
 
 [params]
 

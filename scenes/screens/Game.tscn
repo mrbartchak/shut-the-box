@@ -1,22 +1,22 @@
 [gd_scene load_steps=21 format=3 uid="uid://i6ngq88wqpwq"]
 
 [ext_resource type="Texture2D" uid="uid://divi6eou5h5di" path="res://assets/sprites/offwhite_pattern.png" id="1_n77n2"]
-[ext_resource type="Texture2D" uid="uid://dkvbx5uaqdnw7" path="res://assets/sprites/box_new.png" id="2_fikcw"]
+[ext_resource type="Texture2D" uid="uid://b16bpij6n707o" path="res://assets/sprites/box_orange_lg.png" id="3_2vm1u"]
 [ext_resource type="Script" path="res://scripts/TileManager.gd" id="4_w6it4"]
 [ext_resource type="PackedScene" uid="uid://c4s8dvxj3qfwd" path="res://scenes/Tile.tscn" id="5_6nrh4"]
 [ext_resource type="Script" path="res://scripts/DiceManager.gd" id="6_jf2lj"]
 [ext_resource type="PackedScene" uid="uid://n4adeggawd5e" path="res://scenes/Dice.tscn" id="7_lli7b"]
 [ext_resource type="Script" path="res://scripts/UiManager.gd" id="8_3fxao"]
 [ext_resource type="Texture2D" uid="uid://t7iivtj77c6i" path="res://assets/sprites/score_label_blank.png" id="9_1kn04"]
-[ext_resource type="Texture2D" uid="uid://cyyopeptb5xhb" path="res://assets/sprites/buttons/blank_button_normal.png" id="10_il16u"]
-[ext_resource type="Texture2D" uid="uid://cvq5nurmgmt3p" path="res://assets/sprites/buttons/blank_button_pressed.png" id="11_iw7na"]
-[ext_resource type="Texture2D" uid="uid://c3ph16qm3lv7f" path="res://assets/sprites/buttons/blank_button_hover.png" id="12_2jlgy"]
-[ext_resource type="Texture2D" uid="uid://h1evpyiy3ksb" path="res://assets/sprites/buttons/roll_button_normal.png" id="13_hvbq6"]
-[ext_resource type="Texture2D" uid="uid://uq6lku4ysjrc" path="res://assets/sprites/buttons/blank_button_diabled.png" id="13_ttowe"]
-[ext_resource type="Texture2D" uid="uid://dr2pnbtalwl6f" path="res://assets/sprites/buttons/roll_button_pressed.png" id="14_on453"]
-[ext_resource type="Texture2D" uid="uid://ddwks8kc6n2aq" path="res://assets/sprites/buttons/roll_button_hover.png" id="15_e5co3"]
-[ext_resource type="Texture2D" uid="uid://b1x7j855po4lf" path="res://assets/sprites/buttons/roll_button_disabled.png" id="16_5a3iu"]
+[ext_resource type="Texture2D" uid="uid://cyyopeptb5xhb" path="res://assets/sprites/buttons/blank/blank_button_normal.png" id="10_il16u"]
+[ext_resource type="Texture2D" uid="uid://cvq5nurmgmt3p" path="res://assets/sprites/buttons/blank/blank_button_pressed.png" id="11_iw7na"]
+[ext_resource type="Texture2D" uid="uid://c3ph16qm3lv7f" path="res://assets/sprites/buttons/blank/blank_button_hover.png" id="12_2jlgy"]
+[ext_resource type="Texture2D" uid="uid://uq6lku4ysjrc" path="res://assets/sprites/buttons/blank/blank_button_diabled.png" id="13_ttowe"]
+[ext_resource type="Texture2D" uid="uid://cahlegiu3d80b" path="res://assets/sprites/buttons/roll/roll_normal.png" id="14_wsxge"]
+[ext_resource type="Texture2D" uid="uid://bjft7knsaa1wb" path="res://assets/sprites/buttons/roll/roll_pressed.png" id="15_la2i8"]
+[ext_resource type="Texture2D" uid="uid://d0m6kmch1e44t" path="res://assets/sprites/buttons/roll/roll_hover.png" id="16_7opiv"]
 [ext_resource type="FontFile" uid="uid://biuq5bpy1jhm8" path="res://assets/fonts/DigitalDisco.ttf" id="17_ctfxk"]
+[ext_resource type="Texture2D" uid="uid://ci2fji7go6h3l" path="res://assets/sprites/buttons/roll/roll_disabled.png" id="17_u2dn0"]
 [ext_resource type="PackedScene" uid="uid://c07lrpnwy111m" path="res://scenes/MouseCursor.tscn" id="18_gwfbm"]
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="20_x2oru"]
 
@@ -30,6 +30,7 @@ gravity = Vector3(0, 10, 0)
 color = Color(0.886275, 0.976471, 0.980392, 1)
 
 [node name="Game" type="Node2D"]
+position = Vector2(1, 0)
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("20_x2oru")
@@ -65,12 +66,12 @@ visibility_rect = Rect2(-160, -90, 320, 180)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 96.0
+offset_left = 95.0
 offset_top = 56.0
-offset_right = 224.0
+offset_right = 223.0
 offset_bottom = 125.0
 grow_horizontal = 2
-texture = ExtResource("2_fikcw")
+texture = ExtResource("3_2vm1u")
 
 [node name="TileManager" type="Node" parent="."]
 script = ExtResource("4_w6it4")
@@ -125,10 +126,10 @@ position = Vector2(160, 80)
 script = ExtResource("6_jf2lj")
 
 [node name="Die" parent="DiceManager" instance=ExtResource("7_lli7b")]
-position = Vector2(-40, 19)
+position = Vector2(-41, 44)
 
 [node name="Die2" parent="DiceManager" instance=ExtResource("7_lli7b")]
-position = Vector2(-10, 19)
+position = Vector2(-12, 44)
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("8_3fxao")
@@ -183,6 +184,40 @@ theme_override_font_sizes/font_size = 8
 text = "0000"
 horizontal_alignment = 2
 
+[node name="RollButton" type="TextureButton" parent="UI"]
+offset_left = 126.0
+offset_top = 86.0
+offset_right = 157.0
+offset_bottom = 100.0
+disabled = true
+texture_normal = ExtResource("14_wsxge")
+texture_pressed = ExtResource("15_la2i8")
+texture_hover = ExtResource("16_7opiv")
+texture_disabled = ExtResource("17_u2dn0")
+
+[node name="FlipButton" type="TextureButton" parent="UI"]
+offset_left = 164.0
+offset_top = 86.0
+offset_right = 194.0
+offset_bottom = 100.0
+disabled = true
+texture_normal = ExtResource("10_il16u")
+texture_pressed = ExtResource("11_iw7na")
+texture_hover = ExtResource("12_2jlgy")
+texture_disabled = ExtResource("13_ttowe")
+
+[node name="Label" type="Label" parent="UI/FlipButton"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 28.0
+offset_bottom = 11.0
+theme_override_colors/font_color = Color(0.3, 0.11, 0, 0.733333)
+theme_override_font_sizes/font_size = 8
+text = "FLIP
+"
+horizontal_alignment = 1
+
 [node name="MenuButton" type="TextureButton" parent="UI"]
 offset_left = 10.0
 offset_top = 8.0
@@ -203,29 +238,6 @@ theme_override_font_sizes/font_size = 8
 text = "menu
 "
 
-[node name="FlipButton" type="TextureButton" parent="UI"]
-offset_left = 177.0
-offset_top = 100.0
-offset_right = 207.0
-offset_bottom = 114.0
-disabled = true
-texture_normal = ExtResource("10_il16u")
-texture_pressed = ExtResource("11_iw7na")
-texture_hover = ExtResource("12_2jlgy")
-texture_disabled = ExtResource("13_ttowe")
-
-[node name="Label" type="Label" parent="UI/FlipButton"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 28.0
-offset_bottom = 11.0
-theme_override_colors/font_color = Color(0.3, 0.11, 0, 0.733333)
-theme_override_font_sizes/font_size = 8
-text = "FLIP
-"
-horizontal_alignment = 1
-
 [node name="QuitButton" type="TextureButton" parent="UI"]
 offset_left = 281.0
 offset_top = 9.0
@@ -245,35 +257,15 @@ theme_override_colors/font_color = Color(0.298039, 0.109804, 0, 1)
 theme_override_font_sizes/font_size = 8
 text = "exit"
 
-[node name="RollButton" type="TextureButton" parent="UI"]
-offset_left = 177.0
-offset_top = 83.0
-offset_right = 207.0
-offset_bottom = 97.0
-disabled = true
-texture_normal = ExtResource("13_hvbq6")
-texture_pressed = ExtResource("14_on453")
-texture_hover = ExtResource("15_e5co3")
-texture_disabled = ExtResource("16_5a3iu")
-
-[node name="DiceResults" type="TextureRect" parent="UI"]
-offset_left = 111.0
-offset_top = 140.0
-offset_right = 208.0
-offset_bottom = 171.0
+[node name="DiceResults" type="CenterContainer" parent="UI"]
+offset_left = 168.0
+offset_top = 110.0
+offset_right = 212.0
+offset_bottom = 142.0
 
 [node name="Total" type="Label" parent="UI/DiceResults"]
 visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.515
-anchor_top = 0.194
-anchor_right = 0.515
-anchor_bottom = 0.194
-offset_left = -19.955
-offset_top = -16.014
-offset_right = 20.045
-offset_bottom = 15.986
+layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.784314, 0.141176, 1)
 theme_override_fonts/font = ExtResource("17_ctfxk")
 theme_override_font_sizes/font_size = 32
