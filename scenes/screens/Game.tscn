@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://i6ngq88wqpwq"]
+[gd_scene load_steps=24 format=3 uid="uid://i6ngq88wqpwq"]
 
 [ext_resource type="Texture2D" uid="uid://divi6eou5h5di" path="res://assets/sprites/offwhite_pattern.png" id="1_n77n2"]
 [ext_resource type="Texture2D" uid="uid://b16bpij6n707o" path="res://assets/sprites/box_orange_lg.png" id="3_2vm1u"]
@@ -11,11 +11,14 @@
 [ext_resource type="Texture2D" uid="uid://cyyopeptb5xhb" path="res://assets/sprites/buttons/blank/blank_button_normal.png" id="10_il16u"]
 [ext_resource type="Texture2D" uid="uid://cvq5nurmgmt3p" path="res://assets/sprites/buttons/blank/blank_button_pressed.png" id="11_iw7na"]
 [ext_resource type="Texture2D" uid="uid://c3ph16qm3lv7f" path="res://assets/sprites/buttons/blank/blank_button_hover.png" id="12_2jlgy"]
-[ext_resource type="Texture2D" uid="uid://uq6lku4ysjrc" path="res://assets/sprites/buttons/blank/blank_button_diabled.png" id="13_ttowe"]
+[ext_resource type="Texture2D" uid="uid://b2qya260un17u" path="res://assets/sprites/buttons/flip/flip_normal.png" id="14_ic5oc"]
 [ext_resource type="Texture2D" uid="uid://cahlegiu3d80b" path="res://assets/sprites/buttons/roll/roll_normal.png" id="14_wsxge"]
 [ext_resource type="Texture2D" uid="uid://bjft7knsaa1wb" path="res://assets/sprites/buttons/roll/roll_pressed.png" id="15_la2i8"]
+[ext_resource type="Texture2D" uid="uid://dkgwbik6fs082" path="res://assets/sprites/buttons/flip/flip_pressed.png" id="15_oq15m"]
 [ext_resource type="Texture2D" uid="uid://d0m6kmch1e44t" path="res://assets/sprites/buttons/roll/roll_hover.png" id="16_7opiv"]
+[ext_resource type="Texture2D" uid="uid://cle8epa3kw0rm" path="res://assets/sprites/buttons/flip/flip_hover.png" id="16_m3gby"]
 [ext_resource type="FontFile" uid="uid://biuq5bpy1jhm8" path="res://assets/fonts/DigitalDisco.ttf" id="17_ctfxk"]
+[ext_resource type="Texture2D" uid="uid://cp68sc56au6dp" path="res://assets/sprites/buttons/flip/flip_disabled.png" id="17_phv5l"]
 [ext_resource type="Texture2D" uid="uid://ci2fji7go6h3l" path="res://assets/sprites/buttons/roll/roll_disabled.png" id="17_u2dn0"]
 [ext_resource type="PackedScene" uid="uid://c07lrpnwy111m" path="res://scenes/MouseCursor.tscn" id="18_gwfbm"]
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="20_x2oru"]
@@ -122,14 +125,14 @@ layout_mode = 2
 id = 9
 
 [node name="DiceManager" type="Node2D" parent="."]
-position = Vector2(160, 80)
+position = Vector2(159, 80)
 script = ExtResource("6_jf2lj")
 
 [node name="Die" parent="DiceManager" instance=ExtResource("7_lli7b")]
-position = Vector2(-41, 44)
+position = Vector2(-40, 44)
 
 [node name="Die2" parent="DiceManager" instance=ExtResource("7_lli7b")]
-position = Vector2(-12, 44)
+position = Vector2(-11, 44)
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("8_3fxao")
@@ -185,9 +188,9 @@ text = "0000"
 horizontal_alignment = 2
 
 [node name="RollButton" type="TextureButton" parent="UI"]
-offset_left = 126.0
+offset_left = 125.0
 offset_top = 86.0
-offset_right = 157.0
+offset_right = 156.0
 offset_bottom = 100.0
 disabled = true
 texture_normal = ExtResource("14_wsxge")
@@ -198,25 +201,13 @@ texture_disabled = ExtResource("17_u2dn0")
 [node name="FlipButton" type="TextureButton" parent="UI"]
 offset_left = 164.0
 offset_top = 86.0
-offset_right = 194.0
+offset_right = 195.0
 offset_bottom = 100.0
 disabled = true
-texture_normal = ExtResource("10_il16u")
-texture_pressed = ExtResource("11_iw7na")
-texture_hover = ExtResource("12_2jlgy")
-texture_disabled = ExtResource("13_ttowe")
-
-[node name="Label" type="Label" parent="UI/FlipButton"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 28.0
-offset_bottom = 11.0
-theme_override_colors/font_color = Color(0.3, 0.11, 0, 0.733333)
-theme_override_font_sizes/font_size = 8
-text = "FLIP
-"
-horizontal_alignment = 1
+texture_normal = ExtResource("14_ic5oc")
+texture_pressed = ExtResource("15_oq15m")
+texture_hover = ExtResource("16_m3gby")
+texture_disabled = ExtResource("17_phv5l")
 
 [node name="MenuButton" type="TextureButton" parent="UI"]
 offset_left = 10.0

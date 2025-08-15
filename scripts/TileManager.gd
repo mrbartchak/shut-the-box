@@ -63,6 +63,29 @@ func close_tile(id: int) -> void:
 	t.close()
 
 
+func get_valid_combinations(total: int, keys: Array[int]) -> Array:
+	var results: Array = []
+	_dfs(keys, 0, [], 0, total, results)
+	print(results)
+	return results
+
+func _dfs(keys: Array, i: int, acc: Array, sum: int, total: int, results: Array) -> void:
+	if sum == total:
+		results.append(acc.duplicate())
+		return
+	if sum > total or i == keys.size():
+		return
+	
+	var val: int = _id_to_tile[keys[i]].value
+	
+	# Include this tile
+	acc.append(keys[i])
+	_dfs(keys, i + 1, acc, sum + val, total, results)
+	
+	acc.pop_back()
+	# Skip this tile
+	_dfs(keys, i + 1, acc, sum, total, results)
+
 
 
 

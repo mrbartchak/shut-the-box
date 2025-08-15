@@ -2,6 +2,7 @@ extends Sprite2D
 
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	global_position = get_global_mouse_position()
 

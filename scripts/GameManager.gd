@@ -57,6 +57,7 @@ func _enter_game_init() -> void:
 # -------------------- NEW_GAME -------------------
 func _enter_new_game() -> void:
 	# Fresh session/run
+	get_tree().paused = false
 	ctx.score = 0
 	ctx.rng.randomize()
 	_emit_ctx()
@@ -93,7 +94,7 @@ func _enter_await_roll() -> void:
 	ctx.roll_sum = sum
 	_emit_ctx()
 	
-	if _has_valid_move():
+	if _has_valid_move(sum):
 		_change_state(State.CHOOSE_TILES)
 	else:
 		_change_state(State.BUST)
@@ -148,7 +149,11 @@ func _enter_resolve() -> void:
 
 # -------------------- BUST --------------------------
 func _enter_bust() -> void:
-	print("bustingggggggg")
+	await get_tree().create_timer(0.5).timeout
+	get_tree().paused = true
+	var game_over_scene := preload("res://scenes/screens/GameOver.tscn").instantiate()
+	get_tree().root.add_child(game_over_scene)
+	game_over_scene.process_mode = Node.PROCESS_MODE_ALWAYS
 
 # -------------------- NINE_DOWN ------------------
 func _enter_nine_down() -> void:
@@ -166,10 +171,9 @@ func _emit_ctx() -> void:
 	self.ui_update.emit(ctx)
 	tile_manager.paint_from_ctx(ctx.open_tiles, ctx.selected_tiles)
 
-func _has_valid_move() -> bool:
-	# var valid_combos: Array = $"../TileManager".get_valid_combinations(target, open_tiles)
-	# return !valid_combos.is_empty()
-	return true
+func _has_valid_move(total: int) -> bool:
+	var valid_combos: Array = tile_manager.get_valid_combinations(total, ctx.open_tiles)
+	return !valid_combos.is_empty()
 
 func _connect_signals() -> void:
 	ui_message.connect(func(text):
