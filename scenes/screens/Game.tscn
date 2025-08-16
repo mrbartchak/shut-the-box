@@ -39,11 +39,12 @@ position = Vector2(1, 0)
 script = ExtResource("20_x2oru")
 
 [node name="UiMessage" type="Label" parent="."]
-offset_left = 111.0
-offset_top = 21.0
-offset_right = 211.0
-offset_bottom = 37.0
+offset_left = 2.0
+offset_top = 170.0
+offset_right = 102.0
+offset_bottom = 186.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
 text = "no message"
 
 [node name="Background" type="Node2D" parent="."]
@@ -69,10 +70,10 @@ visibility_rect = Rect2(-160, -90, 320, 180)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 95.0
-offset_top = 56.0
-offset_right = 223.0
-offset_bottom = 125.0
+offset_left = 90.5
+offset_top = 34.0
+offset_right = 227.5
+offset_bottom = 129.0
 grow_horizontal = 2
 texture = ExtResource("3_2vm1u")
 
@@ -81,10 +82,10 @@ script = ExtResource("4_w6it4")
 tile_container = NodePath("TileContainer")
 
 [node name="TileContainer" type="HBoxContainer" parent="TileManager"]
-offset_left = 102.0
-offset_top = 60.0
-offset_right = 218.0
-offset_bottom = 79.0
+offset_left = 98.0
+offset_top = 38.0
+offset_right = 223.0
+offset_bottom = 58.0
 theme_override_constants/separation = 1
 alignment = 1
 
@@ -125,14 +126,14 @@ layout_mode = 2
 id = 9
 
 [node name="DiceManager" type="Node2D" parent="."]
-position = Vector2(159, 80)
+position = Vector2(131, 104)
 script = ExtResource("6_jf2lj")
 
 [node name="Die" parent="DiceManager" instance=ExtResource("7_lli7b")]
-position = Vector2(-40, 44)
+position = Vector2(-16, 0)
 
 [node name="Die2" parent="DiceManager" instance=ExtResource("7_lli7b")]
-position = Vector2(-11, 44)
+position = Vector2(16, 0)
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("8_3fxao")
@@ -141,12 +142,13 @@ script = ExtResource("8_3fxao")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -37.0
-offset_top = 6.0
-offset_right = 37.0
-offset_bottom = 22.0
+offset_left = 98.0
+offset_top = 169.0
+offset_right = 172.0
+offset_bottom = 185.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
 text = "no state"
 
 [node name="Score" type="TextureRect" parent="UI"]
@@ -155,10 +157,10 @@ anchor_left = 0.5
 anchor_top = 0.258
 anchor_right = 0.5
 anchor_bottom = 0.258
-offset_left = -64.0
-offset_top = -8.44
-offset_right = 64.0
-offset_bottom = 8.56
+offset_left = -63.0
+offset_top = -30.44
+offset_right = 65.0
+offset_bottom = -13.44
 texture = ExtResource("9_1kn04")
 stretch_mode = 2
 
@@ -189,9 +191,9 @@ horizontal_alignment = 2
 
 [node name="RollButton" type="TextureButton" parent="UI"]
 offset_left = 125.0
-offset_top = 86.0
+offset_top = 61.0
 offset_right = 156.0
-offset_bottom = 100.0
+offset_bottom = 75.0
 disabled = true
 texture_normal = ExtResource("14_wsxge")
 texture_pressed = ExtResource("15_la2i8")
@@ -200,9 +202,9 @@ texture_disabled = ExtResource("17_u2dn0")
 
 [node name="FlipButton" type="TextureButton" parent="UI"]
 offset_left = 164.0
-offset_top = 86.0
+offset_top = 61.0
 offset_right = 195.0
-offset_bottom = 100.0
+offset_bottom = 75.0
 disabled = true
 texture_normal = ExtResource("14_ic5oc")
 texture_pressed = ExtResource("15_oq15m")
@@ -249,10 +251,10 @@ theme_override_font_sizes/font_size = 8
 text = "exit"
 
 [node name="DiceResults" type="CenterContainer" parent="UI"]
-offset_left = 168.0
-offset_top = 110.0
-offset_right = 212.0
-offset_bottom = 142.0
+offset_left = 170.0
+offset_top = 88.0
+offset_right = 214.0
+offset_bottom = 120.0
 
 [node name="Total" type="Label" parent="UI/DiceResults"]
 visible = false

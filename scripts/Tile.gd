@@ -26,13 +26,15 @@ func is_open() -> bool:
 # ==============  STATE MUTATORS ==============
 func open() -> void:
 	_open = true
-	modulate = Color(0.7, 0.7, 0.7)
+	set_enabled(true)
+	modulate = Color(1, 1, 1)
 	lbl.visible = true
 	texture_normal = _default_texture
 
 func close() -> void:
 	_open = false
-	modulate = Color(0.3, 0.3, 0.3)
+	set_enabled(false)
+	modulate = Color(0.5, 0.5, 0.5)
 	lbl.visible = false
 	texture_normal = texture_pressed
 
@@ -45,7 +47,7 @@ func set_value(v: int) -> void:
 
 func set_selected_visual(on: bool) -> void:
 	texture_normal = texture_pressed if on else _default_texture
-	modulate = Color(1,1,1) if on else Color(0.7, 0.7, 0.7)
+	# modulate = Color(1,1,1) if on else Color(0.7, 0.7, 0.7)
 	lbl.position = _default_lbl_pos + _press_offset if on else _default_lbl_pos
 
 
