@@ -1,13 +1,17 @@
 extends Node
 
 
-var _menu_theme: AudioStream = preload("res://assets/sounds/8Bit Title Screen.mp3")
+var _menu_theme: AudioStream = preload("res://assets/sounds/youtube-jazz-underscore-jazz-in-the-parlor-379001.mp3")
 var _click_sound: AudioStream = preload("res://assets/sounds/448081__breviceps__tic-toc-click.wav")
 var _pop_sound: AudioStream = preload("res://assets/sounds/683587__yehawsnail__bubble-pop.wav")
 var _clack_sound: AudioStream = preload("res://assets/sounds/342200__christopherderp__videogame-menu-button-click.wav")
 
 var _menu_player: AudioStreamPlayer2D
 
+
+func  _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	play_menu_theme()
 
 func play_menu_theme() -> void:
 	if _menu_player and _menu_player.playing:
@@ -17,6 +21,7 @@ func play_menu_theme() -> void:
 		return
 	_menu_player =  AudioStreamPlayer2D.new()
 	_menu_player.stream = _menu_theme
+	_menu_player.volume_db = -6
 	add_child(_menu_player)
 	_menu_player.play()
 
@@ -33,6 +38,7 @@ func play_click() -> void:
 		return
 	var p := AudioStreamPlayer2D.new()
 	p.stream = _click_sound
+	p.volume_db = 6
 	add_child(p)
 	p.finished.connect(func(): p.queue_free())
 	p.play()
@@ -45,6 +51,7 @@ func play_pop() -> void:
 	var p := AudioStreamPlayer2D.new()
 	p.stream = _pop_sound
 	p.pitch_scale = randf_range(0.9, 1.1)
+	p.volume_db = 6
 	add_child(p)
 	p.finished.connect(func(): p.queue_free())
 	p.play()

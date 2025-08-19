@@ -2,7 +2,8 @@ extends Control
 
 
 func _ready() -> void:
-	SoundManager.play_menu_theme()
+	# SoundManager.play_menu_theme()
+	pass
 
 func _process(delta: float) -> void:
 	play_dice_animation(delta)
@@ -10,7 +11,7 @@ func _process(delta: float) -> void:
 
 func _on_start_button_pressed() -> void:
 	await play_button_click()
-	SoundManager.stop_menu_theme()
+	# SoundManager.stop_menu_theme()
 	get_tree().change_scene_to_file("res://scenes/screens/Game.tscn")
 
 
