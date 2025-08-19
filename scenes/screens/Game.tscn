@@ -1,36 +1,19 @@
-[gd_scene load_steps=24 format=3 uid="uid://i6ngq88wqpwq"]
+[gd_scene load_steps=12 format=3 uid="uid://i6ngq88wqpwq"]
 
-[ext_resource type="Texture2D" uid="uid://divi6eou5h5di" path="res://assets/sprites/offwhite_pattern.png" id="1_n77n2"]
-[ext_resource type="Texture2D" uid="uid://b16bpij6n707o" path="res://assets/sprites/box_orange_lg.png" id="3_2vm1u"]
+[ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="2_85gqg"]
+[ext_resource type="Texture2D" uid="uid://chg5iykprpltr" path="res://assets/sprites/off_purple_pattern.png" id="2_qen00"]
+[ext_resource type="Texture2D" uid="uid://bl4vrcmmbs2va" path="res://assets/sprites/boards/ivory_board.png" id="3_eagth"]
 [ext_resource type="Script" path="res://scripts/TileManager.gd" id="4_w6it4"]
 [ext_resource type="PackedScene" uid="uid://c4s8dvxj3qfwd" path="res://scenes/Tile.tscn" id="5_6nrh4"]
 [ext_resource type="Script" path="res://scripts/DiceManager.gd" id="6_jf2lj"]
+[ext_resource type="PackedScene" uid="uid://d3c70jkf4h5d0" path="res://scenes/GameUI.tscn" id="7_0e2ep"]
 [ext_resource type="PackedScene" uid="uid://n4adeggawd5e" path="res://scenes/Dice.tscn" id="7_lli7b"]
-[ext_resource type="Script" path="res://scripts/UiManager.gd" id="8_3fxao"]
-[ext_resource type="Texture2D" uid="uid://t7iivtj77c6i" path="res://assets/sprites/score_label_blank.png" id="9_1kn04"]
-[ext_resource type="Texture2D" uid="uid://cyyopeptb5xhb" path="res://assets/sprites/buttons/blank/blank_button_normal.png" id="10_il16u"]
-[ext_resource type="Texture2D" uid="uid://cvq5nurmgmt3p" path="res://assets/sprites/buttons/blank/blank_button_pressed.png" id="11_iw7na"]
-[ext_resource type="Texture2D" uid="uid://c3ph16qm3lv7f" path="res://assets/sprites/buttons/blank/blank_button_hover.png" id="12_2jlgy"]
-[ext_resource type="Texture2D" uid="uid://b2qya260un17u" path="res://assets/sprites/buttons/flip/flip_normal.png" id="14_ic5oc"]
-[ext_resource type="Texture2D" uid="uid://cahlegiu3d80b" path="res://assets/sprites/buttons/roll/roll_normal.png" id="14_wsxge"]
-[ext_resource type="Texture2D" uid="uid://bjft7knsaa1wb" path="res://assets/sprites/buttons/roll/roll_pressed.png" id="15_la2i8"]
-[ext_resource type="Texture2D" uid="uid://dkgwbik6fs082" path="res://assets/sprites/buttons/flip/flip_pressed.png" id="15_oq15m"]
-[ext_resource type="Texture2D" uid="uid://d0m6kmch1e44t" path="res://assets/sprites/buttons/roll/roll_hover.png" id="16_7opiv"]
-[ext_resource type="Texture2D" uid="uid://cle8epa3kw0rm" path="res://assets/sprites/buttons/flip/flip_hover.png" id="16_m3gby"]
-[ext_resource type="FontFile" uid="uid://biuq5bpy1jhm8" path="res://assets/fonts/DigitalDisco.ttf" id="17_ctfxk"]
-[ext_resource type="Texture2D" uid="uid://cp68sc56au6dp" path="res://assets/sprites/buttons/flip/flip_disabled.png" id="17_phv5l"]
-[ext_resource type="Texture2D" uid="uid://ci2fji7go6h3l" path="res://assets/sprites/buttons/roll/roll_disabled.png" id="17_u2dn0"]
 [ext_resource type="PackedScene" uid="uid://c07lrpnwy111m" path="res://scenes/MouseCursor.tscn" id="18_gwfbm"]
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="20_x2oru"]
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nucs8"]
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(250, 160, 1)
-initial_velocity_min = 10.0
-initial_velocity_max = 10.0
-gravity = Vector3(0, 10, 0)
-color = Color(0.886275, 0.976471, 0.980392, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5kaea"]
+shader = ExtResource("2_85gqg")
+shader_parameter/speed = 0.5
 
 [node name="Game" type="Node2D"]
 position = Vector2(1, 0)
@@ -52,40 +35,34 @@ text = "no message"
 [node name="TextureRect" type="TextureRect" parent="Background"]
 z_index = -4096
 texture_repeat = 2
+material = SubResource("ShaderMaterial_5kaea")
 offset_right = 320.0
 offset_bottom = 180.0
-texture = ExtResource("1_n77n2")
+texture = ExtResource("2_qen00")
 stretch_mode = 1
-
-[node name="BackgroundParticles" type="GPUParticles2D" parent="Background"]
-position = Vector2(160, 90)
-amount = 750
-process_material = SubResource("ParticleProcessMaterial_nucs8")
-lifetime = 2.0
-preprocess = 2.0
-fixed_fps = 60
-visibility_rect = Rect2(-160, -90, 320, 180)
 
 [node name="Box" type="TextureRect" parent="Background"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 90.5
-offset_top = 34.0
-offset_right = 227.5
-offset_bottom = 129.0
+offset_left = 90.0
+offset_top = 49.0
+offset_right = 229.0
+offset_bottom = 132.0
 grow_horizontal = 2
-texture = ExtResource("3_2vm1u")
+texture = ExtResource("3_eagth")
+stretch_mode = 2
 
 [node name="TileManager" type="Node" parent="."]
 script = ExtResource("4_w6it4")
 tile_container = NodePath("TileContainer")
 
 [node name="TileContainer" type="HBoxContainer" parent="TileManager"]
+z_index = 4096
 offset_left = 98.0
-offset_top = 38.0
+offset_top = 54.0
 offset_right = 223.0
-offset_bottom = 58.0
+offset_bottom = 74.0
 theme_override_constants/separation = 1
 alignment = 1
 
@@ -126,7 +103,7 @@ layout_mode = 2
 id = 9
 
 [node name="DiceManager" type="Node2D" parent="."]
-position = Vector2(131, 104)
+position = Vector2(132, 100)
 script = ExtResource("6_jf2lj")
 
 [node name="Die" parent="DiceManager" instance=ExtResource("7_lli7b")]
@@ -135,137 +112,11 @@ position = Vector2(-16, 0)
 [node name="Die2" parent="DiceManager" instance=ExtResource("7_lli7b")]
 position = Vector2(16, 0)
 
-[node name="UI" type="CanvasLayer" parent="."]
-script = ExtResource("8_3fxao")
-
-[node name="StateLabel" type="Label" parent="UI"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 98.0
-offset_top = 169.0
-offset_right = 172.0
-offset_bottom = 185.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 8
-text = "no state"
-
-[node name="Score" type="TextureRect" parent="UI"]
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.258
-anchor_right = 0.5
-anchor_bottom = 0.258
-offset_left = -63.0
-offset_top = -30.44
-offset_right = 65.0
-offset_bottom = -13.44
-texture = ExtResource("9_1kn04")
-stretch_mode = 2
-
-[node name="StaticLabel" type="Label" parent="UI/Score"]
-layout_mode = 0
-offset_left = 6.0
-offset_top = 5.0
-offset_right = 31.0
-offset_bottom = 13.0
-theme_override_font_sizes/font_size = 8
-text = "SCORE:
-"
-
-[node name="Label" type="Label" parent="UI/Score"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.883
-anchor_top = 0.5
-anchor_right = 0.883
-anchor_bottom = 0.5
-offset_left = -10.024
-offset_top = -3.5
-offset_right = 9.976
-offset_bottom = 4.5
-theme_override_font_sizes/font_size = 8
-text = "0000"
-horizontal_alignment = 2
-
-[node name="RollButton" type="TextureButton" parent="UI"]
-offset_left = 125.0
-offset_top = 61.0
-offset_right = 156.0
-offset_bottom = 75.0
-disabled = true
-texture_normal = ExtResource("14_wsxge")
-texture_pressed = ExtResource("15_la2i8")
-texture_hover = ExtResource("16_7opiv")
-texture_disabled = ExtResource("17_u2dn0")
-
-[node name="FlipButton" type="TextureButton" parent="UI"]
-offset_left = 164.0
-offset_top = 61.0
-offset_right = 195.0
-offset_bottom = 75.0
-disabled = true
-texture_normal = ExtResource("14_ic5oc")
-texture_pressed = ExtResource("15_oq15m")
-texture_hover = ExtResource("16_m3gby")
-texture_disabled = ExtResource("17_phv5l")
-
-[node name="MenuButton" type="TextureButton" parent="UI"]
-offset_left = 10.0
-offset_top = 8.0
-offset_right = 40.0
-offset_bottom = 22.0
-texture_normal = ExtResource("10_il16u")
-texture_pressed = ExtResource("11_iw7na")
-texture_hover = ExtResource("12_2jlgy")
-
-[node name="Label" type="Label" parent="UI/MenuButton"]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 3.0
-offset_right = 26.0
-offset_bottom = 11.0
-theme_override_colors/font_color = Color(0.298039, 0.109804, 0, 1)
-theme_override_font_sizes/font_size = 8
-text = "menu
-"
-
-[node name="QuitButton" type="TextureButton" parent="UI"]
-offset_left = 281.0
-offset_top = 9.0
-offset_right = 311.0
-offset_bottom = 23.0
-texture_normal = ExtResource("10_il16u")
-texture_pressed = ExtResource("11_iw7na")
-texture_hover = ExtResource("12_2jlgy")
-
-[node name="Label" type="Label" parent="UI/QuitButton"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 3.0
-offset_right = 29.0
-offset_bottom = 11.0
-theme_override_colors/font_color = Color(0.298039, 0.109804, 0, 1)
-theme_override_font_sizes/font_size = 8
-text = "exit"
-
-[node name="DiceResults" type="CenterContainer" parent="UI"]
-offset_left = 170.0
-offset_top = 88.0
-offset_right = 214.0
-offset_bottom = 120.0
-
-[node name="Total" type="Label" parent="UI/DiceResults"]
-visible = false
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.784314, 0.141176, 1)
-theme_override_fonts/font = ExtResource("17_ctfxk")
-theme_override_font_sizes/font_size = 32
-text = "7"
-horizontal_alignment = 1
+[node name="UI" parent="." instance=ExtResource("7_0e2ep")]
 
 [node name="MouseLayer" type="CanvasLayer" parent="."]
 layer = 128
 
 [node name="MouseCursor" parent="MouseLayer" instance=ExtResource("18_gwfbm")]
+
+[editable path="UI"]

@@ -157,7 +157,11 @@ func _enter_bust() -> void:
 
 # -------------------- NINE_DOWN ------------------
 func _enter_nine_down() -> void:
-	print("nine down!")
+	await get_tree().create_timer(0.5).timeout
+	get_tree().paused = true
+	var game_won_scene := preload("res://scenes/screens/GameWon.tscn").instantiate()
+	get_tree().root.add_child(game_won_scene)
+	game_won_scene.process_mode = Node.PROCESS_MODE_ALWAYS
 
 # -------------------- SCORE -------------------------
 func _enter_score() -> void:

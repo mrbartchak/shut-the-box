@@ -1,0 +1,147 @@
+[gd_scene load_steps=18 format=3 uid="uid://d3c70jkf4h5d0"]
+
+[ext_resource type="Script" path="res://scripts/UiManager.gd" id="1_pila1"]
+[ext_resource type="FontFile" uid="uid://biuq5bpy1jhm8" path="res://assets/fonts/DigitalDisco.ttf" id="2_t4n0e"]
+[ext_resource type="Texture2D" uid="uid://cahlegiu3d80b" path="res://assets/sprites/buttons/roll/roll_normal.png" id="3_272pg"]
+[ext_resource type="Texture2D" uid="uid://bjft7knsaa1wb" path="res://assets/sprites/buttons/roll/roll_pressed.png" id="4_g8kyh"]
+[ext_resource type="Texture2D" uid="uid://d0m6kmch1e44t" path="res://assets/sprites/buttons/roll/roll_hover.png" id="5_bk33j"]
+[ext_resource type="Texture2D" uid="uid://ci2fji7go6h3l" path="res://assets/sprites/buttons/roll/roll_disabled.png" id="6_xxgvg"]
+[ext_resource type="Texture2D" uid="uid://b2qya260un17u" path="res://assets/sprites/buttons/flip/flip_normal.png" id="7_2du5e"]
+[ext_resource type="Texture2D" uid="uid://dkgwbik6fs082" path="res://assets/sprites/buttons/flip/flip_pressed.png" id="8_0cbe4"]
+[ext_resource type="Texture2D" uid="uid://cle8epa3kw0rm" path="res://assets/sprites/buttons/flip/flip_hover.png" id="9_ymlcb"]
+[ext_resource type="Texture2D" uid="uid://cp68sc56au6dp" path="res://assets/sprites/buttons/flip/flip_disabled.png" id="10_08o1d"]
+[ext_resource type="Texture2D" uid="uid://cj8kivye511g2" path="res://assets/sprites/buttons/hamburger/hamburger_normal.png" id="11_bekeu"]
+[ext_resource type="Texture2D" uid="uid://dbw7ircfdxdoo" path="res://assets/sprites/buttons/hamburger/hamburger_pressed.png" id="12_gthif"]
+[ext_resource type="Texture2D" uid="uid://c7je6vuympmqt" path="res://assets/sprites/buttons/hamburger/hamburger_hover.png" id="13_mwc6f"]
+[ext_resource type="Texture2D" uid="uid://bbgamvb2hmv7" path="res://assets/sprites/buttons/hamburger/hamburger_disabled.png" id="14_5ge0g"]
+[ext_resource type="Texture2D" uid="uid://cyyopeptb5xhb" path="res://assets/sprites/buttons/blank/blank_button_normal.png" id="15_2euwq"]
+[ext_resource type="Texture2D" uid="uid://cvq5nurmgmt3p" path="res://assets/sprites/buttons/blank/blank_button_pressed.png" id="16_dnxqa"]
+[ext_resource type="Texture2D" uid="uid://c3ph16qm3lv7f" path="res://assets/sprites/buttons/blank/blank_button_hover.png" id="17_gi35u"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_pila1")
+
+[node name="StateLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 98.0
+offset_top = 169.0
+offset_right = 172.0
+offset_bottom = 185.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "no state"
+
+[node name="Score" type="TextureRect" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.258
+anchor_right = 0.5
+anchor_bottom = 0.258
+offset_left = 64.0
+offset_top = -47.44
+offset_right = 141.0
+offset_bottom = -30.44
+stretch_mode = 2
+
+[node name="StaticLabel" type="Label" parent="Score"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 31.0
+offset_bottom = 13.0
+theme_override_colors/font_color = Color(1, 0.784314, 0.141176, 1)
+theme_override_fonts/font = ExtResource("2_t4n0e")
+theme_override_font_sizes/font_size = 16
+text = "SCORE:
+"
+
+[node name="Label" type="Label" parent="Score"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.883
+anchor_top = 0.5
+anchor_right = 0.883
+anchor_bottom = 0.5
+offset_left = -10.024
+offset_top = -3.5
+offset_right = 9.976
+offset_bottom = 4.5
+theme_override_colors/font_color = Color(1, 0.784314, 0.141176, 1)
+theme_override_fonts/font = ExtResource("2_t4n0e")
+theme_override_font_sizes/font_size = 16
+text = "0000"
+horizontal_alignment = 2
+
+[node name="RollButton" type="TextureButton" parent="."]
+offset_left = 175.0
+offset_top = 91.0
+offset_right = 210.0
+offset_bottom = 110.0
+disabled = true
+texture_normal = ExtResource("3_272pg")
+texture_pressed = ExtResource("4_g8kyh")
+texture_hover = ExtResource("5_bk33j")
+texture_disabled = ExtResource("6_xxgvg")
+
+[node name="FlipButton" type="TextureButton" parent="."]
+offset_left = 230.0
+offset_top = 53.0
+offset_right = 245.0
+offset_bottom = 75.0
+disabled = true
+texture_normal = ExtResource("7_2du5e")
+texture_pressed = ExtResource("8_0cbe4")
+texture_hover = ExtResource("9_ymlcb")
+texture_disabled = ExtResource("10_08o1d")
+
+[node name="MenuButton" type="TextureButton" parent="."]
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 23.0
+offset_bottom = 23.0
+texture_normal = ExtResource("11_bekeu")
+texture_pressed = ExtResource("12_gthif")
+texture_hover = ExtResource("13_mwc6f")
+texture_disabled = ExtResource("14_5ge0g")
+
+[node name="QuitButton" type="TextureButton" parent="."]
+visible = false
+offset_left = 281.0
+offset_top = 9.0
+offset_right = 311.0
+offset_bottom = 23.0
+texture_normal = ExtResource("15_2euwq")
+texture_pressed = ExtResource("16_dnxqa")
+texture_hover = ExtResource("17_gi35u")
+
+[node name="Label" type="Label" parent="QuitButton"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 3.0
+offset_right = 29.0
+offset_bottom = 11.0
+theme_override_colors/font_color = Color(0.298039, 0.109804, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "exit"
+
+[node name="DiceResults" type="CenterContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -22.0
+offset_top = 16.0
+offset_right = 22.0
+offset_bottom = 48.0
+grow_horizontal = 2
+
+[node name="Total" type="Label" parent="DiceResults"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.784314, 0.141176, 1)
+theme_override_fonts/font = ExtResource("2_t4n0e")
+theme_override_font_sizes/font_size = 32
+text = "7"
+horizontal_alignment = 1

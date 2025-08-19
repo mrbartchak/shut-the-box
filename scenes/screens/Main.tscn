@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://6ogpfyqw8nhk"]
+
+[ext_resource type="PackedScene" uid="uid://i6ngq88wqpwq" path="res://scenes/screens/Game.tscn" id="1_l72k7"]
+[ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="2_rmv3v"]
+[ext_resource type="Texture2D" uid="uid://chg5iykprpltr" path="res://assets/sprites/off_purple_pattern.png" id="3_dvenp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c317a"]
+shader = ExtResource("2_rmv3v")
+shader_parameter/speed = 0.5
+
+[node name="Main" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+z_index = -4096
+texture_repeat = 2
+material = SubResource("ShaderMaterial_c317a")
+offset_right = 320.0
+offset_bottom = 180.0
+scale = Vector2(6, 6)
+texture = ExtResource("3_dvenp")
+stretch_mode = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 6
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+canvas_item_default_texture_filter = 0
+audio_listener_enable_2d = true
+size = Vector2i(53, 30)
+render_target_update_mode = 4
+
+[node name="Game" parent="CanvasLayer/SubViewportContainer/SubViewport" instance=ExtResource("1_l72k7")]

@@ -79,7 +79,7 @@ func _connect_press_animation() -> void:
 		return
 	
 	button_down.connect(func():
-		SoundManager.play_click()
+		SoundManager.play_clack()
 		lbl.position = _default_lbl_pos + _press_offset
 	)
 	

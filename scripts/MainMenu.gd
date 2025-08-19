@@ -31,5 +31,5 @@ func play_button_click() -> void:
 
 
 func play_dice_animation(delta: float) -> void:
-		$Die.rotation_degrees += 180 * delta
-		$Die2.rotation_degrees -= 180 * delta
+		$Parallax/Die.rotation_degrees += 180 * delta
+		$Parallax/Die2.rotation_degrees -= 180 * delta

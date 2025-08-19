@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://c4s8dvxj3qfwd"]
 
+[ext_resource type="Texture2D" uid="uid://d0xr0uc3rj68k" path="res://assets/sprites/tiles/ivory_tile_normal.png" id="1_bgpw5"]
 [ext_resource type="Script" path="res://scripts/Tile.gd" id="1_cjfvm"]
-[ext_resource type="Texture2D" uid="uid://b3xmolph77fc8" path="res://assets/sprites/tiles/orange_tile_normal.png" id="1_pus7o"]
-[ext_resource type="Texture2D" uid="uid://co7pv2oj3dp7t" path="res://assets/sprites/tiles/orange_tile_pressed.png" id="2_gkoxn"]
+[ext_resource type="Texture2D" uid="uid://rq3cfnyhp4es" path="res://assets/sprites/tiles/ivory_tile_pressed.png" id="2_0jrr7"]
 
 [node name="Tile" type="TextureButton"]
 offset_right = 12.0
 offset_bottom = 19.0
-texture_normal = ExtResource("1_pus7o")
-texture_pressed = ExtResource("2_gkoxn")
+texture_normal = ExtResource("1_bgpw5")
+texture_pressed = ExtResource("2_0jrr7")
 script = ExtResource("1_cjfvm")
 
 [node name="Label" type="Label" parent="."]
@@ -17,6 +17,6 @@ offset_left = 5.0
 offset_top = 5.0
 offset_right = 10.0
 offset_bottom = 13.0
-theme_override_colors/font_color = Color(1, 0.784314, 0.141176, 1)
+theme_override_colors/font_color = Color(0.054902, 0.027451, 0.105882, 1)
 theme_override_font_sizes/font_size = 8
 text = "0"
