@@ -51,8 +51,11 @@ func set_selected_visual(on: bool) -> void:
 func _pressed() -> void:
 	if disabled or !_open:
 		return
-	SoundManager.play_clack()
 	Events.tile_pressed.emit(id)
+
+func _on_button_down() -> void:
+	SoundManager.play_clack()
+
 
 func _set_texture_regions() -> void:
 	if _normal_atlas:
