@@ -16,7 +16,7 @@ animation = &"roll"
 [node name="RollSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_1ele6")
 volume_db = -5.0
-pitch_scale = 3.0
+pitch_scale = 4.0
 
 [node name="PopSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_5xkhq")
