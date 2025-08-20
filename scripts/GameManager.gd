@@ -150,18 +150,16 @@ func _enter_resolve() -> void:
 # -------------------- BUST --------------------------
 func _enter_bust() -> void:
 	await get_tree().create_timer(0.5).timeout
-	#get_tree().paused = true
 	var game_over_scene := preload("res://scenes/screens/GameOver.tscn").instantiate()
-	get_tree().root.add_child(game_over_scene)
+	get_tree().current_scene.add_child(game_over_scene)
 	game_over_scene.show_game_over()
 	game_over_scene.process_mode = Node.PROCESS_MODE_ALWAYS
 
 # -------------------- NINE_DOWN ------------------
 func _enter_nine_down() -> void:
 	await get_tree().create_timer(0.5).timeout
-	get_tree().paused = true
 	var game_won_scene := preload("res://scenes/screens/GameWon.tscn").instantiate()
-	get_tree().root.add_child(game_won_scene)
+	get_tree().current_scene.add_child(game_won_scene)
 	game_won_scene.process_mode = Node.PROCESS_MODE_ALWAYS
 
 # -------------------- SCORE -------------------------
