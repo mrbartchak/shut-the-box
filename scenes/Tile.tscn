@@ -1,22 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4s8dvxj3qfwd"]
+[gd_scene load_steps=5 format=3 uid="uid://c4s8dvxj3qfwd"]
 
-[ext_resource type="Texture2D" uid="uid://d0xr0uc3rj68k" path="res://assets/sprites/tiles/ivory_tile_normal.png" id="1_bgpw5"]
 [ext_resource type="Script" path="res://scripts/Tile.gd" id="1_cjfvm"]
-[ext_resource type="Texture2D" uid="uid://rq3cfnyhp4es" path="res://assets/sprites/tiles/ivory_tile_pressed.png" id="2_0jrr7"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gehnc"]
+load_path = "res://.godot/imported/tiles_ivory.png-c86cde810cdddf7afe765d2515a5779a.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wuja6"]
+atlas = SubResource("CompressedTexture2D_gehnc")
+region = Rect2(0, 0, 13, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrec3"]
+atlas = SubResource("CompressedTexture2D_gehnc")
+region = Rect2(0, 20, 13, 20)
 
 [node name="Tile" type="TextureButton"]
 offset_right = 12.0
 offset_bottom = 19.0
-texture_normal = ExtResource("1_bgpw5")
-texture_pressed = ExtResource("2_0jrr7")
+texture_normal = SubResource("AtlasTexture_wuja6")
+texture_pressed = SubResource("AtlasTexture_wrec3")
 script = ExtResource("1_cjfvm")
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 10.0
-offset_bottom = 13.0
-theme_override_colors/font_color = Color(0.054902, 0.027451, 0.105882, 1)
-theme_override_font_sizes/font_size = 8
-text = "0"

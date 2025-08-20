@@ -4,19 +4,18 @@ extends TextureButton
 # TODO: Add effect class later
 @export var id: int
 @export var value: int = 0
+@export var tile_size: Vector2 = Vector2(13, 20)
 
 var _open: bool = true
 var _default_texture: Texture
-var _default_lbl_pos: Vector2
 var _press_offset: Vector2 = Vector2(0, 3)
 
-@onready var lbl: Label = $Label
-
+@onready var _normal_atlas: AtlasTexture = self.texture_normal.duplicate()
+@onready var _pressed_atlas: AtlasTexture = self.texture_pressed.duplicate()
 
 func _ready() -> void:
-	_connect_press_animation()
+	_set_texture_regions()
 	_default_texture = texture_normal
-	_default_lbl_pos = lbl.position
 
 # ============== STATE ACCESSORS ==============
 func is_open() -> bool:
@@ -28,14 +27,12 @@ func open() -> void:
 	_open = true
 	set_enabled(true)
 	modulate = Color(1, 1, 1)
-	lbl.visible = true
 	texture_normal = _default_texture
 
 func close() -> void:
 	_open = false
 	set_enabled(false)
 	modulate = Color(0.5, 0.5, 0.5)
-	lbl.visible = false
 	texture_normal = texture_pressed
 
 func set_enabled(on: bool) -> void:
@@ -43,20 +40,32 @@ func set_enabled(on: bool) -> void:
 
 func set_value(v: int) -> void:
 	value = v
-	lbl.text = str(value)
+	_set_texture_regions()
 
 func set_selected_visual(on: bool) -> void:
 	texture_normal = texture_pressed if on else _default_texture
 	# modulate = Color(1,1,1) if on else Color(0.7, 0.7, 0.7)
-	lbl.position = _default_lbl_pos + _press_offset if on else _default_lbl_pos
 
 
-# =============== UI CALLBACKS ================
+# =============== UI ================
 func _pressed() -> void:
 	if disabled or !_open:
 		return
+	SoundManager.play_clack()
 	Events.tile_pressed.emit(id)
 
+func _set_texture_regions() -> void:
+	if _normal_atlas:
+		var r = _normal_atlas.region
+		r.position.x = (value - 1) * tile_size.x
+		_normal_atlas.region = r
+		texture_normal = _normal_atlas
+	
+	if _pressed_atlas:
+		var r = _pressed_atlas.region
+		r.position.x = (value - 1) * tile_size.x
+		_pressed_atlas.region = r
+		texture_pressed = _pressed_atlas
 
 # =============== EFFECT HOOKS ================
 #func trigger_selected_effect(gm: Node) -> void:
@@ -72,18 +81,3 @@ func _pressed() -> void:
 #func _apply_open_visual(on: bool) -> void:
 	## TODO: apply the visual
 	#pass
-
-func _connect_press_animation() -> void:
-	if !lbl:
-		push_warning("No label assigned for press animation")
-		return
-	
-	button_down.connect(func():
-		SoundManager.play_clack()
-		lbl.position = _default_lbl_pos + _press_offset
-	)
-	
-	var reset := func(): lbl.position = _default_lbl_pos
-	button_up.connect(reset)
-	mouse_exited.connect(reset)
-	focus_exited.connect(reset)

@@ -97,14 +97,14 @@ script = ExtResource("2_tgrcv")
 max_offset = Vector2(2, 2)
 
 [node name="Die" type="AnimatedSprite2D" parent="Parallax"]
-position = Vector2(268.333, 56.6667)
+position = Vector2(265, 57)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("7_wgj8h")
 animation = &"roll"
 frame = 3
 
 [node name="Die2" type="AnimatedSprite2D" parent="Parallax"]
-position = Vector2(215.833, 122.833)
+position = Vector2(228, 128)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("7_wgj8h")
 animation = &"roll"

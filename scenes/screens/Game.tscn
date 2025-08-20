@@ -69,38 +69,47 @@ alignment = 1
 [node name="Tile" parent="TileManager/TileContainer" instance=ExtResource("5_6nrh4")]
 layout_mode = 2
 id = 1
+value = 1
 
 [node name="Tile2" parent="TileManager/TileContainer" instance=ExtResource("5_6nrh4")]
 layout_mode = 2
 id = 2
+value = 2
 
 [node name="Tile3" parent="TileManager/TileContainer" instance=ExtResource("5_6nrh4")]
 layout_mode = 2
 id = 3
+value = 3
 
 [node name="Tile4" parent="TileManager/TileContainer" instance=ExtResource("5_6nrh4")]
 layout_mode = 2
 id = 4
+value = 4
 
 [node name="Tile5" parent="TileManager/TileContainer" instance=ExtResource("5_6nrh4")]
 layout_mode = 2
 id = 5
+value = 5
 
 [node name="Tile6" parent="TileManager/TileContainer" instance=ExtResource("5_6nrh4")]
 layout_mode = 2
 id = 6
+value = 1
 
 [node name="Tile7" parent="TileManager/TileContainer" instance=ExtResource("5_6nrh4")]
 layout_mode = 2
 id = 7
+value = 1
 
 [node name="Tile8" parent="TileManager/TileContainer" instance=ExtResource("5_6nrh4")]
 layout_mode = 2
 id = 8
+value = 1
 
 [node name="Tile9" parent="TileManager/TileContainer" instance=ExtResource("5_6nrh4")]
 layout_mode = 2
 id = 9
+value = 1
 
 [node name="DiceManager" type="Node2D" parent="."]
 position = Vector2(132, 100)
