@@ -4,8 +4,9 @@
 [ext_resource type="Script" path="res://scripts/MouseCursor.gd" id="1_pf7ce"]
 
 [node name="MouseCursor" type="Sprite2D"]
-modulate = Color(0.169245, 0.169245, 0.169245, 0.9)
+modulate = Color(1, 0.784314, 0.141176, 1)
 z_index = 4096
+position = Vector2(-1, -1)
 texture = ExtResource("1_6f1vn")
 offset = Vector2(0.5, 0.5)
 script = ExtResource("1_pf7ce")
