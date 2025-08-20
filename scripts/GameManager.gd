@@ -150,7 +150,7 @@ func _enter_resolve() -> void:
 # -------------------- BUST --------------------------
 func _enter_bust() -> void:
 	await get_tree().create_timer(0.5).timeout
-	get_tree().paused = true
+	#get_tree().paused = true
 	var game_over_scene := preload("res://scenes/screens/GameOver.tscn").instantiate()
 	get_tree().root.add_child(game_over_scene)
 	game_over_scene.show_game_over()

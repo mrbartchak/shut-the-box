@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b0j780i5mjxc0"]
 
-[ext_resource type="Script" path="res://scripts/GameOver.gd" id="1_shfke"]
+[ext_resource type="Script" path="res://scripts/GameWon.gd" id="1_k3t27"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_18ssx"]
 bg_color = Color(0.788827, 0.540763, 0.256641, 1)
@@ -14,7 +14,7 @@ anti_aliasing = false
 
 [node name="GameWon" type="CanvasLayer"]
 layer = 2
-script = ExtResource("1_shfke")
+script = ExtResource("1_k3t27")
 
 [node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15
