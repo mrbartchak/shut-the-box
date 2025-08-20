@@ -56,4 +56,9 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "Replay"
 
+[node name="Menu" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+text = "Menu"
+
 [connection signal="pressed" from="Menu/VBoxContainer/Replay" to="." method="_on_replay_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/Menu" to="." method="_on_menu_pressed"]

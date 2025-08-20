@@ -1,0 +1,199 @@
+[gd_scene load_steps=25 format=3 uid="uid://i6ngq88wqpwq"]
+
+[ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="2_85gqg"]
+[ext_resource type="Texture2D" uid="uid://chg5iykprpltr" path="res://assets/sprites/off_purple_pattern.png" id="2_qen00"]
+[ext_resource type="Texture2D" uid="uid://bl4vrcmmbs2va" path="res://assets/sprites/boards/ivory_board.png" id="3_eagth"]
+[ext_resource type="Script" path="res://scripts/TileManager.gd" id="4_w6it4"]
+[ext_resource type="PackedScene" uid="uid://c4s8dvxj3qfwd" path="res://scenes/Tile.tscn" id="5_6nrh4"]
+[ext_resource type="Script" path="res://scripts/DiceManager.gd" id="6_jf2lj"]
+[ext_resource type="PackedScene" uid="uid://n4adeggawd5e" path="res://scenes/Dice.tscn" id="7_lli7b"]
+[ext_resource type="Script" path="res://scripts/UiManager.gd" id="9_ceqsf"]
+[ext_resource type="FontFile" uid="uid://biuq5bpy1jhm8" path="res://assets/fonts/DigitalDisco.ttf" id="10_7ej1e"]
+[ext_resource type="Texture2D" uid="uid://cahlegiu3d80b" path="res://assets/sprites/buttons/roll/roll_normal.png" id="11_yn8p0"]
+[ext_resource type="Texture2D" uid="uid://bjft7knsaa1wb" path="res://assets/sprites/buttons/roll/roll_pressed.png" id="12_arpsl"]
+[ext_resource type="Texture2D" uid="uid://d0m6kmch1e44t" path="res://assets/sprites/buttons/roll/roll_hover.png" id="13_52dx2"]
+[ext_resource type="Texture2D" uid="uid://ci2fji7go6h3l" path="res://assets/sprites/buttons/roll/roll_disabled.png" id="14_jvihr"]
+[ext_resource type="Texture2D" uid="uid://b2qya260un17u" path="res://assets/sprites/buttons/flip/flip_normal.png" id="15_dkkcd"]
+[ext_resource type="Texture2D" uid="uid://dkgwbik6fs082" path="res://assets/sprites/buttons/flip/flip_pressed.png" id="16_rioj6"]
+[ext_resource type="Texture2D" uid="uid://cle8epa3kw0rm" path="res://assets/sprites/buttons/flip/flip_hover.png" id="17_f0o1d"]
+[ext_resource type="Texture2D" uid="uid://cp68sc56au6dp" path="res://assets/sprites/buttons/flip/flip_disabled.png" id="18_32upg"]
+[ext_resource type="PackedScene" uid="uid://c07lrpnwy111m" path="res://scenes/MouseCursor.tscn" id="18_gwfbm"]
+[ext_resource type="Texture2D" uid="uid://cj8kivye511g2" path="res://assets/sprites/buttons/hamburger/hamburger_normal.png" id="19_ap4ly"]
+[ext_resource type="Texture2D" uid="uid://dbw7ircfdxdoo" path="res://assets/sprites/buttons/hamburger/hamburger_pressed.png" id="20_g7u0o"]
+[ext_resource type="Script" path="res://scripts/GameManager.gd" id="20_x2oru"]
+[ext_resource type="Texture2D" uid="uid://c7je6vuympmqt" path="res://assets/sprites/buttons/hamburger/hamburger_hover.png" id="21_lth5d"]
+[ext_resource type="Texture2D" uid="uid://bbgamvb2hmv7" path="res://assets/sprites/buttons/hamburger/hamburger_disabled.png" id="22_27ebv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5kaea"]
+shader = ExtResource("2_85gqg")
+shader_parameter/speed = 0.5
+
+[node name="ClassicMode" type="Node2D"]
+position = Vector2(1, 0)
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("20_x2oru")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+z_index = -4096
+texture_repeat = 2
+material = SubResource("ShaderMaterial_5kaea")
+offset_right = 320.0
+offset_bottom = 180.0
+texture = ExtResource("2_qen00")
+stretch_mode = 1
+
+[node name="Box" type="TextureRect" parent="Background"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 90.0
+offset_top = 49.0
+offset_right = 229.0
+offset_bottom = 132.0
+grow_horizontal = 2
+texture = ExtResource("3_eagth")
+stretch_mode = 2
+
+[node name="TileManager" type="Node" parent="."]
+script = ExtResource("4_w6it4")
+tile_container = NodePath("TileContainer")
+
+[node name="TileContainer" type="HBoxContainer" parent="TileManager"]
+z_index = 4096
+offset_left = 98.0
+offset_top = 54.0
+offset_right = 223.0
+offset_bottom = 74.0
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Tile" parent="TileManager/TileContainer" instance=ExtResource("5_6nrh4")]
+layout_mode = 2
+id = 1
+value = 1
+
+[node name="Tile2" parent="TileManager/TileContainer" instance=ExtResource("5_6nrh4")]
+layout_mode = 2
+id = 2
+value = 2
+
+[node name="Tile3" parent="TileManager/TileContainer" instance=ExtResource("5_6nrh4")]
+layout_mode = 2
+id = 3
+value = 3
+
+[node name="Tile4" parent="TileManager/TileContainer" instance=ExtResource("5_6nrh4")]
+layout_mode = 2
+id = 4
+value = 4
+
+[node name="Tile5" parent="TileManager/TileContainer" instance=ExtResource("5_6nrh4")]
+layout_mode = 2
+id = 5
+value = 5
+
+[node name="Tile6" parent="TileManager/TileContainer" instance=ExtResource("5_6nrh4")]
+layout_mode = 2
+id = 6
+value = 1
+
+[node name="Tile7" parent="TileManager/TileContainer" instance=ExtResource("5_6nrh4")]
+layout_mode = 2
+id = 7
+value = 1
+
+[node name="Tile8" parent="TileManager/TileContainer" instance=ExtResource("5_6nrh4")]
+layout_mode = 2
+id = 8
+value = 1
+
+[node name="Tile9" parent="TileManager/TileContainer" instance=ExtResource("5_6nrh4")]
+layout_mode = 2
+id = 9
+value = 1
+
+[node name="DiceManager" type="Node2D" parent="."]
+position = Vector2(132, 100)
+script = ExtResource("6_jf2lj")
+
+[node name="Die" parent="DiceManager" instance=ExtResource("7_lli7b")]
+position = Vector2(-16, 0)
+
+[node name="Die2" parent="DiceManager" instance=ExtResource("7_lli7b")]
+position = Vector2(16, 0)
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("9_ceqsf")
+
+[node name="StateLabel" type="Label" parent="UI"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 98.0
+offset_top = 169.0
+offset_right = 172.0
+offset_bottom = 185.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "no state"
+
+[node name="RollButton" type="TextureButton" parent="UI"]
+offset_left = 175.0
+offset_top = 91.0
+offset_right = 210.0
+offset_bottom = 110.0
+disabled = true
+texture_normal = ExtResource("11_yn8p0")
+texture_pressed = ExtResource("12_arpsl")
+texture_hover = ExtResource("13_52dx2")
+texture_disabled = ExtResource("14_jvihr")
+
+[node name="FlipButton" type="TextureButton" parent="UI"]
+offset_left = 230.0
+offset_top = 53.0
+offset_right = 245.0
+offset_bottom = 75.0
+disabled = true
+texture_normal = ExtResource("15_dkkcd")
+texture_pressed = ExtResource("16_rioj6")
+texture_hover = ExtResource("17_f0o1d")
+texture_disabled = ExtResource("18_32upg")
+
+[node name="MenuButton" type="TextureButton" parent="UI"]
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 23.0
+offset_bottom = 23.0
+texture_normal = ExtResource("19_ap4ly")
+texture_pressed = ExtResource("20_g7u0o")
+texture_hover = ExtResource("21_lth5d")
+texture_disabled = ExtResource("22_27ebv")
+
+[node name="DiceResults" type="CenterContainer" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -22.0
+offset_top = 16.0
+offset_right = 22.0
+offset_bottom = 48.0
+grow_horizontal = 2
+
+[node name="Total" type="Label" parent="UI/DiceResults"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.784314, 0.141176, 1)
+theme_override_fonts/font = ExtResource("10_7ej1e")
+theme_override_font_sizes/font_size = 32
+text = "7"
+horizontal_alignment = 1
+
+[node name="MouseLayer" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="MouseCursor" parent="MouseLayer" instance=ExtResource("18_gwfbm")]

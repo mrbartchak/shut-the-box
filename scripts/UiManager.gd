@@ -4,8 +4,6 @@ extends CanvasLayer
 @onready var menu_btn := $MenuButton
 @onready var roll_btn := $RollButton
 @onready var flip_btn := $FlipButton
-@onready var quit_btn := $QuitButton
-@onready var score_lbl := $Score/Label
 @onready var diceTotal_lbl := $DiceResults/Total
 @onready var state_lbl: Label = $StateLabel
 
@@ -13,7 +11,6 @@ extends CanvasLayer
 func _ready() -> void:
 	Events.dice_rolled.connect(_on_dice_rolled)
 	Events.state_changed.connect(_on_state_updated)
-	Events.score_updated.connect(_on_score_updated)
 	Events.roll_enabled_changed.connect(_on_roll_enabled_changed)
 	Events.flip_enabled_changed.connect(_on_flip_enabled_changed)
 	
@@ -24,9 +21,6 @@ func _ready() -> void:
 		SoundManager.play_click()
 		Events.roll_pressed.emit()
 	)
-	quit_btn.pressed.connect(func():
-		get_tree().quit()
-	)
 	flip_btn.pressed.connect(func():
 		SoundManager.play_click()
 		Events.select_button_pressed.emit()
@@ -36,11 +30,6 @@ func _ready() -> void:
 
 func _on_state_updated(state) -> void:
 	state_lbl.text = str(state)
-
-
-func _on_score_updated(new_score: int) -> void:
-	score_lbl.text = "%04d" % new_score
-	# _pop_fade($Score, "", 1.05)
 
 
 func _on_dice_rolled(total: int) -> void:

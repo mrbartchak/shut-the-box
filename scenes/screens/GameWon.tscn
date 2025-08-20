@@ -1,48 +1,59 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0j780i5mjxc0"]
+[gd_scene load_steps=3 format=3 uid="uid://b0j780i5mjxc0"]
 
 [ext_resource type="Script" path="res://scripts/GameOver.gd" id="1_shfke"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_18ssx"]
+bg_color = Color(0.788827, 0.540763, 0.256641, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+anti_aliasing = false
 
 [node name="GameWon" type="CanvasLayer"]
 layer = 2
 script = ExtResource("1_shfke")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -59.5
-offset_top = -37.0
-offset_right = 59.5
-offset_bottom = 37.0
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.11, 0.11, 0.11, 0.682353)
+color = Color(0.05709, 0.0286, 0.11, 1)
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="Menu" type="PanelContainer" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -48.0
-offset_top = -20.0
+offset_top = -54.0
 offset_right = 48.0
-offset_bottom = 20.0
+offset_bottom = 54.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_18ssx")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
 layout_mode = 2
+size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Menu/VBoxContainer"]
 layout_mode = 2
 text = "NINE DOWN!"
 horizontal_alignment = 1
 
-[node name="Replay" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="Replay" type="Button" parent="Menu/VBoxContainer"]
 layout_mode = 2
 text = "Replay"
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Replay" to="." method="_on_replay_pressed"]
+[node name="Menu" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+text = "Menu"
+
+[connection signal="pressed" from="Menu/VBoxContainer/Replay" to="." method="_on_replay_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/Menu" to="." method="_on_menu_pressed"]

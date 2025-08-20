@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 func _on_start_button_pressed() -> void:
 	await play_button_click()
 	# SoundManager.stop_menu_theme()
-	get_tree().change_scene_to_file("res://scenes/screens/Game.tscn")
+	get_tree().change_scene_to_file("res://scenes/modes/ClassicMode.tscn")
 
 
 func _on_options_button_pressed() -> void:
@@ -32,5 +32,5 @@ func play_button_click() -> void:
 
 
 func play_dice_animation(delta: float) -> void:
-		$Parallax/Die.rotation_degrees += 90 * delta
-		$Parallax/Die2.rotation_degrees -= 90 * delta
+		$Die.rotation_degrees += 90 * delta
+		$Die2.rotation_degrees -= 90 * delta

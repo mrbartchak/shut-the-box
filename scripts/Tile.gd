@@ -8,7 +8,6 @@ extends TextureButton
 
 var _open: bool = true
 var _default_texture: Texture
-var _press_offset: Vector2 = Vector2(0, 3)
 
 @onready var _normal_atlas: AtlasTexture = self.texture_normal.duplicate()
 @onready var _pressed_atlas: AtlasTexture = self.texture_pressed.duplicate()

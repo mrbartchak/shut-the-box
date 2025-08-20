@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d3c70jkf4h5d0"]
+[gd_scene load_steps=18 format=3 uid="uid://dlcmdodfq823v"]
 
 [ext_resource type="Script" path="res://scripts/UiManager.gd" id="1_pila1"]
 [ext_resource type="FontFile" uid="uid://biuq5bpy1jhm8" path="res://assets/fonts/DigitalDisco.ttf" id="2_t4n0e"]
