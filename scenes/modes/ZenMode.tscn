@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://ke8870dbg6q6"]
+[gd_scene load_steps=12 format=3 uid="uid://ke8870dbg6q6"]
 
 [ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="1_071g4"]
+[ext_resource type="Script" path="res://scripts/ZenMode.gd" id="1_aeq3n"]
 [ext_resource type="Texture2D" uid="uid://chg5iykprpltr" path="res://assets/sprites/off_purple_pattern.png" id="2_mmbkl"]
 [ext_resource type="Texture2D" uid="uid://bl4vrcmmbs2va" path="res://assets/sprites/boards/ivory_board.png" id="3_f8kt1"]
 [ext_resource type="Texture2D" uid="uid://bgql7akrb17xa" path="res://assets/sprites/dice_atlas.tres" id="4_312he"]
@@ -21,6 +22,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_aeq3n")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -4096
