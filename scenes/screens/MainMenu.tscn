@@ -85,7 +85,7 @@ animation = &"roll"
 frame = 3
 
 [node name="Die2" type="AnimatedSprite2D" parent="."]
-position = Vector2(166, 111)
+position = Vector2(167, 112)
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("7_wgj8h")
 animation = &"roll"

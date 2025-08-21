@@ -1,7 +1,6 @@
 class_name Tile
 extends TextureButton
 
-# TODO: Add effect class later
 @export var id: int
 @export var value: int = 0
 @export var tile_size: Vector2 = Vector2(13, 20)
@@ -12,9 +11,11 @@ var _default_texture: Texture
 @onready var _normal_atlas: AtlasTexture = self.texture_normal.duplicate()
 @onready var _pressed_atlas: AtlasTexture = self.texture_pressed.duplicate()
 
+
 func _ready() -> void:
-	_set_texture_regions()
+	_update_texture_regions()
 	_default_texture = texture_normal
+
 
 # ============== STATE ACCESSORS ==============
 func is_open() -> bool:
@@ -39,16 +40,14 @@ func set_enabled(on: bool) -> void:
 
 func set_value(v: int) -> void:
 	value = v
-	_set_texture_regions()
+	_update_texture_regions()
 
 func set_selected_visual(on: bool) -> void:
 	texture_normal = texture_pressed if on else _default_texture
-	# modulate = Color(1,1,1) if on else Color(0.7, 0.7, 0.7)
 
 
 # =============== UI ================
 func _pressed() -> void:
-	print("im pressed")
 	if disabled or !_open:
 		return
 	Events.tile_pressed.emit(id)
@@ -56,8 +55,7 @@ func _pressed() -> void:
 func _on_button_down() -> void:
 	SoundManager.play_clack()
 
-
-func _set_texture_regions() -> void:
+func _update_texture_regions() -> void:
 	if _normal_atlas:
 		var r = _normal_atlas.region
 		r.position.x = (value - 1) * tile_size.x
@@ -69,18 +67,3 @@ func _set_texture_regions() -> void:
 		r.position.x = (value - 1) * tile_size.x
 		_pressed_atlas.region = r
 		texture_pressed = _pressed_atlas
-
-# =============== EFFECT HOOKS ================
-#func trigger_selected_effect(gm: Node) -> void:
-	#if effect and "on_selected" in effect:
-		#effect.on_selected(gm, id)
-#
-#func trigger_resolve_effect(gm: Node) -> void:
-	#if effect and "on_resolve" in effect:
-		#effect.on_resolve(gm, id)
-
-
-# ============== PRIVATE HELPERS ==============
-#func _apply_open_visual(on: bool) -> void:
-	## TODO: apply the visual
-	#pass
