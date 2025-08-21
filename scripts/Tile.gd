@@ -48,6 +48,7 @@ func set_selected_visual(on: bool) -> void:
 
 # =============== UI ================
 func _pressed() -> void:
+	print("im pressed")
 	if disabled or !_open:
 		return
 	Events.tile_pressed.emit(id)

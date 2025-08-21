@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://chg5iykprpltr" path="res://assets/sprites/off_purple_pattern.png" id="3_whl5g"]
 [ext_resource type="PackedScene" uid="uid://c07lrpnwy111m" path="res://scenes/MouseCursor.tscn" id="4_4fodt"]
 [ext_resource type="Texture2D" uid="uid://b0aws8iurtytu" path="res://assets/sprites/icons/ninedown_ivory.png" id="5_i0lfh"]
-[ext_resource type="FontFile" uid="uid://biuq5bpy1jhm8" path="res://assets/fonts/DigitalDisco.ttf" id="6_ui80w"]
+[ext_resource type="FontFile" uid="uid://bdkaxsxctcq8x" path="res://assets/fonts/GrapeSoda.ttf" id="6_ln34w"]
 [ext_resource type="SpriteFrames" uid="uid://v7lp53wimysg" path="res://assets/sprites/frames/dice_sprite_frames.tres" id="7_wgj8h"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6qvyf"]
@@ -28,9 +28,7 @@ anti_aliasing = false
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c528h"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_left = 2
-border_width_top = 2
 border_width_right = 2
-border_width_bottom = 2
 border_color = Color(0.054902, 0.027451, 0.105882, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
@@ -40,13 +38,11 @@ shadow_offset = Vector2(0, 1)
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exhel"]
-bg_color = Color(1, 0.980392, 0.831373, 1)
-border_color = Color(0.054902, 0.027451, 0.105882, 1)
+bg_color = Color(0.054902, 0.027451, 0.105882, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
-shadow_size = 1
 shadow_offset = Vector2(0, 1)
 anti_aliasing = false
 
@@ -97,10 +93,10 @@ frame = 4
 
 [node name="MenuItems" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 15.0
-offset_top = 12.0
-offset_right = 106.0
-offset_bottom = 137.0
+offset_left = 25.0
+offset_top = 13.0
+offset_right = 100.0
+offset_bottom = 138.0
 theme_override_constants/separation = 8
 
 [node name="Logo" type="TextureRect" parent="MenuItems"]
@@ -121,7 +117,7 @@ theme_override_colors/font_hover_color = Color(0.054902, 0.027451, 0.105882, 1)
 theme_override_colors/font_pressed_color = Color(0.054902, 0.027451, 0.105882, 1)
 theme_override_colors/font_focus_color = Color(0.054902, 0.027451, 0.105882, 1)
 theme_override_colors/font_color = Color(0.976471, 0.901961, 0.811765, 1)
-theme_override_fonts/font = ExtResource("6_ui80w")
+theme_override_fonts/font = ExtResource("6_ln34w")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1y3un")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_kp3yk")
@@ -129,53 +125,52 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_c528h")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_exhel")
 theme_override_styles/normal = SubResource("StyleBoxFlat_htdnf")
 disabled = true
-text = "CONTINUE
-"
+text = "Endless"
 
 [node name="StartButton" type="Button" parent="MenuItems/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0.976471, 0.901961, 0.811765, 1)
-theme_override_colors/font_pressed_color = Color(0.054902, 0.027451, 0.105882, 1)
+theme_override_colors/font_pressed_color = Color(0.976471, 0.901961, 0.811765, 1)
 theme_override_colors/font_focus_color = Color(0.976471, 0.901961, 0.811765, 1)
 theme_override_colors/font_color = Color(0.976471, 0.901961, 0.811765, 1)
-theme_override_fonts/font = ExtResource("6_ui80w")
+theme_override_fonts/font = ExtResource("6_ln34w")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1y3un")
 theme_override_styles/hover = SubResource("StyleBoxFlat_c528h")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_exhel")
 theme_override_styles/normal = SubResource("StyleBoxFlat_htdnf")
-text = "START"
+text = "Classic"
 
 [node name="OptionsButton" type="Button" parent="MenuItems/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0.976471, 0.901961, 0.811765, 1)
-theme_override_colors/font_pressed_color = Color(0.054902, 0.027451, 0.105882, 1)
+theme_override_colors/font_pressed_color = Color(0.976471, 0.901961, 0.811765, 1)
 theme_override_colors/font_focus_color = Color(0.976471, 0.901961, 0.811765, 1)
 theme_override_colors/font_color = Color(0.976471, 0.901961, 0.811765, 1)
-theme_override_fonts/font = ExtResource("6_ui80w")
+theme_override_fonts/font = ExtResource("6_ln34w")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1y3un")
 theme_override_styles/hover = SubResource("StyleBoxFlat_c528h")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_exhel")
 theme_override_styles/normal = SubResource("StyleBoxFlat_htdnf")
-text = "OPTIONS"
+text = "Options"
 
 [node name="ExitButton" type="Button" parent="MenuItems/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0.976471, 0.901961, 0.811765, 1)
-theme_override_colors/font_pressed_color = Color(0.054902, 0.027451, 0.105882, 1)
+theme_override_colors/font_pressed_color = Color(0.976471, 0.901961, 0.811765, 1)
 theme_override_colors/font_focus_color = Color(0.976471, 0.901961, 0.811765, 1)
 theme_override_colors/font_color = Color(0.976471, 0.901961, 0.811765, 1)
-theme_override_fonts/font = ExtResource("6_ui80w")
+theme_override_fonts/font = ExtResource("6_ln34w")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1y3un")
 theme_override_styles/hover = SubResource("StyleBoxFlat_c528h")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_exhel")
 theme_override_styles/normal = SubResource("StyleBoxFlat_htdnf")
-text = "EXIT
+text = "Exit
 "
 
 [node name="MouseCursor" parent="." instance=ExtResource("4_4fodt")]

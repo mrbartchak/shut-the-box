@@ -1,0 +1,184 @@
+[gd_scene load_steps=11 format=3 uid="uid://ke8870dbg6q6"]
+
+[ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="1_071g4"]
+[ext_resource type="Texture2D" uid="uid://chg5iykprpltr" path="res://assets/sprites/off_purple_pattern.png" id="2_mmbkl"]
+[ext_resource type="Texture2D" uid="uid://bl4vrcmmbs2va" path="res://assets/sprites/boards/ivory_board.png" id="3_f8kt1"]
+[ext_resource type="PackedScene" uid="uid://c4s8dvxj3qfwd" path="res://scenes/Tile.tscn" id="4_go2pt"]
+[ext_resource type="Texture2D" uid="uid://cj8kivye511g2" path="res://assets/sprites/buttons/hamburger/hamburger_normal.png" id="5_0f273"]
+[ext_resource type="Texture2D" uid="uid://dbw7ircfdxdoo" path="res://assets/sprites/buttons/hamburger/hamburger_pressed.png" id="6_uunh3"]
+[ext_resource type="Texture2D" uid="uid://c7je6vuympmqt" path="res://assets/sprites/buttons/hamburger/hamburger_hover.png" id="7_4mefg"]
+[ext_resource type="Texture2D" uid="uid://bbgamvb2hmv7" path="res://assets/sprites/buttons/hamburger/hamburger_disabled.png" id="8_4xg7o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mu6cr"]
+shader = ExtResource("1_071g4")
+shader_parameter/speed = 0.5
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wk16w"]
+
+[node name="ZenMode" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -4096
+texture_repeat = 2
+material = SubResource("ShaderMaterial_mu6cr")
+offset_left = -1.0
+offset_right = 319.0
+offset_bottom = 180.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_mmbkl")
+stretch_mode = 1
+
+[node name="BoardFrame" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoardLayer" type="Control" parent="BoardFrame"]
+layout_mode = 2
+
+[node name="Board" type="TextureRect" parent="BoardFrame/BoardLayer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.5
+offset_top = -41.5
+offset_right = 69.5
+offset_bottom = 41.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_f8kt1")
+stretch_mode = 2
+
+[node name="Dice" type="Control" parent="BoardFrame/BoardLayer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftDie" type="TextureRect" parent="BoardFrame/BoardLayer/Dice"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -3.0
+offset_right = -32.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("PlaceholderTexture2D_wk16w")
+
+[node name="RightDie" type="TextureRect" parent="BoardFrame/BoardLayer/Dice"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -3.0
+offset_right = -3.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("PlaceholderTexture2D_wk16w")
+
+[node name="Tiles" type="HBoxContainer" parent="BoardFrame/BoardLayer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = -36.0
+offset_right = 63.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 1
+
+[node name="Tile" parent="BoardFrame/BoardLayer/Tiles" instance=ExtResource("4_go2pt")]
+layout_mode = 2
+id = 1
+value = 1
+
+[node name="Tile2" parent="BoardFrame/BoardLayer/Tiles" instance=ExtResource("4_go2pt")]
+layout_mode = 2
+id = 2
+value = 2
+
+[node name="Tile3" parent="BoardFrame/BoardLayer/Tiles" instance=ExtResource("4_go2pt")]
+layout_mode = 2
+id = 3
+value = 3
+
+[node name="Tile4" parent="BoardFrame/BoardLayer/Tiles" instance=ExtResource("4_go2pt")]
+layout_mode = 2
+id = 4
+value = 4
+
+[node name="Tile5" parent="BoardFrame/BoardLayer/Tiles" instance=ExtResource("4_go2pt")]
+layout_mode = 2
+id = 5
+value = 5
+
+[node name="Tile6" parent="BoardFrame/BoardLayer/Tiles" instance=ExtResource("4_go2pt")]
+layout_mode = 2
+id = 6
+value = 6
+
+[node name="Tile7" parent="BoardFrame/BoardLayer/Tiles" instance=ExtResource("4_go2pt")]
+layout_mode = 2
+id = 7
+value = 7
+
+[node name="Tile8" parent="BoardFrame/BoardLayer/Tiles" instance=ExtResource("4_go2pt")]
+layout_mode = 2
+id = 8
+value = 8
+
+[node name="Tile9" parent="BoardFrame/BoardLayer/Tiles" instance=ExtResource("4_go2pt")]
+layout_mode = 2
+id = 9
+value = 9
+
+[node name="HUD" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 17.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="HudRow" type="HBoxContainer" parent="HUD"]
+layout_mode = 2
+
+[node name="MenuButton" type="TextureButton" parent="HUD/HudRow"]
+layout_mode = 2
+texture_normal = ExtResource("5_0f273")
+texture_pressed = ExtResource("6_uunh3")
+texture_hover = ExtResource("7_4mefg")
+texture_disabled = ExtResource("8_4xg7o")
