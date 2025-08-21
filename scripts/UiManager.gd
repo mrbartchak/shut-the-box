@@ -45,11 +45,11 @@ func _on_flip_enabled_changed(enabled: bool) -> void:
 	flip_btn.disabled = !enabled
 
 func _on_nine_down() -> void:
-	_pop_fade($TextureRect)
+	_pop_fade($NinedownIcon)
 
 func _on_tiles_resolved() -> void:
 	diceTotal_lbl.visible = false
-	$TextureRect.visible = false
+	$NinedownIcon.visible = false
 
 # HELPERS
 func disable_roll_btn(disabled: bool) -> void:

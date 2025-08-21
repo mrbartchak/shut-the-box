@@ -82,15 +82,15 @@ texture = ExtResource("3_whl5g")
 stretch_mode = 1
 
 [node name="Die" type="AnimatedSprite2D" parent="."]
-position = Vector2(265, 57)
-scale = Vector2(2, 2)
+position = Vector2(265, 63)
+scale = Vector2(3, 3)
 sprite_frames = ExtResource("7_wgj8h")
 animation = &"roll"
 frame = 3
 
 [node name="Die2" type="AnimatedSprite2D" parent="."]
-position = Vector2(228, 128)
-scale = Vector2(2, 2)
+position = Vector2(166, 111)
+scale = Vector2(3, 3)
 sprite_frames = ExtResource("7_wgj8h")
 animation = &"roll"
 frame = 4
@@ -101,6 +101,7 @@ offset_left = 15.0
 offset_top = 12.0
 offset_right = 106.0
 offset_bottom = 137.0
+theme_override_constants/separation = 8
 
 [node name="Logo" type="TextureRect" parent="MenuItems"]
 layout_mode = 2
