@@ -134,13 +134,14 @@ func _validate_tiles() -> void:
 
 # ------------------------ RESOLVE ----------------------
 func _enter_resolve() -> void:
-	print("resolving")
 	for key in ctx.selected_tiles:
 		if ctx.open_tiles.has(key):
 			ctx.open_tiles.erase(key)
 			tile_manager.close_tile(key)
 	ctx.selected_tiles.clear()
 	_emit_ctx()
+	
+	Events.tiles_resolved.emit()
 	
 	if ctx.open_tiles.is_empty():
 		_change_state(State.NINE_DOWN)
@@ -157,6 +158,7 @@ func _enter_bust() -> void:
 
 # -------------------- NINE_DOWN ------------------
 func _enter_nine_down() -> void:
+	Events.nine_down.emit()
 	await get_tree().create_timer(0.5).timeout
 	var game_won_scene := preload("res://scenes/screens/GameWon.tscn").instantiate()
 	get_tree().current_scene.add_child(game_won_scene)

@@ -13,6 +13,8 @@ func _ready() -> void:
 	Events.state_changed.connect(_on_state_updated)
 	Events.roll_enabled_changed.connect(_on_roll_enabled_changed)
 	Events.flip_enabled_changed.connect(_on_flip_enabled_changed)
+	Events.nine_down.connect(_on_nine_down)
+	Events.tiles_resolved.connect(_on_tiles_resolved)
 	
 	menu_btn.pressed.connect(func():
 		get_tree().change_scene_to_file("res://scenes/screens/MainMenu.tscn")
@@ -42,7 +44,12 @@ func _on_roll_enabled_changed(enabled: bool) -> void:
 func _on_flip_enabled_changed(enabled: bool) -> void:
 	flip_btn.disabled = !enabled
 
+func _on_nine_down() -> void:
+	_pop_fade($TextureRect)
 
+func _on_tiles_resolved() -> void:
+	diceTotal_lbl.visible = false
+	$TextureRect.visible = false
 
 # HELPERS
 func disable_roll_btn(disabled: bool) -> void:
@@ -56,7 +63,7 @@ func _pop_fade(target: CanvasItem, text: String = "", up_scale: float = 1.8) -> 
 		(target as Label).text = text
 	
 	target.visible = true
-	target.scale = Vector2(0.2, 0.2)
+	target.scale = Vector2(0.1, 0.1)
 	target.modulate.a = 0.0
 	
 	var tween: Tween = get_tree().create_tween()

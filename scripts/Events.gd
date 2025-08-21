@@ -3,6 +3,8 @@ extends Node
 signal dice_rolled(total: int)
 signal state_changed(new_state)
 signal score_updated(new_score: int)
+signal tiles_resolved()
+signal nine_down()
 
 signal roll_pressed()
 signal select_button_pressed()

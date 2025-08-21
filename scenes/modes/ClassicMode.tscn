@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://i6ngq88wqpwq"]
+[gd_scene load_steps=28 format=3 uid="uid://i6ngq88wqpwq"]
 
 [ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="2_85gqg"]
 [ext_resource type="Texture2D" uid="uid://chg5iykprpltr" path="res://assets/sprites/off_purple_pattern.png" id="2_qen00"]
@@ -23,10 +23,21 @@
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="20_x2oru"]
 [ext_resource type="Texture2D" uid="uid://c7je6vuympmqt" path="res://assets/sprites/buttons/hamburger/hamburger_hover.png" id="21_lth5d"]
 [ext_resource type="Texture2D" uid="uid://bbgamvb2hmv7" path="res://assets/sprites/buttons/hamburger/hamburger_disabled.png" id="22_27ebv"]
+[ext_resource type="Shader" path="res://shaders/rainbow.gdshader" id="23_ocb8f"]
+[ext_resource type="Texture2D" uid="uid://chhoekp3nb1k0" path="res://assets/sprites/icons/ninedown_icon.png" id="24_8ojj2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5kaea"]
 shader = ExtResource("2_85gqg")
 shader_parameter/speed = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_grbmi"]
+shader = ExtResource("23_ocb8f")
+shader_parameter/speed = 1.0
+shader_parameter/scale = 0.2
+shader_parameter/edge_softness = 2.0
+shader_parameter/border_black_thresh = 0.04
+shader_parameter/border_alpha_thresh = 0.9
+shader_parameter/use_gradient = false
 
 [node name="ClassicMode" type="Node2D"]
 position = Vector2(1, 0)
@@ -40,8 +51,11 @@ script = ExtResource("20_x2oru")
 z_index = -4096
 texture_repeat = 2
 material = SubResource("ShaderMaterial_5kaea")
-offset_right = 320.0
+offset_left = -1.0
+offset_right = 319.0
 offset_bottom = 180.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture = ExtResource("2_qen00")
 stretch_mode = 1
 
@@ -175,13 +189,15 @@ texture_hover = ExtResource("21_lth5d")
 texture_disabled = ExtResource("22_27ebv")
 
 [node name="DiceResults" type="CenterContainer" parent="UI"]
-anchors_preset = 5
+anchors_preset = -1
 anchor_left = 0.5
+anchor_top = 0.178
 anchor_right = 0.5
+anchor_bottom = 0.178
 offset_left = -22.0
-offset_top = 16.0
+offset_top = -16.04
 offset_right = 22.0
-offset_bottom = 48.0
+offset_bottom = 15.96
 grow_horizontal = 2
 
 [node name="Total" type="Label" parent="UI/DiceResults"]
@@ -192,6 +208,20 @@ theme_override_fonts/font = ExtResource("10_7ej1e")
 theme_override_font_sizes/font_size = 32
 text = "7"
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI"]
+material = SubResource("ShaderMaterial_grbmi")
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -19.0
+offset_top = 21.0
+offset_right = 23.0
+offset_bottom = 43.0
+grow_horizontal = 2
+texture = ExtResource("24_8ojj2")
+stretch_mode = 2
 
 [node name="MouseLayer" type="CanvasLayer" parent="."]
 layer = 128
