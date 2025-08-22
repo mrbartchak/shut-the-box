@@ -26,6 +26,8 @@ grow_vertical = 2
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_aeq3n")
 
+[node name="DiceManager" type="Node" parent="."]
+
 [node name="Background" type="TextureRect" parent="."]
 z_index = -4096
 texture_repeat = 2

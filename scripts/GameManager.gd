@@ -20,7 +20,7 @@ enum State {
 var ctx: Constants.GameContext = Constants.GameContext.new()
 var _state: State = State.GAME_INIT
 
-@onready var dice_manager: DiceManager = $"../DiceManager"
+@onready var dice_manager: DiceManagerDepreciated = $"../DiceManager"
 @onready var tile_manager: TileManager = $"../TileManager"
 
 func _ready() -> void:

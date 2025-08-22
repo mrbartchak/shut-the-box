@@ -1,6 +1,6 @@
 @icon("res://assets/sprites/icons/nodes/die_node.png")
-class_name Die
-extends Control
+class_name StandardDie
+extends Die
 
 signal rolled(value: int)
 

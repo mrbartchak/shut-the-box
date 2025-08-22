@@ -1,4 +1,4 @@
-class_name DiceManager
+class_name DiceManagerDepreciated
 extends Node2D
 
 @onready var dice: Array[DieDepreciated] = []

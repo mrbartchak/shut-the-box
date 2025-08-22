@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c13olgcwrgp7i"]
 
-[ext_resource type="Script" path="res://scripts/Die.gd" id="2_8plor"]
+[ext_resource type="Script" path="res://scripts/dice/StandardDie.gd" id="2_8plor"]
 [ext_resource type="Texture2D" uid="uid://bgql7akrb17xa" path="res://assets/sprites/dice_atlas.tres" id="2_sbnk2"]
 
 [node name="Die" type="Control"]
