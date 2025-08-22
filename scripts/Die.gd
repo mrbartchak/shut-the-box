@@ -10,13 +10,13 @@ var _die_size: Vector2i = Vector2i(24, 24)
 @onready var _sprite: Sprite2D = $Sprite2D
 
 func _ready() -> void:
-	_set_face(roll(RandomNumberGenerator.new()))
-	_start_spin_tween(8, 1.0)
+	_set_face(_face)
 
 func roll(rng: RandomNumberGenerator) -> int:
 	return rng.randi_range(1, _sides)
 
 func play_roll_animation() -> void:
+	_start_spin_tween(8, 1.0)
 	SoundManager.play_spin()
 
 # ===================================================

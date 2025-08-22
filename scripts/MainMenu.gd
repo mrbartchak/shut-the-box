@@ -2,8 +2,7 @@ extends Control
 
 
 func _ready() -> void:
-	# SoundManager.play_menu_theme()
-	pass
+	_set_version_label()
 
 func _process(delta: float) -> void:
 	play_dice_animation(delta)
@@ -24,6 +23,10 @@ func _on_exit_button_pressed() -> void:
 	await play_button_click()
 	SoundManager.stop_menu_theme()
 	get_tree().quit()
+
+
+func _set_version_label() -> void:
+	$VersionLabel.text = Constants.VERSION
 
 
 func play_button_click() -> void:

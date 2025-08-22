@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c3ubiedmjdicy"]
+[gd_scene load_steps=15 format=3 uid="uid://c3ubiedmjdicy"]
 
 [ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_1kqtm"]
 [ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="2_yhsmu"]
@@ -56,6 +56,10 @@ corner_radius_bottom_left = 4
 corner_detail = 5
 shadow_offset = Vector2(0, 1)
 anti_aliasing = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_osrfv"]
+font_size = 8
+font_color = Color(0.055, 0.027, 0.106, 0.25)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -175,6 +179,17 @@ text = "Exit
 
 [node name="MouseCursor" parent="." instance=ExtResource("4_4fodt")]
 position = Vector2(158, 80)
+
+[node name="VersionLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 171.0
+offset_right = 318.0
+offset_bottom = 179.0
+theme_override_font_sizes/font_size = 8
+text = "0.0.0-version"
+label_settings = SubResource("LabelSettings_osrfv")
+horizontal_alignment = 2
 
 [connection signal="pressed" from="MenuItems/VBoxContainer/ContinueButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MenuItems/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

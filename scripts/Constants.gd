@@ -1,5 +1,7 @@
 extends Node
 
+const VERSION = "0.1.0-alpha"
+
 class GameContext:
 	var open_tiles: Array[int] = []
 	var selected_tiles: Array[int] = []
