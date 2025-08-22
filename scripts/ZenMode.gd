@@ -18,9 +18,10 @@ enum State {
 
 var ctx: Constants.GameContext = Constants.GameContext.new()
 var _state: State = State.GAME_INIT
+@onready var dice_manager: DiceManager = $DiceManager
 
 func _ready() -> void:
-	pass
+	call_deferred("_change_state", ZenMode.State.GAME_INIT)
 
 
 func _change_state(next: State) -> void:
@@ -41,6 +42,7 @@ func _change_state(next: State) -> void:
 
 func _enter_game_init() -> void:
 	# TODO: Check for game load
+	dice_manager.reset_active_dice()
 	_change_state(ZenMode.State.NEW_GAME)
 
 
@@ -55,6 +57,7 @@ func _enter_new_game() -> void:
 func _enter_new_round() -> void:
 	# TODO: set tiles to base tile values
 	# TODO: ctx open tiles = all tiles
+	dice_manager.reset_active_dice()
 	ctx.selected_tiles.clear()
 	ctx.roll_sum = 0
 	_emit_ctx()
