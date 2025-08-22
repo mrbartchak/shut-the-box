@@ -1,13 +1,13 @@
 class_name DiceManager
 extends Node2D
 
-@onready var dice: Array[Die] = []
+@onready var dice: Array[DieDepreciated] = []
 var is_rolling: bool = false
 
 
 func _ready() -> void:
 	for child in get_children():
-		if child is Die:
+		if child is DieDepreciated:
 			dice.append(child)
 
 
@@ -18,7 +18,7 @@ func roll_one() -> int:
 		push_warning("No dice to roll")
 		return 0
 		
-	var die: Die = dice[0]
+	var die: DieDepreciated = dice[0]
 	total = die.roll_value()
 	await die.play_roll_animation()
 	
@@ -35,7 +35,7 @@ func roll_all() -> int:
 		return 0
 	
 	var finish_signals: Array = []
-	for die: Die in dice:
+	for die: DieDepreciated in dice:
 		if die:
 			die.play_roll_animation()
 			finish_signals.append(die.roll_animation_finished)

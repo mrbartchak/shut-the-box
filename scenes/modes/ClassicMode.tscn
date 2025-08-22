@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/TileManager.gd" id="4_w6it4"]
 [ext_resource type="PackedScene" uid="uid://c4s8dvxj3qfwd" path="res://scenes/Tile.tscn" id="5_6nrh4"]
 [ext_resource type="Script" path="res://scripts/DiceManager.gd" id="6_jf2lj"]
-[ext_resource type="PackedScene" uid="uid://n4adeggawd5e" path="res://scenes/Dice.tscn" id="7_lli7b"]
+[ext_resource type="PackedScene" uid="uid://n4adeggawd5e" path="res://scenes/Dice(depreciated).tscn" id="7_lli7b"]
 [ext_resource type="Script" path="res://scripts/UiManager.gd" id="9_ceqsf"]
 [ext_resource type="Texture2D" uid="uid://cahlegiu3d80b" path="res://assets/sprites/buttons/roll/roll_normal.png" id="11_yn8p0"]
 [ext_resource type="Texture2D" uid="uid://bjft7knsaa1wb" path="res://assets/sprites/buttons/roll/roll_pressed.png" id="12_arpsl"]

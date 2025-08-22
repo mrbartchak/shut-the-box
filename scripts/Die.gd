@@ -1,86 +1,39 @@
+@icon("res://assets/sprites/icons/nodes/die_node.png")
 class_name Die
-extends Node2D
+extends Control
 
-signal rolled()
-signal roll_animation_finished()
+signal rolled(value: int)
 
-@export var sides: int = 6
-@export var rotation_count: int = 8
-@export var roll_duration: float = 2.0
+var _sides: int = 6
+var _face: int = 1
+var _die_size: Vector2i = Vector2i(24, 24)
+@onready var _sprite: Sprite2D = $Sprite2D
 
-var value: int = 0
+func _ready() -> void:
+	_set_face(roll(RandomNumberGenerator.new()))
+	_start_spin_tween(8, 1.0)
 
-@onready var sprite: AnimatedSprite2D = $AnimatedDiceSprite
-@onready var roll_sound: AudioStreamPlayer2D = $RollSound
-
-
-func roll_value() -> int:
-	value = randi() % sides + 1
-	self.rolled.emit()
-	return value
-
+func roll(rng: RandomNumberGenerator) -> int:
+	return rng.randi_range(1, _sides)
 
 func play_roll_animation() -> void:
-	var tween = _start_spin_tween(rotation_count, roll_duration)
-	var base_pitch = roll_sound.pitch_scale
-	roll_sound.pitch_scale = base_pitch * randf_range(0.9, 1.1)
-	roll_sound.play()
-	
-	var reveal_ratio: float = 0.5
-	var cycle_duration: float = roll_duration * reveal_ratio
-	
-	await _cycle_faces(cycle_duration)
-	_reveal_face()
-	await tween.finished
-	_start_pop_tween()
-	SoundManager.play_pop()
-	self.roll_animation_finished.emit()
-	roll_sound.pitch_scale = base_pitch
+	SoundManager.play_spin()
 
+# ===================================================
+# ============      Private Helpers       ===========
+# ===================================================
+func _set_face(n: int) -> void:
+	_face = clampi(n, 1, _sides)
+	
+	var atlas := _sprite.texture as AtlasTexture
+	if atlas:
+		var region := atlas.region
+		region.position.x = _die_size.x * (_face - 1)
+		atlas.region = region
 
 func _start_spin_tween(rotations: int, duration: float) -> Tween:
 	var full_rotation: float = TAU * rotations
-	var tween: Tween = get_tree().create_tween()
-	
-	tween.tween_property(
-		sprite,
-		"rotation",
-		sprite.rotation + full_rotation,
-		duration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	
+	var tween: Tween = create_tween()
+	tween.tween_property(_sprite, "rotation", _sprite.rotation + full_rotation, duration)\
+		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	return tween
-
-
-func _cycle_faces(duration: float) -> void:
-	var time_passed: float = 0.0
-	var min_interval: float = 0.05
-	var max_interval: float = 0.3
-	
-	while time_passed < duration:
-		var progress: float = time_passed / duration
-		var interval: float = lerp(min_interval, max_interval, progress)
-		await  get_tree().create_timer(interval).timeout
-		sprite.frame = randi() % sides
-		time_passed += interval
-
-
-func _start_pop_tween() -> void:
-	var tween: Tween = get_tree().create_tween()
-	
-	tween.tween_property(
-		sprite,
-		"scale",
-		Vector2(1.2, 1.2),
-		0.1
-	).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	
-	tween.tween_property(
-		sprite,
-		"scale",
-		Vector2(1.0, 1.0),
-		0.1
-	).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
-
-
-func _reveal_face() -> void:
-	sprite.frame = value - 1

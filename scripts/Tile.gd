@@ -1,3 +1,4 @@
+@icon("res://assets/sprites/icons/nodes/tile_node.png")
 class_name Tile
 extends TextureButton
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://n4adeggawd5e"]
 
-[ext_resource type="Script" path="res://scripts/Die.gd" id="1_0x24l"]
+[ext_resource type="Script" path="res://scripts/Die(depreciated).gd" id="1_0x24l"]
 [ext_resource type="SpriteFrames" uid="uid://v7lp53wimysg" path="res://assets/sprites/frames/dice_sprite_frames.tres" id="2_ujmci"]
 [ext_resource type="AudioStream" uid="uid://cqtx5nwtxiry" path="res://assets/sounds/398235__pooky1__wheel-spin-click-slow-down.wav" id="3_1ele6"]
 [ext_resource type="AudioStream" uid="uid://y5x8ilj462pw" path="res://assets/sounds/683587__yehawsnail__bubble-pop.wav" id="4_5xkhq"]

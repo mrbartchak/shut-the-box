@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c13olgcwrgp7i"]
-
-[ext_resource type="Texture2D" uid="uid://bgql7akrb17xa" path="res://assets/sprites/dice_atlas.tres" id="1_6fsoh"]
-
-[node name="Die" type="TextureRect"]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("1_6fsoh")

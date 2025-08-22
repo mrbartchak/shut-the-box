@@ -4,9 +4,9 @@
 [ext_resource type="Script" path="res://scripts/ZenMode.gd" id="1_aeq3n"]
 [ext_resource type="Texture2D" uid="uid://chg5iykprpltr" path="res://assets/sprites/off_purple_pattern.png" id="2_mmbkl"]
 [ext_resource type="Texture2D" uid="uid://bl4vrcmmbs2va" path="res://assets/sprites/boards/ivory_board.png" id="3_f8kt1"]
-[ext_resource type="Texture2D" uid="uid://bgql7akrb17xa" path="res://assets/sprites/dice_atlas.tres" id="4_312he"]
 [ext_resource type="PackedScene" uid="uid://c4s8dvxj3qfwd" path="res://scenes/Tile.tscn" id="4_go2pt"]
 [ext_resource type="Texture2D" uid="uid://cj8kivye511g2" path="res://assets/sprites/buttons/hamburger/hamburger_normal.png" id="5_0f273"]
+[ext_resource type="PackedScene" uid="uid://c13olgcwrgp7i" path="res://scenes/Die.tscn" id="5_jh6lc"]
 [ext_resource type="Texture2D" uid="uid://dbw7ircfdxdoo" path="res://assets/sprites/buttons/hamburger/hamburger_pressed.png" id="6_uunh3"]
 [ext_resource type="Texture2D" uid="uid://c7je6vuympmqt" path="res://assets/sprites/buttons/hamburger/hamburger_hover.png" id="7_4mefg"]
 [ext_resource type="Texture2D" uid="uid://bbgamvb2hmv7" path="res://assets/sprites/buttons/hamburger/hamburger_disabled.png" id="8_4xg7o"]
@@ -50,6 +50,24 @@ grow_vertical = 2
 [node name="BoardLayer" type="Control" parent="BoardFrame"]
 layout_mode = 2
 
+[node name="BoardShadow" type="TextureRect" parent="BoardFrame/BoardLayer"]
+modulate = Color(0, 0, 0, 0.2)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -25.0
+offset_right = 67.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.04, 0.85)
+texture = ExtResource("3_f8kt1")
+stretch_mode = 2
+
 [node name="Board" type="TextureRect" parent="BoardFrame/BoardLayer"]
 layout_mode = 1
 anchors_preset = 8
@@ -66,45 +84,23 @@ grow_vertical = 2
 texture = ExtResource("3_f8kt1")
 stretch_mode = 2
 
-[node name="Dice" type="Control" parent="BoardFrame/BoardLayer"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Dice" type="HBoxContainer" parent="BoardFrame/BoardLayer"]
+custom_minimum_size = Vector2(48, 24)
+layout_mode = 0
+offset_left = 38.0
+offset_top = 87.0
+offset_right = 94.0
+offset_bottom = 111.0
+theme_override_constants/separation = 8
 
-[node name="LeftDie" type="TextureRect" parent="BoardFrame/BoardLayer/Dice"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -56.0
-offset_top = -3.0
-offset_right = -32.0
-offset_bottom = 21.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_312he")
+[node name="LeftDie" parent="BoardFrame/BoardLayer/Dice" instance=ExtResource("5_jh6lc")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="RightDie" type="TextureRect" parent="BoardFrame/BoardLayer/Dice"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -27.0
-offset_top = -3.0
-offset_right = -3.0
-offset_bottom = 21.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_312he")
+[node name="RightDie" parent="BoardFrame/BoardLayer/Dice" instance=ExtResource("5_jh6lc")]
+layout_mode = 2
+size_flags_vertical = 4
 
 [node name="Tiles" type="HBoxContainer" parent="BoardFrame/BoardLayer"]
 layout_mode = 1

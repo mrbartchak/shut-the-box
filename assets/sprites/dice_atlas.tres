@@ -1,7 +1,9 @@
 [gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://bgql7akrb17xa"]
 
-[ext_resource type="Texture2D" uid="uid://g7iefd01le73" path="res://assets/sprites/dice_sheet.png" id="1_oy6ex"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kxm6v"]
+load_path = "res://.godot/imported/dice_sheet.png-463f0a3801f8107bf2e28567a989026a.ctex"
 
 [resource]
-atlas = ExtResource("1_oy6ex")
+resource_local_to_scene = true
+atlas = SubResource("CompressedTexture2D_kxm6v")
 region = Rect2(0, 0, 24, 24)

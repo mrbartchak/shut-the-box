@@ -10,6 +10,7 @@ enum State {
 	TURN_START,
 	AWAIT_ROLL,
 	CHOOSE_TILES,
+	VALIDATE_TILES,
 	RESOLVE,
 	BUST,
 	NINEDOWN,
@@ -32,6 +33,7 @@ func _change_state(next: State) -> void:
 		State.TURN_START: _enter_turn_start()
 		State.AWAIT_ROLL: _enter_await_roll()
 		State.CHOOSE_TILES: _enter_choose_tiles()
+		State.VALIDATE_TILES: _enter_validate_tiles()
 		State.RESOLVE: _enter_resolve()
 		State.BUST: _enter_bust()
 		State.NINEDOWN: _enter_ninedown()
@@ -75,35 +77,37 @@ func _enter_await_roll() -> void:
 	# TODO: Roll Dice
 	ctx.roll_sum = sum
 	_emit_ctx()
-	
-	if true: # TODO: _has_valid_move
-		_change_state(ZenMode.State.CHOOSE_TILES)
-	else:  _change_state(ZenMode.State.BUST)
+	_change_state(ZenMode.State.CHOOSE_TILES)
 
 
 func _enter_choose_tiles() -> void:
+	# TODO: If no combo --> BUST
 	# listens for tile toggles --> updates ctx.selectedtiles
 	# listens for confirm selection
 	pass
 
 
+func _enter_validate_tiles() -> void:
+	# TODO: If selection valid --> RESOLVE
+	# TODO: IF selection invalid --> CHOOSE_TIES
+	pass
+
+
 func _enter_resolve() -> void:
-	# apply the selection and commit to ctx
-	# all closed --> ninedown else turn start
+	# TODO: commit selection to CTX
+	# TODO: TURN_START or NINEDOWN
 	pass
 
 
 func _enter_bust() -> void:
-	# play bust animation
-	# move to new round
-	pass
+	# TODO: Bust animation
+	_change_state(ZenMode.State.NEW_ROUND)
 
 
 func _enter_ninedown() -> void:
-	# play ninedown animation
-	# inc counter
-	# move to new round
-	pass
+	# TODO: Ninedown animation
+	# TODO: CTX.score ++
+	_change_state(ZenMode.State.NEW_ROUND)
 
 
 # =========================================================
