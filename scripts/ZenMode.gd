@@ -76,7 +76,7 @@ func _enter_await_roll() -> void:
 	await Events.roll_pressed
 	Events.roll_enabled_changed.emit(false)
 	
-	var sum := 0
+	var sum: int = dice_manager.roll_sum(ctx.rng)
 	# TODO: Roll Dice
 	ctx.roll_sum = sum
 	_emit_ctx()

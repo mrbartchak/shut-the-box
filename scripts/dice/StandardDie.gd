@@ -4,16 +4,19 @@ extends Die
 
 signal rolled(value: int)
 
+var _value: int = 0
 var _sides: int = 6
 var _face: int = 1
 var _die_size: Vector2i = Vector2i(24, 24)
 @onready var _sprite: Sprite2D = $Sprite2D
 
 func _ready() -> void:
-	_set_face(_face)
+	_set_face(_value)
 
 func roll(rng: RandomNumberGenerator) -> int:
-	return rng.randi_range(1, _sides)
+	_value = rng.randi_range(1, _sides)
+	_set_face(_value)
+	return _value
 
 func play_roll_animation() -> void:
 	_start_spin_tween(8, 1.0)

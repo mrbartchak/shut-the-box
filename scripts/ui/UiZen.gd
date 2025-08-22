@@ -8,9 +8,7 @@ func _ready() -> void:
 func _connect_signals() -> void:
 	_connect_roll_btn_signals()
 
-# =========================================================
-# =============          Roll Button           ============
-# =========================================================
+# ===============  Roll Button  ==============
 func _connect_roll_btn_signals() -> void:
 	Events.roll_enabled_changed.connect(_on_roll_enabled_changed)
 	_roll_btn.pressed.connect(_on_roll_pressed)
