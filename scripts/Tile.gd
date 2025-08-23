@@ -2,6 +2,8 @@
 class_name Tile
 extends TextureButton
 
+signal tile_pressed(tile: Tile)
+
 @export var id: int
 @export var value: int = 0
 @export var tile_size: Vector2 = Vector2(13, 20)
@@ -51,7 +53,7 @@ func set_selected_visual(on: bool) -> void:
 func _pressed() -> void:
 	if disabled or !_open:
 		return
-	Events.tile_pressed.emit(id)
+	self.tile_pressed.emit(self)
 
 func _on_button_down() -> void:
 	SoundManager.play_clack()

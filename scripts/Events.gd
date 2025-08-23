@@ -7,9 +7,15 @@ signal tiles_resolved()
 signal nine_down()
 
 #======== BUTTONS ========
+signal button_pressed()
 signal roll_pressed()
 signal roll_enabled_changed(enabled: bool)
+
 signal flip_pressed()
 signal flip_enabled_changed(enabled: bool)
+
+
+
+
 signal select_button_pressed()
 signal tile_pressed(id: int)

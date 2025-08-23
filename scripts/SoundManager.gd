@@ -62,8 +62,9 @@ func play_clack() -> void:
 	var p := AudioStreamPlayer2D.new()
 	p.stream = _clack_sound
 	add_child(p)
-	p.finished.connect(func(): p.queue_free())
 	p.play()
+	p.finished.connect(func(): p.queue_free())
+	
 
 
 func play_spin() -> void:
@@ -71,7 +72,7 @@ func play_spin() -> void:
 		return
 	var p := AudioStreamPlayer2D.new()
 	p.stream = _spin_sound
-	p.pitch_scale = randf_range(0.85, 1.15)
+	p.pitch_scale = 6 * randf_range(0.85, 1.15)
 	add_child(p)
-	p.finished.connect(func(): queue_free())
+	p.finished.connect(func(): p.queue_free())
 	p.play()

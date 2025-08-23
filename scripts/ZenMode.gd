@@ -76,8 +76,7 @@ func _enter_await_roll() -> void:
 	await Events.roll_pressed
 	Events.roll_enabled_changed.emit(false)
 	
-	var sum: int = dice_manager.roll_sum(ctx.rng)
-	# TODO: Roll Dice
+	var sum: int = await dice_manager.roll_with_animation(ctx.rng)
 	ctx.roll_sum = sum
 	_emit_ctx()
 	_change_state(ZenMode.State.CHOOSE_TILES)
@@ -85,14 +84,23 @@ func _enter_await_roll() -> void:
 
 func _enter_choose_tiles() -> void:
 	# TODO: If no combo --> BUST
-	# listens for tile toggles --> updates ctx.selectedtiles
-	# listens for confirm selection
-	pass
+	# TODO: listens for tile toggles --> updates ctx.selectedtiles
+	# TODO: reset tiles to be selected     
+	Events.flip_enabled_changed.emit(true)
+	await Events.flip_pressed
+	Events.flip_enabled_changed.emit(true)
+	_change_state(ZenMode.State.VALIDATE_TILES)
 
 
 func _enter_validate_tiles() -> void:
 	# TODO: If selection valid --> RESOLVE
 	# TODO: IF selection invalid --> CHOOSE_TIES
+	###get sum of tiles selected (should be in ctx.selected_tiles)
+	var sum := 0
+	if sum == ctx.roll_sum:
+		_change_state(ZenMode.State.RESOLVE)
+	else:
+		_change_state(ZenMode.State.CHOOSE_TILES)
 	pass
 
 

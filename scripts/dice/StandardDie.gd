@@ -2,8 +2,6 @@
 class_name StandardDie
 extends Die
 
-signal rolled(value: int)
-
 var _value: int = 0
 var _sides: int = 6
 var _face: int = 1
@@ -15,12 +13,14 @@ func _ready() -> void:
 
 func roll(rng: RandomNumberGenerator) -> int:
 	_value = rng.randi_range(1, _sides)
-	_set_face(_value)
 	return _value
 
 func play_roll_animation() -> void:
-	_start_spin_tween(8, 1.0)
+	var spin_tween := _start_spin_tween(8, 1.0)
 	SoundManager.play_spin()
+	_set_face(_value)
+	await spin_tween.finished
+	self.roll_animation_completed.emit()
 
 # ===================================================
 # ============      Private Helpers       ===========

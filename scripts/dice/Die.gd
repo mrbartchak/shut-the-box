@@ -1,6 +1,8 @@
 class_name Die
 extends Control
 
+signal roll_animation_completed
+
 func roll(_rng: RandomNumberGenerator) -> int:
 	push_error("roll() not implemented in base class")
 	return 0
