@@ -1,4 +1,4 @@
-class_name TileManager
+class_name TileManagerDepreciated
 extends Node
 
 @export var tile_container: NodePath
