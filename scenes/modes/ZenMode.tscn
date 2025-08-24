@@ -39,6 +39,7 @@ _dice = [NodePath("../../UI/BoardFrame/Board/Dice/LeftDie"), NodePath("../../UI/
 
 [node name="TileManager" type="Node" parent="GameManager"]
 script = ExtResource("3_n8y0p")
+tile_container = NodePath("../../UI/BoardFrame/Board/Tiles")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -4096

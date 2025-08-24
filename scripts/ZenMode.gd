@@ -19,8 +19,10 @@ enum State {
 var ctx: Constants.GameContext = Constants.GameContext.new()
 var _state: State = State.GAME_INIT
 @onready var dice_manager: DiceManager = $DiceManager
+@onready var tile_manager: TileManager = $TileManager
 
 func _ready() -> void:
+	tile_manager.tile_pressed.connect(_on_tile_pressed)
 	call_deferred("_change_state", ZenMode.State.GAME_INIT)
 
 
@@ -58,6 +60,7 @@ func _enter_new_round() -> void:
 	# TODO: set tiles to base tile values
 	# TODO: ctx open tiles = all tiles
 	dice_manager.reset_active_dice()
+	ctx.open_tiles = tile_manager.get_all_tile_ids()
 	ctx.selected_tiles.clear()
 	ctx.roll_sum = 0
 	_emit_ctx()
@@ -126,4 +129,14 @@ func _enter_ninedown() -> void:
 # =========================================================
 
 func _emit_ctx() -> void:
+	tile_manager.update_from_ctx(ctx)
 	self.ui_update.emit(ctx)
+
+func _on_tile_pressed(tile_id: int) -> void:
+	if _state != ZenMode.State.CHOOSE_TILES:
+		return
+	if tile_id in ctx.selected_tiles:
+		ctx.selected_tiles.erase(tile_id)
+	else:
+		ctx.selected_tiles.append(tile_id)
+	_emit_ctx()
