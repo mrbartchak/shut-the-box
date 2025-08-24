@@ -91,7 +91,7 @@ func _enter_choose_tiles() -> void:
 	# TODO: reset tiles to be selected     
 	Events.flip_enabled_changed.emit(true)
 	await Events.flip_pressed
-	Events.flip_enabled_changed.emit(true)
+	Events.flip_enabled_changed.emit(false)
 	_change_state(ZenMode.State.VALIDATE_TILES)
 
 

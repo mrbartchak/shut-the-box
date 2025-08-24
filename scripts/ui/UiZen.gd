@@ -2,12 +2,14 @@ extends Control
 
 @onready var _menu_btn: TextureButton = $HUD/HudRow/MenuButton
 @onready var _roll_btn: TextureButton = $BoardFrame/Board/ActionBar/RollButton
+@onready var _flip_btn: TextureButton = $BoardFrame/Board/ActionBar/FlipButton
 
 func _ready() -> void:
 	_connect_signals()
 
 func _connect_signals() -> void:
 	_connect_roll_btn_signals()
+	_connect_flip_btn_signals()
 	_connect_hud_signals()
 
 # ===============     HUD       ==============
@@ -28,3 +30,15 @@ func _on_roll_enabled_changed(enabled: bool) -> void:
 func _on_roll_pressed() -> void:
 	SoundManager.play_click()
 	Events.roll_pressed.emit()
+
+# ===============  Flip Button  ==============
+func _connect_flip_btn_signals() -> void:
+	Events.flip_enabled_changed.connect(_on_flip_enabled_changed)
+	_flip_btn.pressed.connect(_on_flip_pressed)
+
+func _on_flip_enabled_changed(enabled: bool) -> void:
+	_flip_btn.disabled = !enabled
+
+func _on_flip_pressed() -> void:
+	SoundManager.play_click()
+	Events.flip_pressed.emit()

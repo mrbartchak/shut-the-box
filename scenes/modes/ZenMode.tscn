@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ke8870dbg6q6"]
+[gd_scene load_steps=23 format=3 uid="uid://ke8870dbg6q6"]
 
 [ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="1_071g4"]
 [ext_resource type="Script" path="res://scripts/ZenMode.gd" id="1_aeq3n"]
@@ -17,6 +17,10 @@
 [ext_resource type="Texture2D" uid="uid://bjft7knsaa1wb" path="res://assets/sprites/buttons/roll/roll_pressed.png" id="9_k20rr"]
 [ext_resource type="Texture2D" uid="uid://d0m6kmch1e44t" path="res://assets/sprites/buttons/roll/roll_hover.png" id="10_rjma5"]
 [ext_resource type="Texture2D" uid="uid://ci2fji7go6h3l" path="res://assets/sprites/buttons/roll/roll_disabled.png" id="11_cm3r2"]
+[ext_resource type="Texture2D" uid="uid://b2qya260un17u" path="res://assets/sprites/buttons/flip/flip_normal.png" id="14_b7pys"]
+[ext_resource type="Texture2D" uid="uid://dkgwbik6fs082" path="res://assets/sprites/buttons/flip/flip_pressed.png" id="15_85tiq"]
+[ext_resource type="Texture2D" uid="uid://cle8epa3kw0rm" path="res://assets/sprites/buttons/flip/flip_hover.png" id="16_foqlh"]
+[ext_resource type="Texture2D" uid="uid://cp68sc56au6dp" path="res://assets/sprites/buttons/flip/flip_disabled.png" id="17_eueei"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mu6cr"]
 shader = ExtResource("1_071g4")
@@ -205,6 +209,14 @@ texture_normal = ExtResource("8_1ccry")
 texture_pressed = ExtResource("9_k20rr")
 texture_hover = ExtResource("10_rjma5")
 texture_disabled = ExtResource("11_cm3r2")
+
+[node name="FlipButton" type="TextureButton" parent="UI/BoardFrame/Board/ActionBar"]
+layout_mode = 2
+disabled = true
+texture_normal = ExtResource("14_b7pys")
+texture_pressed = ExtResource("15_85tiq")
+texture_hover = ExtResource("16_foqlh")
+texture_disabled = ExtResource("17_eueei")
 
 [node name="HUD" type="MarginContainer" parent="UI"]
 layout_mode = 1
