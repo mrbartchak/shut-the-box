@@ -8,6 +8,8 @@ extends Control
 @onready var _menu_btn: TextureButton = $HUD/TopBar/MenuButton
 @onready var _roll_btn: TextureButton = $BoardFrame/Board/ActionBar/RollButton
 @onready var _flip_btn: TextureButton = $BoardFrame/Board/ActionBar/FlipButton
+# PARTICLES
+@onready var _pop_particles: GPUParticles2D = $HUD/Overlay/PopParticles
 
 func _ready() -> void:
 	_connect_signals()
@@ -40,7 +42,9 @@ func _on_menu_btn_pressed() -> void:
 
 func _on_dice_rolled(total: int) -> void:
 	_roll_total.text = "%d" % total
+	_roll_total.pivot_offset = (_roll_total.size/2)
 	_roll_total.modulate = _get_roll_color(total)
+	_pop_particles.modulate = _get_roll_color(total)
 	_pop_in(_roll_total)
 
 func _on_tiles_resolved() -> void:
@@ -73,7 +77,7 @@ func _on_flip_pressed() -> void:
 
 
 # ==============  ANIMATIONS   ===============
-func _pop_in(target: CanvasItem, up_scale: float = 1.8) -> void:
+func _pop_in(target: CanvasItem, up_scale: float = 2.0) -> void:
 	target.visible = true
 	target.scale = Vector2(0.1, 0.1)
 	target.modulate.a = 0.0
@@ -90,13 +94,17 @@ func _pop_in(target: CanvasItem, up_scale: float = 1.8) -> void:
 
 func _pop_out(target: CanvasItem) -> void:
 	var tween: Tween = get_tree().create_tween()
-	tween.tween_property(target, "scale", Vector2.ONE * 1.3, 0.15)\
+	tween.tween_property(target, "scale", Vector2.ONE * 1.2, 0.25)\
 		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.tween_property(target, "scale", Vector2.ZERO, 0.02) \
 		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	tween.finished.connect(func():
+		_pop_particles.global_position = target.global_position
+		_pop_particles.restart()
+		_pop_particles.emitting = true
 		target.visible = false
 		target.scale = Vector2.ONE
+		SoundManager.play_pop()
 	)
 
 # ==============    HELPERS   =====================

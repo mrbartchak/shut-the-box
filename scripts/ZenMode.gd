@@ -131,6 +131,7 @@ func _enter_bust() -> void:
 	await get_tree().create_timer(0.3).timeout
 	var bust_overlay := preload("res://scenes/screens/BustOverlay.tscn").instantiate()
 	get_tree().current_scene.add_child(bust_overlay)
+	await bust_overlay.show_overlay()
 	await get_tree().create_timer(1.0).timeout
 	get_tree().current_scene.remove_child(bust_overlay)
 	_change_state(ZenMode.State.NEW_ROUND)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ke8870dbg6q6"]
+[gd_scene load_steps=31 format=3 uid="uid://ke8870dbg6q6"]
 
 [ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="1_071g4"]
 [ext_resource type="Script" path="res://scripts/ZenMode.gd" id="1_aeq3n"]
@@ -32,14 +32,14 @@ shader_parameter/speed = 0.5
 line_spacing = 0.0
 font = ExtResource("22_78aoa")
 font_color = Color(0.976471, 0.901961, 0.811765, 1)
-outline_size = 4
+outline_size = 8
 outline_color = Color(0.054902, 0.027451, 0.105882, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_qwg33"]
 line_spacing = 0.0
 font = ExtResource("22_78aoa")
 font_color = Color(0.976471, 0.901961, 0.811765, 1)
-outline_size = 4
+outline_size = 8
 outline_color = Color(0.054902, 0.027451, 0.105882, 1)
 shadow_size = 0
 
@@ -49,6 +49,25 @@ font = ExtResource("22_78aoa")
 font_size = 32
 outline_size = 8
 outline_color = Color(0.054902, 0.027451, 0.105882, 1)
+
+[sub_resource type="Curve" id="Curve_n0nni"]
+_data = [Vector2(0.0174419, 0.517161), 0.0, 0.0, 0, 0, Vector2(0.219477, 1), 0.0, 0.0, 0, 0, Vector2(0.50436, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_hl7h1"]
+curve = SubResource("Curve_n0nni")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sd2tb"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 80.0
+initial_velocity_max = 80.0
+angular_velocity_min = 0.499984
+angular_velocity_max = 1.49998
+gravity = Vector3(0, 0, 0)
+damping_min = 2.0
+damping_max = 4.0
+scale_curve = SubResource("CurveTexture_hl7h1")
 
 [node name="ZenMode" type="Control"]
 layout_mode = 3
@@ -282,16 +301,28 @@ text = "000"
 label_settings = SubResource("LabelSettings_qwg33")
 
 [node name="Overlay" type="CenterContainer" parent="UI/HUD"]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
 [node name="RollTotal" type="Label" parent="UI/HUD/Overlay"]
 visible = false
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 text = "12"
 label_settings = SubResource("LabelSettings_nc1do")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PopParticles" type="GPUParticles2D" parent="UI/HUD/Overlay"]
+position = Vector2(23, 24)
+emitting = false
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_sd2tb")
+lifetime = 0.75
+one_shot = true
+explosiveness = 1.0
 
 [node name="MouseLayer" type="CanvasLayer" parent="."]
 layer = 128
