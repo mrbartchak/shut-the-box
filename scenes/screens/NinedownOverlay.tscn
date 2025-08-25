@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://drhxmg8jn3wwu"]
+
+[ext_resource type="Texture2D" uid="uid://chhoekp3nb1k0" path="res://assets/sprites/icons/ninedown_icon.png" id="1_elggk"]
+
+[node name="NinedownOverlay" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.508, 0.491, 0.912, 0.484)
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("1_elggk")

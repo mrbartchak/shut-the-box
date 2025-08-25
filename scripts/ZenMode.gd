@@ -57,6 +57,7 @@ func _enter_new_game() -> void:
 
 
 func _enter_new_round() -> void:
+	print("new round")
 	# TODO: set tiles to base tile values
 	# TODO: ctx open tiles = all tiles
 	dice_manager.reset_active_dice()
@@ -68,6 +69,7 @@ func _enter_new_round() -> void:
 
 
 func _enter_turn_start() -> void:
+	print("turn start")
 	# TODO: Check if toggle dice
 	# TODO: hint text and animations (wobble, press roll)
 	ctx.selected_tiles.clear()
@@ -75,6 +77,7 @@ func _enter_turn_start() -> void:
 
 
 func _enter_await_roll() -> void:
+	print("await roll")
 	Events.roll_enabled_changed.emit(true)
 	await Events.roll_pressed
 	Events.roll_enabled_changed.emit(false)
@@ -82,13 +85,15 @@ func _enter_await_roll() -> void:
 	var sum: int = await dice_manager.roll_with_animation(ctx.rng)
 	ctx.roll_sum = sum
 	_emit_ctx()
-	_change_state(ZenMode.State.CHOOSE_TILES)
+	if tile_manager.has_valid_combination(ctx.roll_sum, ctx.open_tiles):
+		_change_state(ZenMode.State.CHOOSE_TILES)
+	else:
+		_change_state(ZenMode.State.BUST)
 
 
 func _enter_choose_tiles() -> void:
-	# TODO: If no combo --> BUST
-	# TODO: listens for tile toggles --> updates ctx.selectedtiles
-	# TODO: reset tiles to be selected     
+	print("choose tiles")
+	# TODO: reset tiles to be selected
 	Events.flip_enabled_changed.emit(true)
 	await Events.flip_pressed
 	Events.flip_enabled_changed.emit(false)
@@ -96,31 +101,46 @@ func _enter_choose_tiles() -> void:
 
 
 func _enter_validate_tiles() -> void:
-	# TODO: If selection valid --> RESOLVE
-	# TODO: IF selection invalid --> CHOOSE_TIES
-	###get sum of tiles selected (should be in ctx.selected_tiles)
-	var sum := 0
-	if sum == ctx.roll_sum:
+	print("validate tiles")
+	var sum_selected: int = tile_manager.get_sum_tiles(ctx.selected_tiles)
+	if sum_selected == ctx.roll_sum and ctx.selected_tiles.size() > 0:
 		_change_state(ZenMode.State.RESOLVE)
 	else:
 		_change_state(ZenMode.State.CHOOSE_TILES)
-	pass
 
 
 func _enter_resolve() -> void:
-	# TODO: commit selection to CTX
-	# TODO: TURN_START or NINEDOWN
-	pass
+	print("resolve")
+	for key in ctx.selected_tiles:
+		if ctx.open_tiles.has(key):
+			ctx.open_tiles.erase(key)
+			tile_manager.close_tile(key)
+	ctx.selected_tiles.clear()
+	_emit_ctx()
+	
+	if ctx.open_tiles.is_empty():
+		_change_state(ZenMode.State.NINEDOWN)
+	else:
+		_change_state(ZenMode.State.TURN_START)
 
 
 func _enter_bust() -> void:
 	# TODO: Bust animation
+	var bust_overlay := preload("res://scenes/screens/BustOverlay.tscn").instantiate()
+	get_tree().current_scene.add_child(bust_overlay)
+	await get_tree().create_timer(2.0).timeout
+	get_tree().current_scene.remove_child(bust_overlay)
 	_change_state(ZenMode.State.NEW_ROUND)
 
 
 func _enter_ninedown() -> void:
 	# TODO: Ninedown animation
 	# TODO: CTX.score ++
+	print("NINEDOWN")
+	var ninedown_overlay := preload("res://scenes/screens/NinedownOverlay.tscn").instantiate()
+	get_tree().current_scene.add_child(ninedown_overlay)
+	await get_tree().create_timer(2.0).timeout
+	get_tree().current_scene.remove_child(ninedown_overlay)
 	_change_state(ZenMode.State.NEW_ROUND)
 
 
