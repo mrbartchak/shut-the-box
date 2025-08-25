@@ -117,6 +117,7 @@ func _enter_resolve() -> void:
 			ctx.open_tiles.erase(key)
 			tile_manager.close_tile(key)
 	ctx.selected_tiles.clear()
+	Events.tiles_resolved.emit()
 	_emit_ctx()
 	
 	if ctx.open_tiles.is_empty():

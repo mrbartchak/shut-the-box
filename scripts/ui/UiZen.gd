@@ -31,6 +31,7 @@ func _on_ui_update(ctx: Constants.GameContext) -> void:
 func _connect_hud_signals() -> void:
 	_menu_btn.pressed.connect(_on_menu_btn_pressed)
 	Events.dice_rolled.connect(_on_dice_rolled)
+	Events.tiles_resolved.connect(_on_tiles_resolved)
 
 func _on_menu_btn_pressed() -> void:
 	SoundManager.play_click()
@@ -40,8 +41,10 @@ func _on_menu_btn_pressed() -> void:
 func _on_dice_rolled(total: int) -> void:
 	_roll_total.text = "%d" % total
 	_roll_total.modulate = _get_roll_color(total)
-	_pop_fade(_roll_total)
+	_pop_in(_roll_total)
 
+func _on_tiles_resolved() -> void:
+	_pop_out(_roll_total)
 
 # ===============  Roll Button  ==============
 func _connect_roll_btn_signals() -> void:
@@ -70,7 +73,7 @@ func _on_flip_pressed() -> void:
 
 
 # ==============  ANIMATIONS   ===============
-func _pop_fade(target: CanvasItem, up_scale: float = 1.8) -> void:
+func _pop_in(target: CanvasItem, up_scale: float = 1.8) -> void:
 	target.visible = true
 	target.scale = Vector2(0.1, 0.1)
 	target.modulate.a = 0.0
@@ -84,7 +87,17 @@ func _pop_fade(target: CanvasItem, up_scale: float = 1.8) -> void:
 	
 	tween.chain().tween_property(target, "scale", Vector2(1.0, 1.0), 0.2) \
 		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
-	# tween.parallel().tween_property(target, "modulate:a", 0.0, 0.2)
+
+func _pop_out(target: CanvasItem) -> void:
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(target, "scale", Vector2.ONE * 1.3, 0.15)\
+		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(target, "scale", Vector2.ZERO, 0.02) \
+		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	tween.finished.connect(func():
+		target.visible = false
+		target.scale = Vector2.ONE
+	)
 
 # ==============    HELPERS   =====================
 func _get_roll_color(value: int) -> Color:
