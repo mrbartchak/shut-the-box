@@ -20,6 +20,8 @@ func play_roll_animation() -> void:
 	SoundManager.play_spin()
 	_set_face(_value)
 	await spin_tween.finished
+	_start_pop_tween()
+	SoundManager.play_pop()
 	self.roll_animation_completed.emit()
 
 # ===================================================
@@ -40,3 +42,10 @@ func _start_spin_tween(rotations: int, duration: float) -> Tween:
 	tween.tween_property(_sprite, "rotation", _sprite.rotation + full_rotation, duration)\
 		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	return tween
+
+func _start_pop_tween() -> void:
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(_sprite, "scale", Vector2(1.2, 1.2), 0.1)\
+		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(_sprite, "scale", Vector2(1.0, 1.0), 0.1)\
+		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)

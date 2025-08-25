@@ -108,12 +108,12 @@ layout_mode = 2
 texture = ExtResource("5_i0lfh")
 stretch_mode = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuItems"]
+[node name="MenuButtons" type="VBoxContainer" parent="MenuItems"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 
-[node name="ContinueButton" type="Button" parent="MenuItems/VBoxContainer"]
+[node name="ContinueButton" type="Button" parent="MenuItems/MenuButtons"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 0.211765)
@@ -129,9 +129,9 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_c528h")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_exhel")
 theme_override_styles/normal = SubResource("StyleBoxFlat_htdnf")
 disabled = true
-text = "Endless"
+text = "Rougelike"
 
-[node name="StartButton" type="Button" parent="MenuItems/VBoxContainer"]
+[node name="StartButton" type="Button" parent="MenuItems/MenuButtons"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0.976471, 0.901961, 0.811765, 1)
@@ -144,9 +144,9 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_1y3un")
 theme_override_styles/hover = SubResource("StyleBoxFlat_c528h")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_exhel")
 theme_override_styles/normal = SubResource("StyleBoxFlat_htdnf")
-text = "Classic"
+text = "Endless"
 
-[node name="OptionsButton" type="Button" parent="MenuItems/VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="MenuItems/MenuButtons"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0.976471, 0.901961, 0.811765, 1)
@@ -161,7 +161,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_exhel")
 theme_override_styles/normal = SubResource("StyleBoxFlat_htdnf")
 text = "Options"
 
-[node name="ExitButton" type="Button" parent="MenuItems/VBoxContainer"]
+[node name="ExitButton" type="Button" parent="MenuItems/MenuButtons"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0.976471, 0.901961, 0.811765, 1)
@@ -191,7 +191,7 @@ text = "0.0.0-version"
 label_settings = SubResource("LabelSettings_osrfv")
 horizontal_alignment = 2
 
-[connection signal="pressed" from="MenuItems/VBoxContainer/ContinueButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="MenuItems/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="MenuItems/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="MenuItems/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="MenuItems/MenuButtons/ContinueButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MenuItems/MenuButtons/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MenuItems/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MenuItems/MenuButtons/ExitButton" to="." method="_on_exit_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ke8870dbg6q6"]
+[gd_scene load_steps=28 format=3 uid="uid://ke8870dbg6q6"]
 
 [ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="1_071g4"]
 [ext_resource type="Script" path="res://scripts/ZenMode.gd" id="1_aeq3n"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c4s8dvxj3qfwd" path="res://scenes/Tile.tscn" id="4_go2pt"]
 [ext_resource type="Texture2D" uid="uid://cj8kivye511g2" path="res://assets/sprites/buttons/hamburger/hamburger_normal.png" id="5_0f273"]
 [ext_resource type="Texture2D" uid="uid://cmq40dyj2limb" path="res://assets/sprites/boards/ivory_board_new.png" id="5_gvjj2"]
-[ext_resource type="PackedScene" uid="uid://c13olgcwrgp7i" path="res://scenes/Die.tscn" id="5_jh6lc"]
+[ext_resource type="PackedScene" uid="uid://c13olgcwrgp7i" path="res://scenes/StandardDie.tscn" id="5_jh6lc"]
 [ext_resource type="Script" path="res://scripts/ui/UiZen.gd" id="5_l8tc5"]
 [ext_resource type="Texture2D" uid="uid://dbw7ircfdxdoo" path="res://assets/sprites/buttons/hamburger/hamburger_pressed.png" id="6_uunh3"]
 [ext_resource type="Texture2D" uid="uid://c7je6vuympmqt" path="res://assets/sprites/buttons/hamburger/hamburger_hover.png" id="7_4mefg"]
@@ -21,10 +21,34 @@
 [ext_resource type="Texture2D" uid="uid://dkgwbik6fs082" path="res://assets/sprites/buttons/flip/flip_pressed.png" id="15_85tiq"]
 [ext_resource type="Texture2D" uid="uid://cle8epa3kw0rm" path="res://assets/sprites/buttons/flip/flip_hover.png" id="16_foqlh"]
 [ext_resource type="Texture2D" uid="uid://cp68sc56au6dp" path="res://assets/sprites/buttons/flip/flip_disabled.png" id="17_eueei"]
+[ext_resource type="FontFile" uid="uid://bdkaxsxctcq8x" path="res://assets/fonts/GrapeSoda.ttf" id="22_78aoa"]
+[ext_resource type="PackedScene" uid="uid://c07lrpnwy111m" path="res://scenes/MouseCursor.tscn" id="23_qb24r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mu6cr"]
 shader = ExtResource("1_071g4")
 shader_parameter/speed = 0.5
+
+[sub_resource type="LabelSettings" id="LabelSettings_bq63f"]
+line_spacing = 0.0
+font = ExtResource("22_78aoa")
+font_color = Color(0.976471, 0.901961, 0.811765, 1)
+outline_size = 4
+outline_color = Color(0.054902, 0.027451, 0.105882, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qwg33"]
+line_spacing = 0.0
+font = ExtResource("22_78aoa")
+font_color = Color(0.976471, 0.901961, 0.811765, 1)
+outline_size = 4
+outline_color = Color(0.054902, 0.027451, 0.105882, 1)
+shadow_size = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_nc1do"]
+line_spacing = 0.0
+font = ExtResource("22_78aoa")
+font_size = 32
+outline_size = 8
+outline_color = Color(0.054902, 0.027451, 0.105882, 1)
 
 [node name="ZenMode" type="Control"]
 layout_mode = 3
@@ -72,6 +96,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -222,19 +248,52 @@ texture_disabled = ExtResource("17_eueei")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 21.0
+offset_bottom = 54.0
 grow_horizontal = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="HudRow" type="HBoxContainer" parent="UI/HUD"]
+[node name="TopBar" type="HBoxContainer" parent="UI/HUD"]
 layout_mode = 2
+size_flags_vertical = 0
 
-[node name="MenuButton" type="TextureButton" parent="UI/HUD/HudRow"]
+[node name="MenuButton" type="TextureButton" parent="UI/HUD/TopBar"]
 layout_mode = 2
 texture_normal = ExtResource("5_0f273")
 texture_pressed = ExtResource("6_uunh3")
 texture_hover = ExtResource("7_4mefg")
 texture_disabled = ExtResource("8_4xg7o")
+
+[node name="Spacer" type="Control" parent="UI/HUD/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScoreText" type="Label" parent="UI/HUD/TopBar"]
+layout_mode = 2
+text = "score:"
+label_settings = SubResource("LabelSettings_bq63f")
+
+[node name="NinedownTotal" type="Label" parent="UI/HUD/TopBar"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+text = "000"
+label_settings = SubResource("LabelSettings_qwg33")
+
+[node name="Overlay" type="CenterContainer" parent="UI/HUD"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="RollTotal" type="Label" parent="UI/HUD/Overlay"]
+visible = false
+layout_mode = 2
+text = "12"
+label_settings = SubResource("LabelSettings_nc1do")
+
+[node name="MouseLayer" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="MouseCursor" parent="MouseLayer" instance=ExtResource("23_qb24r")]

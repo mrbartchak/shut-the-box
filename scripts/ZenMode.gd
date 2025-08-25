@@ -84,6 +84,7 @@ func _enter_await_roll() -> void:
 	
 	var sum: int = await dice_manager.roll_with_animation(ctx.rng)
 	ctx.roll_sum = sum
+	Events.dice_rolled.emit(ctx.roll_sum)
 	_emit_ctx()
 	if tile_manager.has_valid_combination(ctx.roll_sum, ctx.open_tiles):
 		_change_state(ZenMode.State.CHOOSE_TILES)
@@ -126,17 +127,17 @@ func _enter_resolve() -> void:
 
 func _enter_bust() -> void:
 	# TODO: Bust animation
+	await get_tree().create_timer(0.3).timeout
 	var bust_overlay := preload("res://scenes/screens/BustOverlay.tscn").instantiate()
 	get_tree().current_scene.add_child(bust_overlay)
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(1.0).timeout
 	get_tree().current_scene.remove_child(bust_overlay)
 	_change_state(ZenMode.State.NEW_ROUND)
 
 
 func _enter_ninedown() -> void:
 	# TODO: Ninedown animation
-	# TODO: CTX.score ++
-	print("NINEDOWN")
+	ctx.score += 1
 	var ninedown_overlay := preload("res://scenes/screens/NinedownOverlay.tscn").instantiate()
 	get_tree().current_scene.add_child(ninedown_overlay)
 	await get_tree().create_timer(2.0).timeout
