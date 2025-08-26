@@ -128,7 +128,8 @@ func _enter_resolve() -> void:
 
 func _enter_bust() -> void:
 	# TODO: Bust animation
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.5).timeout
+	Events.bust.emit()
 	var bust_overlay := preload("res://scenes/screens/BustOverlay.tscn").instantiate()
 	get_tree().current_scene.add_child(bust_overlay)
 	await bust_overlay.show_overlay()

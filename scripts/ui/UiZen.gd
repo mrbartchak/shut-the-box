@@ -34,6 +34,7 @@ func _connect_hud_signals() -> void:
 	_menu_btn.pressed.connect(_on_menu_btn_pressed)
 	Events.dice_rolled.connect(_on_dice_rolled)
 	Events.tiles_resolved.connect(_on_tiles_resolved)
+	Events.bust.connect(_on_bust)
 
 func _on_menu_btn_pressed() -> void:
 	SoundManager.play_click()
@@ -49,6 +50,9 @@ func _on_dice_rolled(total: int) -> void:
 
 func _on_tiles_resolved() -> void:
 	_pop_out(_roll_total)
+
+func _on_bust() -> void:
+	_fade_down_out(_roll_total)
 
 # ===============  Roll Button  ==============
 func _connect_roll_btn_signals() -> void:
@@ -94,7 +98,7 @@ func _pop_in(target: CanvasItem, up_scale: float = 2.0) -> void:
 
 func _pop_out(target: CanvasItem) -> void:
 	var tween: Tween = get_tree().create_tween()
-	tween.tween_property(target, "scale", Vector2.ONE * 1.2, 0.25)\
+	tween.tween_property(target, "scale", Vector2.ONE * 1.2, 0.15)\
 		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.tween_property(target, "scale", Vector2.ZERO, 0.02) \
 		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
@@ -105,6 +109,22 @@ func _pop_out(target: CanvasItem) -> void:
 		target.visible = false
 		target.scale = Vector2.ONE
 		SoundManager.play_pop()
+	)
+
+func _fade_down_out(target: CanvasItem) -> void:
+	target.modulate.a = 1.0
+	target.visible = true
+	var tween: Tween = get_tree().create_tween()
+	var start_pos: Vector2 = target.position
+	var end_pos: Vector2 = start_pos + Vector2(0, 25.0)
+	var duration: float = 0.5
+	tween.tween_property(target, "position", end_pos, duration) \
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property(target, "modulate:a", 0.0, duration) \
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	tween.finished.connect(func():
+		target.visible = false
+		target.position = start_pos
 	)
 
 # ==============    HELPERS   =====================

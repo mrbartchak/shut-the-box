@@ -2,6 +2,7 @@ extends Node
 
 signal dice_rolled(total: int)
 signal tiles_resolved()
+signal bust()
 
 #======== BUTTONS ========
 signal button_pressed()
